@@ -1,31 +1,82 @@
 % Encoding: UTF-8
 
-@Article{SabiEtAl2016,
-  author       = {Sabi, Humphrey M. and Uzoka, Faith-Michael E. and Langmia, Kehbuma and Njeh, Felix M.},
-  title        = {Conceptualizing a model for adoption of cloud computing in education},
-  journaltitle = {International Journal of Information Management},
-  year         = {2016},
-  volume       = {36},
-  number       = {2},
-  pages        = {183--191},
-  doi          = {10.1016/j.ijinfomgt.2015.11.010},
-  url          = {http://www.sciencedirect.com/science/article/pii/S0268401215001115},
+@software{GallantHils2023,
+  author  = {Gallant, Andrew and Hils, Maximilian},
+  title   = {pdoc: Auto-generate API documentation for Python projects},
+  year    = {2023},
+  url     = {https://pdoc.dev/},
+  version = {14.1.0},
+  github  = {pdoc3/pdoc}
 }
 
-@Online{LewisFowler2014,
-  author    = {Lewis, James and Fowler, Martin},
-  title     = {Microservices: a definition of this new architectural term},
-  date      = {2014-03-25},
-  url       = {http://martinfowler.com/articles/microservices.html},
-  urldate   = {2016-09-01},
+@inproceedings{GaoEtAl2023,
+  author    = {Gao, Haoyu and Treude, Christoph and Zahedi, Mansooreh},
+  title     = {Evaluating Transfer Learning for Simplifying GitHub READMEs},
+  year      = {2023},
+  isbn      = {9798400703270},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/3611643.3616291},
+  doi       = {10.1145/3611643.3616291},
+  abstract  = {Software documentation captures detailed knowledge about a software product, e.g., code, technologies, and design. It plays an important role in the coordination of development teams and in conveying ideas to various stakeholders. However, software documentation can be hard to comprehend if it is written with jargon and complicated sentence structure. In this study, we explored the potential of text simplification techniques in the domain of software engineering to automatically simplify GitHub README files. We collected software-related pairs of GitHub README files consisting of 14,588 entries, aligned difficult sentences with their simplified counterparts, and trained a Transformer-based model to automatically simplify difficult versions. To mitigate the sparse and noisy nature of the software-related simplification dataset, we applied general text simplification knowledge to this field. Since many general-domain difficult-to-simple Wikipedia document pairs are already publicly available, we explored the potential of transfer learning by first training the model on the Wikipedia data and then fine-tuning it on the README data. Using automated BLEU scores and human evaluation, we compared the performance of different transfer learning schemes and the baseline models without transfer learning. The transfer learning model using the best checkpoint trained on a general topic corpus achieved the best performance of 34.68 BLEU score and statistically significantly higher human annotation scores compared to the rest of the schemes and baselines. We conclude that using transfer learning is a promising direction to circumvent the lack of data and drift style problem in software README files simplification and achieved a better trade-off between simplification and preservation of meaning.},
+  booktitle = {Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering},
+  pages     = {1548–1560},
+  numpages  = {13},
+  keywords  = {Software Documentation, GitHub, Transfer Learning, Text Simplification},
+  location  = {<conf-loc>, <city>San Francisco</city>, <state>CA</state>, <country>USA</country>, </conf-loc>},
+  series    = {ESEC/FSE 2023}
 }
 
-@Online{Hykes2013,
-  author    = {Solomon Hykes},
-  title     = {The future of Linux Containers (PyCon 2013)},
-  date      = {2013-03-21},
-  url       = {https://www.youtube.com/watch?v=wW9CAH9nSLs},
-  urldate   = {2016-09-01},
+@inproceedings{IyerEtAl2016,
+  title     = {Summarizing Source Code using a Neural Attention Model},
+  author    = {Iyer, Srinivasan  and
+               Konstas, Ioannis  and
+               Cheung, Alvin  and
+               Zettlemoyer, Luke},
+  editor    = {Erk, Katrin  and
+               Smith, Noah A.},
+  booktitle = {Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  month     = aug,
+  year      = {2016},
+  address   = {Berlin, Germany},
+  publisher = {Association for Computational Linguistics},
+  url       = {https://aclanthology.org/P16-1195},
+  doi       = {10.18653/v1/P16-1195},
+  pages     = {2073--2083}
 }
 
+@inproceedings{McBurneyMcMillan2014,
+  author    = {McBurney, Paul W. and McMillan, Collin},
+  title     = {Automatic Documentation Generation via Source Code Summarization of Method Context},
+  year      = {2014},
+  isbn      = {9781450328791},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi.org/10.1145/2597008.2597149},
+  doi       = {10.1145/2597008.2597149},
+  abstract  = {A documentation generator is a programming tool that creates documentation for software by analyzing the statements and comments in the software's source code. While many of these tools are manual, in that they require specially-formatted metadata written by programmers, new research has made inroads towards automatic generation of documentation. These approaches work by stitching together keywords from the source code into readable natural language sentences. These approaches have been shown to be effective, but carry a key limitation: the generated documents do not explain the source code's context. They can describe the behavior of a Java method, but not why the method exists or what role it plays in the software. In this paper, we propose a technique that includes this context by analyzing how the Java methods are invoked. In a user study, we found that programmers benefit from our generated documentation because it includes context information.},
+  booktitle = {Proceedings of the 22nd International Conference on Program Comprehension},
+  pages     = {279–290},
+  numpages  = {12},
+  keywords  = {Source code summarization},
+  location  = {Hyderabad, India},
+  series    = {ICPC 2014}
+}
+
+@misc{Procko2023,
+  author    = {Procko, Tyler and Collins, Steve},
+  date      = {2023},
+  title     = {Automatic Code Documentation with Syntax Trees and GPT: Alleviating Software Development's Most Redundant Task},
+  doi       = {10.2139/ssrn.4571367},
+  publisher = {Elsevier BV}
+}
+
+@software{Sphinx2023,
+  author  = {{Sphinx Team}},
+  title   = {Sphinx},
+  url     = {https://www.sphinx-doc.org/},
+  year    = {2023},
+  version = {7.2.6},
+  github  = {sphinx-doc/sphinx}
+}
 @Comment{jabref-meta: databaseType:biblatex;}
