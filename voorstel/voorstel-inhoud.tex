@@ -3,17 +3,18 @@
 \section{Introductie}%
 \label{sec:introductie}
 
-Documentatie is belangrijk wanneer er aanpassingen moeten gebeuren aan de code van een project. Ook moet een iemand anders de code kunnen begrijpen voordat de code gebruikt kan worden binnen een ander project.
-Hoe kan geautomatiseerde documentatiegeneratie met behulp van Large Language Modellen (LLM) effectief worden toegepast om een duidelijk overzichten en informatieve beschrijvingen te produceren voor Python projecten?
+Documentatie is belangrijk wanneer er aanpassingen moeten gebeuren aan de code van een project. 
+Ook moet iemand anders de code kunnen begrijpen zodat dit gebruikt kan worden binnen een ander project.
+Hoe kan geautomatiseerde documentatiegeneratie met behulp van Large Language Modellen (LLM) effectief worden toegepast om duidelijke en informatieve overzichten te produceren voor Python projecten?
 
-Het is belangrijk dat de skill of de knowhow van een project gedeeld kan worden met anderen. 
-Door het toepassen van documentatie kan deze kennis makkelijk vergaard worden door andere geïnteresseerden.
-Het is dus een belangrijk dat er aan documentatie gedaan wordt en dat deze up-to-date blijft. 
+Het is belangrijk dat de skill of de know-how van een project gedeeld kan worden met anderen. 
+Door het toepassen van documentatie kan deze kennis gemakkelijk vergaard worden door andere geïnteresseerden.
+Het is dus belangrijk dat er aan documentatie gedaan wordt en dat deze up-to-date blijft. 
 
-Documentatie is iets dat veel tijd kost, dat vaak niet gemaakt wordt en het is iets dat up-to-date gehouden moet worden.
-Het gebruiken ervan kan ervoor zorgen dat er geen dubbel werk gedaan moet worden. Een tool die dit proces kan versnellen / automatiseren zou een grote meerwaarde zijn.
+Documentatie is iets dat veel tijd kost, waar vaak geen aandacht aan wordt gegeven en het is iets dat up-to-date gehouden moet worden.
+Het gebruik ervan kan ervoor zorgen dat er geen dubbel werk gedaan moet worden. Een tool die dit proces kan versnellen / automatiseren zou een grote meerwaarde zijn.
 De tool bestaat uit een geautomatiseerde documentatie LLM die de project code analyseert en samenvat in een document. 
-Dit geeft de werknemers de moegelijkheid om zich in te lezen in het project en erna zelf aanpassingen te maken of stukken code te gebruiken voor een ander project.
+Dit geeft de werknemers de mogelijkheid om zich in te lezen in het project en erna zelf aanpassingen te maken of stukken code te gebruiken voor een ander project.
 
 Het eindresultaat van deze bachelorproef is een Proof of Concept (PoC) van een geautomatiseerde tool die de project code analyseert en er documentatie van genereert.
 De gegenereerde documentatie laat het toe om het project te begrijpen zonder er te veel tijd aan te besteden.
@@ -25,52 +26,82 @@ De gegenereerde documentatie laat het toe om het project te begrijpen zonder er 
 
 Wat is documentatie binnen Python projecten en wat zijn de huidige tools?
 Voor de taal Python bestaan er al verschillende tools die documentatie genereren voor blokken code zoals pdoc \autocite{GallantHils2023} en Sphinx \autocite{Sphinx2023}. 
-Met behulp van de sphinx autodoc functie \autocite{Sphinx2023} kan een python functie omschreven worden in een docstring.
+Met behulp van de Sphinx autodoc functie \autocite{Sphinx2023} kan een python functie omschreven worden in een docstring.
 Een docstring is een blok tekst dat de werking van een python functie omschrijft. Door deze beknopte blok tekst wordt er duidelijk wat de functie doet.
 Deze docstrings kunnen mogelijks gebruikt worden bij het maken van een document dat het project omschrijft.
+
+Wat zijn Large Language Modellen (LLM)?
+Large Language Modellen zijn neurale netwerken die getraind worden op grote hoeveelheden tekst. 
+Deze modellen kunnen tekst genereren op basis van een gegeven input. 
+LLMs hebben een grote vooruitgang gekend in 2017 door de paper van \textcite{VaswaniEtAl2017}. 
+Hieruit kwam een nieuw neuraal netwerk, self-attention of Transformers. 
+Deze doen het beter dan de vorige neurale netwerken, Convolutional Neural Networks (CNN) en Recurrent Neural Networks (RNN).
+Door deze nieuwe neurale netwerken zijn er krachtige LLMs ontstaan zoals: GPT van OpenAi  \autocite{RandfordEtAL2018} en BERT van \textcite{DevlinEtAl2019}.
+
+Hoe kunnen deze Large Language Modellen gebruikt worden om documentatie te genereren?
+Er kan een prompt geschreven worden en deze aan de LLMs gegeven worden, er kan een nieuw LLM getraind worden op correcte samenvattingen van gehele Python projecten.
+Het gebruiken van docstrings of uitleg van verschillende Python functies kan gegeven worden aan een LLM. 
+Ook kan er gekeken worden naar GitHub README.md bestanden. Dit zijn bestanden waarin de werking van een project kort wordt uitgelegd. Deze zijn echter niet altijd vlot te lezen. 
+Volgens de studie \textcite{GaoEtAl2023} kan de tekst vereenvoudigd worden terwijl steeds de correcte betekenis kan behouden worden, en dit aan de hand van een transfer learning model.
+Doordat het vereenvoudigen van een README bestand mogelijk is, kan dit mogelijks gebruikt worden voor de uiteindelijke documentatie die beoogd wordt in deze bachelorproef. 
+Zo kan een redelijk complexe samenvatting vereenvoudigd worden naar de essentie ervan terwijl het steeds een bepaalde diepgang behoudt. 
+
+In 2023 werd het gebruiken van LLMs bij het automatisch documenteren van code met behulp van syntax bomen onderzocht door \textcite{Procko2023} voor C\# en .NET programeertalen.
+Er kan gekeken worden hoe er te werk is gegaan en wat de conclusies waren. Er werd gebruik gemaakt van GPT-3.5 en een dotnet compiler Roslyn \autocite{Roslyn}. 
+Hieruit kan geconcludeerd worden dat door het gebruiken van syntax bomen de stochastische onzekerheid van GPT-3.5 een deel verholpen kan worden. 
+
+In de studie van \textcite{McBurneyMcMillan2014} werd onderzocht hoe er automatisch documentatie gegenereerd kan worden voor Java code. 
+Er werd specifiek gekeken hoe de methodes met elkaar verbonden waren en welke rol deze speelden binnen het project.
+Deze studie was een vervolg op het onderzoek van \textcite{SridharaEtAL2010} in 2010.
+Het zoeken naar de mogelijke gelijkenissen tussen de automatische documentatie voor Java code en deze van Python code kan een begin zijn van deze bachelorproef. 
 
 Er is ook al onderzoek gedaan naar het automatisch genereren van documentatie van code blokken met behulp van een Neural Attention Model (NAM) \autocite{IyerEtAl2016}.
 Dit onderzoek heeft gekeken naar het genereren van hoogstaande samenvattingen van source code. 
 Het maakt gebruik van neurale netwerken die stukken C\# code en SQL queries omzetten naar zinnen die de code omschrijven. 
 Dit helpt bij het begrijpen van stukken code maar niet van een geheel project waar meerdere bestanden bij betrokken zijn.
 
-Hoe kunnen Large Language Modellen gebruikt worden om documentatie te genereren?
-Large Language Modellen zijn neurale netwerken die getraind worden op grote hoeveelheden tekst. 
-Deze modellen kunnen tekst genereren op basis van een gegeven input. De mogelijkse invoer in deze bachelorproef kan dan een python project zijn, of de docstrings van verschillende functies in een project.
-Er wordt dan verwacht dat het een samenvatting maakt van het project of van de functies.
+De afgelopen jaren is het automatisch documenteren van source code grondig bestudeerd en onderzocht. 
+In deze bachelorproef wordt er verder onderzocht hoe LLMs gebruikt kunnen worden bij het automatisch genereren van documentatie of samenvattingen van een geheel Python project.
+Het uiteindelijke doel is het automatisch genereren van een samenhangend geheel van verschillende bestanden van een Python project die samen een duidelijk overzicht geven van de werking van het project.
+Bij het automatisch genereren van documentatie kan er gebruik gemaakt worden van LLMs en kan er gekeken worden hoe verschillende LLMs presteren tegenover elkaar. 
 
-Ook kan er gekeken worden naar GitHub README.md bestanden. Dit zijn bestanden waarin de werking van een project kort wordt uitgelegd. Deze zijn echter niet altijd makkelijk te lezen. 
-Volgens de studie \textcite{GaoEtAl2023} kan de tekst vereenvoudigd worden terwijl steeds de correcte betekenis te behouden, en dit aan de hand van een transfer learning model.
-Het gebruik van LLMs en het automatisch code documentatie met behulp van syntax bomen wordt onderzocht in \textcite{Procko2023} voor de C\# en .NET programeertalen.
-In deze studie wordt er gekeken naar het gebruik van LLMs specifiek GPT-3.5 en GPT-4 om code te documenteren.
-
-In de studie van \textcite{McBurneyMcMillan2014} wordt onderzocht hoe er automatisch documentatie gegenereerd kan worden voor Java code, specifiek naar hoe de methodes met elkaar verbonden zijn en welke rol ze spelen binnen het project.
-Dit is een mooi voorbeeld van wat ik wil bereiken met deze bachelorproef, een samenhangend geheel van verschillende bestanden van een python project die samen een duidelijk overzicht geven van de werking van het project.
-Hoe kunnen LLMs gebruikt worden om automatisch documentatie te genereren voor python projecten.
-De gegenereerde samenvatting van het gehele project geeft de lezer ervan de mogelijkheid het project te gebruiken of aan te passen zonde de totale project code te ontleden.
+De uitkomst is een samenvatting van het gehele project dat de lezer in staat stelt het project te gebruiken of aan te passen zonder de totale project code te ontleden.
 
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
 \label{sec:methodologie}
 
-Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? 
-Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
+Het onderzoek bedraagt zes verschillende fases. 
+De eerste fase bedraagt het verder uitvoeren van de literatuurstudie om zo een betere kennis over het onderwerp te vergaren.
+Het verfijnen van de literatuurstudie zorgt ervoor dat er specifieke methoden gevonden worden die relevant zijn voor Python projecten.
+Ook dient de probleemdefinitie aangescherpt te worden door specifieke uitdagingen te identificeren.
+Hiervoor worden twee weken ingepland.
 
-Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? 
-Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
+De volgende twee weken bedraagt het verzamelen van de dataset. Er worden Python projecten verzameld die varieren in complexiteti en grootte.
+Mogelijks worden deze projecten aangevuld met README bestanden en docstrings voor de verschillende functies.
+Vervolgens wordt de data voorbereid zodat deze gebruikt kan worden door de verschillende gekozen LLMs.
 
-Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. 
-Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. 
-De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. 
-Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, 
-waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
+In de derde fase wordt het model gekozen en wordt dit model getraind. Er kunnen verschillende LLMs gekozen worden zoals GPT-3.5, gemini of BERT.
+Er kan ook overwogen worden om een LLM te fine-tunen op python documentatie.
+De volgende stap bedraagt het opstellen van hoe de prestaties van de modellen vergeleken kunnen worden. 
+Dit kan pas nadat er een plan is opgesteld voor het trainen op de bekomen dataset.
+Deze fase bedraagt drie weken.
 
-Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. 
-Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
+De vierde fase zal de implementatie en evaluatie aanhalen.
+Er wordt een tool gemaakt waar een Python project aangegeven kan worden. 
+De uitvoer van deze tool is een document met een samenvatting van het python project inclusief relaties tussen de verschillende bestanden.
+Deze uitvoer moet dan geevalueerd te worden op basis van de relevantie, begrijpelijkheid en de volledigheid. 
+De resultaten kunnen vergeleken worden met de documentatie van bestaande tools.
+Ook kan er gevraagd worden aan enkele programmeurs de gerealiseerde documentatie te evalueren.
+De vierde fase neemt vier weken in beslag.
 
-Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
+De voorlaatste fase bestaat uit het optimaliseren van het generatieprocess en het fine-tunen van de uitkomst.
+De fine-tuning stelt de tool instaat om betere documentatie te genereren op basis van de bekomen feedback.
+Deze fase duurt één week.
 
-Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
+De laatste fase van het onderzoek bestaat uit het analyseren van de critsiche feedback, en het afwerken van de bachelorproef.
+Het rapport wordt geschreven en de presentatie wordt voorbereid. 
+Er kan nagedacht worden over wat er verder onderzocht kan worden na de bekomen conclusies.
 
 %---------- Verwachte resultaten ----------------------------------------------
 \section{Verwacht resultaat, conclusie}%
