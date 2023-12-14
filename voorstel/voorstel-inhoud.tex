@@ -3,21 +3,21 @@
 \section{Introductie}%
 \label{sec:introductie}
 
-Documentatie is belangrijk wanneer er aanpassingen moeten gebeuren aan de code van een project. 
+Documentatie is belangrijk wanneer er aanpassingen moeten gebeuren aan de code van een project.
 Ook moet iemand anders de code kunnen begrijpen zodat dit gebruikt kan worden binnen een ander project.
 Hoe kan geautomatiseerde documentatiegeneratie met behulp van Large Language Modellen (LLM) effectief worden toegepast om duidelijke en informatieve overzichten te produceren voor Python projecten?
 
-Het is belangrijk dat de skill of de know-how van een project gedeeld kan worden met anderen. 
+Het is belangrijk dat de skills of de know-how van een project gedeeld kunnen worden met anderen. 
 Door het toepassen van documentatie kan deze kennis gemakkelijk vergaard worden door andere geïnteresseerden.
 Het is dus belangrijk dat er aan documentatie gedaan wordt en dat deze up-to-date blijft. 
 
-Documentatie is iets dat veel tijd kost, waar vaak geen aandacht aan wordt gegeven en het is iets dat up-to-date gehouden moet worden.
+Documentatie is iets dat veel tijd kost en waar vaak geen aandacht aan wordt besteed.
 Het gebruik ervan kan ervoor zorgen dat er geen dubbel werk gedaan moet worden. Een tool die dit proces kan versnellen / automatiseren zou een grote meerwaarde zijn.
 De tool bestaat uit een geautomatiseerde documentatie LLM die de project code analyseert en samenvat in een document. 
 Dit geeft de werknemers de mogelijkheid om zich in te lezen in het project en erna zelf aanpassingen te maken of stukken code te gebruiken voor een ander project.
 
 Het eindresultaat van deze bachelorproef is een Proof of Concept (PoC) van een geautomatiseerde tool die de project code analyseert en er documentatie van genereert.
-De gegenereerde documentatie laat het toe om het project te begrijpen zonder er te veel tijd aan te besteden.
+De gegenereerde documentatie laat het toe het project te begrijpen zonder er te veel tijd aan te besteden.
 
 %---------- Stand van zaken ---------------------------------------------------
 
@@ -28,22 +28,22 @@ Wat is documentatie binnen Python projecten en wat zijn de huidige tools?
 Voor de taal Python bestaan er al verschillende tools die documentatie genereren voor blokken code zoals pdoc \autocite{GallantHils2023} en Sphinx \autocite{Sphinx2023}. 
 Met behulp van de Sphinx autodoc functie \autocite{Sphinx2023} kan een python functie omschreven worden in een docstring.
 Een docstring is een blok tekst dat de werking van een python functie omschrijft. Door deze beknopte blok tekst wordt er duidelijk wat de functie doet.
-Deze docstrings kunnen mogelijks gebruikt worden bij het maken van een document dat het project omschrijft.
+Deze docstrings kunnen mogelijk gebruikt worden bij het maken van een document dat het project omschrijft.
 
 Wat zijn Large Language Modellen (LLM)?
 Large Language Modellen zijn neurale netwerken die getraind worden op grote hoeveelheden tekst. 
 Deze modellen kunnen tekst genereren op basis van een gegeven input. 
 LLMs hebben een grote vooruitgang gekend in 2017 door de paper van \textcite{VaswaniEtAl2017}. 
-Hieruit kwam een nieuw neuraal netwerk, self-attention of Transformers. 
+Hieruit kwam een nieuw neuraal netwerk, self-attention of transformers. 
 Deze doen het beter dan de vorige neurale netwerken, Convolutional Neural Networks (CNN) en Recurrent Neural Networks (RNN).
 Door deze nieuwe neurale netwerken zijn er krachtige LLMs ontstaan zoals: GPT van OpenAi  \autocite{RandfordEtAL2018} en BERT van \textcite{DevlinEtAl2019}.
 
 Hoe kunnen deze Large Language Modellen gebruikt worden om documentatie te genereren?
-Er kan een prompt geschreven worden en deze aan de LLMs gegeven worden, er kan een nieuw LLM getraind worden op correcte samenvattingen van gehele Python projecten.
+Er kan een prompt geschreven worden die aan de LLMs gegeven wordt, er kan een nieuw LLM getraind worden op correcte samenvattingen van gehele Python projecten.
 Het gebruiken van docstrings of uitleg van verschillende Python functies kan gegeven worden aan een LLM. 
 Ook kan er gekeken worden naar GitHub README.md bestanden. Dit zijn bestanden waarin de werking van een project kort wordt uitgelegd. Deze zijn echter niet altijd vlot te lezen. 
 Volgens de studie \textcite{GaoEtAl2023} kan de tekst vereenvoudigd worden terwijl steeds de correcte betekenis kan behouden worden, en dit aan de hand van een transfer learning model.
-Doordat het vereenvoudigen van een README bestand mogelijk is, kan dit mogelijks gebruikt worden voor de uiteindelijke documentatie die beoogd wordt in deze bachelorproef. 
+Doordat het vereenvoudigen van een README bestand mogelijk is, kan dit mogelijk gebruikt worden voor de uiteindelijke documentatie die beoogd wordt in deze bachelorproef. 
 Zo kan een redelijk complexe samenvatting vereenvoudigd worden naar de essentie ervan terwijl het steeds een bepaalde diepgang behoudt. 
 
 In 2023 werd het gebruiken van LLMs bij het automatisch documenteren van code met behulp van syntax bomen onderzocht door \textcite{Procko2023} voor C\# en .NET programeertalen.
@@ -60,7 +60,7 @@ Dit onderzoek heeft gekeken naar het genereren van hoogstaande samenvattingen va
 Het maakt gebruik van neurale netwerken die stukken C\# code en SQL queries omzetten naar zinnen die de code omschrijven. 
 Dit helpt bij het begrijpen van stukken code maar niet van een geheel project waar meerdere bestanden bij betrokken zijn.
 
-De afgelopen jaren is het automatisch documenteren van source code grondig bestudeerd en onderzocht. 
+De afgelopen jaren is het automatisch documenteren van source code grondig bestudeerd en onderzocht.
 In deze bachelorproef wordt er verder onderzocht hoe LLMs gebruikt kunnen worden bij het automatisch genereren van documentatie of samenvattingen van een geheel Python project.
 Het uiteindelijke doel is het automatisch genereren van een samenhangend geheel van verschillende bestanden van een Python project die samen een duidelijk overzicht geven van de werking van het project.
 Bij het automatisch genereren van documentatie kan er gebruik gemaakt worden van LLMs en kan er gekeken worden hoe verschillende LLMs presteren tegenover elkaar. 
@@ -77,17 +77,17 @@ Het verfijnen van de literatuurstudie zorgt ervoor dat er specifieke methoden ge
 Ook dient de probleemdefinitie aangescherpt te worden door specifieke uitdagingen te identificeren.
 Hiervoor worden twee weken ingepland.
 
-De volgende twee weken bedraagt het verzamelen van de dataset. Er worden Python projecten verzameld die varieren in complexiteti en grootte.
-Mogelijks worden deze projecten aangevuld met README bestanden en docstrings voor de verschillende functies.
+De volgende twee weken bedraagt het verzamelen van de dataset. Er worden Python projecten verzameld die varieren in complexiteit en grootte.
+Mogelijk worden deze projecten aangevuld met README bestanden en docstrings voor de verschillende functies.
 Vervolgens wordt de data voorbereid zodat deze gebruikt kan worden door de verschillende gekozen LLMs.
 
 In de derde fase wordt het model gekozen en wordt dit model getraind. Er kunnen verschillende LLMs gekozen worden zoals GPT-3.5, gemini of BERT.
-Er kan ook overwogen worden om een LLM te fine-tunen op python documentatie.
-De volgende stap bedraagt het opstellen van hoe de prestaties van de modellen vergeleken kunnen worden. 
+Er kan ook overwogen worden om een LLM te finetunen op python documentatie.
+De volgende stap houdt het opstellen van hoe de prestaties van de modellen vergeleken kunnen worden in. 
 Dit kan pas nadat er een plan is opgesteld voor het trainen op de bekomen dataset.
 Deze fase bedraagt drie weken.
 
-De vierde fase zal de implementatie en evaluatie aanhalen.
+De vierde fase zal de implementatie en evaluatie bevatten.
 Er wordt een tool gemaakt waar een Python project aangegeven kan worden. 
 De uitvoer van deze tool is een document met een samenvatting van het python project inclusief relaties tussen de verschillende bestanden.
 Deze uitvoer moet dan geevalueerd te worden op basis van de relevantie, begrijpelijkheid en de volledigheid. 
@@ -95,11 +95,11 @@ De resultaten kunnen vergeleken worden met de documentatie van bestaande tools.
 Ook kan er gevraagd worden aan enkele programmeurs de gerealiseerde documentatie te evalueren.
 De vierde fase neemt vier weken in beslag.
 
-De voorlaatste fase bestaat uit het optimaliseren van het generatieprocess en het fine-tunen van de uitkomst.
-De fine-tuning stelt de tool instaat om betere documentatie te genereren op basis van de bekomen feedback.
+De voorlaatste fase bestaat uit het optimaliseren van het generatieproces en het finetunen van de uitkomst.
+De finetuning stelt de tool in staat om betere documentatie te genereren op basis van de bekomen feedback.
 Deze fase duurt één week.
 
-De laatste fase van het onderzoek bestaat uit het analyseren van de critsiche feedback, en het afwerken van de bachelorproef.
+De laatste fase van het onderzoek bestaat uit het analyseren van de kritische feedback, en het afwerken van de bachelorproef.
 Het rapport wordt geschreven en de presentatie wordt voorbereid. 
 Er kan nagedacht worden over wat er verder onderzocht kan worden na de bekomen conclusies.
 
@@ -107,13 +107,13 @@ Er kan nagedacht worden over wat er verder onderzocht kan worden na de bekomen c
 \section{Verwacht resultaat, conclusie}%
 \label{sec:verwachte_resultaten}
 
-Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. 
-Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. 
-Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
+Het verwachte resultaat van deze bachelorproef is dat er een werkende tool gemaakt wordt dat een geheel Python project kan analyseren en er documentatie van kan genereren.
+Deze documentatie geeft dan een duidelijk overzicht van de werking van het project en de relaties tussen de verschillende bestanden.
 
-Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
+Er kunnen verschillende conclusies getrokken worden uit het onderzoek. 
+LLMs zijn ideale modellen om te gebruiken bij het genereren van documentatie.
+Het finetunen van een LLM op Python documentatie kan een grote meerwaarde zijn bij het genereren van documentatie.
+Hierdoor is het mogelijk dat de documentatie specifiek afgestemd is voor de verschillende noden van gebruikers. Iedere gebruiker kan de automatische documentatie aanpassen naar zijn eigen noden.
 
-Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere 
-resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te 
-onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
-
+Een verdere conclusie is dat het gebruiken van de documentatie tool het begrijpen van een Python project makkelijker maakt.
+De kennis van een project kan gemakkelijk gedeeld worden met anderen en anderen kunnen deze documentatie begrijpen.
