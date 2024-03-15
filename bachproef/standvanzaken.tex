@@ -42,7 +42,7 @@ Voor deze bachelorproef wordt er gekeken naar het documenteren van een Python pr
 In de vorm van commentaar in de code en het genereren van een samenvattend document van het gehele project.
 Waaruit de werking van het project duidelijk wordt en de relatie tussen de verschillende bestanden en functies.
 
-\section{Wat zijn Large Language Models?}
+\section{Wat zijn Large Language Modellen?}
 \label{sec:wat-zijn-llms}
 
 Omdat er in deze bachelorproef gebruik gemaakt wordt van Large Language Modellen is het belangrijk dat er een duidelijk beeld is van wat deze modellen zijn.
@@ -50,22 +50,64 @@ En wat deze modellen kunnen, wat de mogelijke beperkingen zijn en wat de huidige
 Bestaan er LLMs speciaal getraind op Python code? Kunnen LLMs gebruikt worden om documentatie te genereren? 
 Dit zijn enkele vragen die in dit hoofdstuk beantwoord zullen worden. 
 
-Large Language Modellen (LLM) zijn neurale netwerken die getraind worden op grote hoeveelheden tekst. 
-Deze modellen kunnen tekst genereren op basis van een gegeven input. 
-LLMs hebben een grote vooruitgang gekend in 2017 door de paper van \textcite{VaswaniEtAl2017}. 
-Hieruit kwam een nieuw mechanisme transformers dat gebruik maakt van Self-Attention. 
+Het veld waarin AI zich bevindt wordt vaak voorgesteld volgens figuur \ref{fig:LLM-position}, met verschillende lagen \autocite{Stoeffelbauer2023}.
+Deze lagen zijn: Artificiële Intelligentie, Machine Learning, Deep Learning en Large Language Modellen.
+Voor dat er dieper op de LLMs wordt ingegaan is het belangrijk dat er een duidelijk beeld is van wat deze lagen juist inhouden.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{LLMsphere.png}
+  \caption{Artificiële intelligentie in lagen \autocite{Stoeffelbauer2023}}
+  \label{fig:LLM-position}
+\end{figure}
+
+AI is een brede term, hiermee wordt vaak verwezen naar slimme machines. 
+Machine Learning (ML) is een subveld van AI, waarin patronen worden herkend tussen een input en een output.
+ML kan gebruikt worden voor verschillende taken zoals: classificatie, regressie, clustering, ... .
+Deep Learning (DL) is een subveld van ML, waarin complexe algoritmen en deep neural networks gebruikt worden om moeilijkere taken uit te voeren.
+Deep Learning is een krachtige tool die gebruikt wordt voor verschillende taken zoals: beeldherkenning, spraakherkenning, ... \autocite{Stoeffelbauer2023}.
+
+Large Language Modellen zijn geavanceerde AI-systemen die dienen om menselijke taal te verstaan, te genereren en te verwerken.
+LLMs worden getraind op een allerlei data zoals artikelen, websites, ... . 
+Complexe algoritmen en deep neural networks zorgen ervoor dat LLM's natuurlijke taal verwerken op een gelijkaardige manier zoals een mens dingen verwerkt \autocite{Beelen2023}.
+Deze hebben een grote vooruitgang gekend in 2017 door de paper van \textcite{VaswaniEtAl2017}. 
+Hieruit kwam een nieuw mechanisme tot stand namelijk transformers wat bestaat uit Attention blokken. 
 Het gebruik van deze mechanismen zorgde ervoor dat de LLMs beter presteerden op verschillende taken zoals: vertalen, samenvatten, vragen beantwoorden en tekst genereren.
 
-\subsection{{Transformers en Self-Attention}}
-\label{sec:transformers-en-self-attention}
+\subsection{Transformers en de architectuur van LLMs}
+\label{sec:architectuur-van-llms}
+Een neuraal netwerk bestaat uit verschillende lagen. Enkele belangrijke lagen die gebruikt worden sinds de opkomst van transformers zijn:
+\begin{itemize}
+  \item Self-Attention
+  \item Cross-Attention
+  \item Masked Self-Attention
+\end{itemize}
+
+Deze lagen worden gebruikt in de encoder en decoder van een transformer en stromen voort uit het onderzoek van \textcite{VaswaniEtAl2017}.
+
+Transformers zijn een speciaal type van neurale netwerken die gebruik maken van verschillende attention blokken.
+Attention is een mechanisme dat gebruikt wordt om de relaties tussen verschillende delen van de invoersequenties te leren.
+Dit mechanisme is geïnspireerd op de werking van het menselijk brein.
+Een transformer bestaat uit een encoder en een decoder. Die elk bestaan uit verschillende attention blokken. 
+Dit kan gezien worden in figuur \ref{fig:transformer-model}. 
+
 Self-Attention duidt dynamisch gewichten toe aan verschillende elementen binnen de meegegeven sequentie, bijvoorbeeld woorden in een zin.
 Dit laat het model toe om zich te concentreren op de meest relevante delen van de invoer, terwijl de invloed van minder cruciale delen wordt verminderd.
 De invoersequentie wordt eerst in drie verschillende vectoren omgezet: query, key en value.
 De Query vector stelt een specifiek token uit de invoersequentie voor, de Key vector vertegenwoordigt alle tokens en de vector voor Value bevat de feitelijke inhoud die aan elk token is gekoppeld.
 De similariteit tussen de Query en de Key vector wordt berekend aan de hand van het inwendig product van de twee vectoren.
-Deze similariteit wordt gebruikt om de gewichten te berekenen die aan de Value vector worden toegekend.
+Deze similariteit wordt gebruikt om de gewichten te berekenen die aan de Value vector worden toegekend \autocite{VaswaniEtAl2017}.
 
-Transformers zijn een speciaal type van neurale netwerken die gebruik maken van self-attention mechanismen.
+Masked Self-Attention is een variant van Self-Attention die gebruikt wordt in de decoder van een transformer.
+In de decoder wordt er een mask gebruikt om enkel de vorige tokens te zien in de sequentie \autocite{VaswaniEtAl2017}.
+Dit vermijdt dat er informatie van de toekomstige tokens gebruikt wordt. 
+Zo kan de transformer niet "vals spelen" tijdens het train proces.
+
+Cross-Attention is een variant van Self-Attention die gebruikt wordt in de decoder van een transformer.
+Deze laag gebruikt de informatie van de encoder en de vorige Attention laag van de decoder om de uitvoersequenties te genereren.
+De query vector is de uitvoer van de vorige Attention/Cross-Attention laag van de decoder en de key en value vector zijn de uitvoer van de encoder \autocite{VaswaniEtAl2017}.
+Doordat de Cross-Attention laag informatie van zowel de encoder als decoder krijgt kan het model de relaties tussen de verschillende delen van de invoersequenties leren.
+Deze relaties worden dan gebruikt om de uitvoersequenties te genereren.
 
 \begin{figure}[h]
   \centering
@@ -78,16 +120,30 @@ Transformers zijn een speciaal type van neurale netwerken die gebruik maken van 
 \subsection{Bestaande LLMs}
 \label{sec:bestaande-llms}
 
-\subsection{Beperkingen van LLMs}
-\label{sec:beperkingen-van-llms}
+Momenteel zijn er verschillende LLMs die gebruikt worden voor verschillende taken.
+Deze LLMs zijn getraind op verschillende data en hebben verschillende architecturen.
+Het is belangrijk dat er een duidelijk beeld is van de verschillende LLMs en hun mogelijkheden. 
+Zodat er een goede keuze gemaakt kan worden voor het genereren van documentatie.
 
+Eén van de grote spelers in de wereld van LLMs is OpenAI. OpenAI heeft verschillende LLMs ontwikkeld gaande van GPT \autocite{RandfordEtAL2018} tot GPT-4 \autocite{OpenAI2023}.
+GPT-4 is de krachtigste LLM die OpenAI heeft ontwikkeld, het is getraind op een grote hoeveelheid data en heeft een grote capaciteit.
+Een nadeel is dat GPT-4 een betalende service is en niet voor iedereen toegankelijk is \autocite{OpenAI2023}.
 
-Door deze nieuwe neurale netwerken zijn er krachtige LLMs ontstaan zoals: GPT van OpenAi  \autocite{RandfordEtAL2018} en BERT van \textcite{DevlinEtAl2019}.
-Meta heeft verschillende LLMs waaronder ook 'Code LLama - Python' een LLM speciaal getraind op Python code, deze kan gebruikt worden om documentatie te genereren. \autocite{Roziere2024}
-GPT-4 van OpenAi 
-%verder aan vullen met verschillende LLMs dieper op in gaan!!
+Een andere grote speler is Google, Google heeft verschillende LLMs ontwikkeld waaronder BERT van \textcite{DevlinEtAl2019} en Gemini \autocite{Google2024}
+BERT staat voor Bidirectional Encoder Representations from Transformers, dit wil zeggen dat het model de context van de woorden kan begrijpen.
+BERT was een eerste stap in de wereld van LLMs voor Google. Sinds kort heeft \textcite{Google2024} een nieuwe LLM ontwikkeld genaamd Gemini.
+Deze LLM is een sterke concurent voor GPT-4 van \textcite{OpenAI2023}. Een van de voordelen van Gemini is dat er een groot aantal input tokens meegegeven kunnen worden, namelijk 1 miljoen tokens.
+Dit is aanzienlijk meer dan de 128 duizend tokens van GPT-4.
 
+Een derde speler in de wereld van LLMs is Meta, Meta heeft verschillende LLMs ontwikkeld onder de naam LLama 2 \autocite{Meta2024}.
+De LLama 2 familie bestaat uit verschillende LLMs die getraind zijn op verschillende data. Sommige zijn extra getraind voor specifiekere doeleinden.
+Zo is er bijvoorbeeld een LLM getraind op Python code, genaamd Code LLama 2 van \textcite{Roziere2024}.
+Een voordeel van de LLama 2 familie is dat deze LLMs open source zijn en dus voor iedereen toegankelijk zijn.
 
+De verschillen tussen deze LLMs zijn groot, zo is er een verschil in capaciteit, trainingsdata en toegankelijkheid.
+Het is belangrijk dat er een goede keuze gemaakt wordt voor het genereren van documentatie.
+Deze keuze zal afhangen van de mogelijkheden van de LLMs en de doeleinden van de documentatie.
+Het is mogelijk dat er meerdere LLMs getest moeten worden om de beste keuze te maken.
 
 \section{LLM voor documentatie}
 \label{sec:llm-voor-documentatie}
@@ -95,7 +151,7 @@ GPT-4 van OpenAi
 Door de kracht van LLMs is het mogelijk om documentatie te genereren. Door de code aan een LLM te geven als input met extra prompts kan de LLM weten wat de code doet.
 Deze output kan dan gebruikt worden als verdere input voor de LLM om een samenvatting te genereren van het gehele project.
 
-\section*{{Huidige Python documentatie tools}}
+\section{Huidige Python documentatie tools}
 \label{sec:huidige-tools}
 
 Er bestaan reeds verschillende tool waar Python documentatie gegenereerd wordt. De documentatie wordt gegenereerd in verschillende vormen. 
