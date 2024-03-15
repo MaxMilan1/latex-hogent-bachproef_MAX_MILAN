@@ -5,12 +5,6 @@
 
 \documentclass[dutch,dit,thesis]{hogentreport}
 
-% TODO:
-% - If necessary, replace the option `dit`' with your own department!
-%   Valid entries are dbo, dbt, dgz, dit, dlo, dog, dsa, soa
-% - If you write your thesis in English (remark: only possible after getting
-%   explicit approval!), remove the option "dutch," or replace with "english".
-
 \usepackage{lipsum} % For blind text, can be removed after adding actual content
 
 %% Pictures to include in the text can be put in the graphics/ folder
@@ -52,11 +46,11 @@
 
 %%---------- Document metadata -------------------------------------------------
 % TODO: Replace this with your own information
-\author{Ernst Aarden}
-\supervisor{Dhr. F. Van Houte}
-\cosupervisor{Mevr. S. Beeckman}
+\author{Max Milan}
+\supervisor{Dhr. G. Bosteels}
+\cosupervisor{Dhr. A. Pannemans}
 \title[Optionele ondertitel]%
-    {Titel van de bachelorproef}
+    {Geautomatiseerde documentatie generatie met behulp van Large Language Modellen: Het genereren van duidelijke overzichten en informatieve beschrijvingen voor Python projecten}
 \academicyear{\advance\year by -1 \the\year--\advance\year by 1 \the\year}
 \examperiod{1}
 \degreesought{\IfLanguageName{dutch}{Professionele bachelor in de toegepaste informatica}{Bachelor of applied computer science}}
@@ -158,6 +152,24 @@ Het onderwerp van deze bachelorproef is gebaseerd op een onderzoeksvoorstel dat 
 %\section*{Samenvatting}
 
 % Kopieer en plak hier de samenvatting (abstract) van je onderzoeksvoorstel.
+\begin{abstract}
+    Documentatie van een Python project is belangrijk, maar het is een tijdrovende taak en het wordt vaak niet grondig gedaan.
+    Deze bachelorproef aan de HoGent onderzoekt het automatisch genereren van documentatie voor python projecten met behulp van Large Language Modellen.
+    Er wordt een tool ontwikkeld die de Python code en de relaties tussen de verschillende bestanden analyseert en op basis daarvan een overzichtelijke documentatie genereerd.
+    Er wordt gekeken naar hoe de documentatie van Python functies gebruikt kunnen worden voor het maken van een gehele samenvatting van het project.
+    Dit wordt gedaan op basis van huidige methoden om docstrings aan te maken en te gebruiken.
+    Deze informatie kan dan gegeven worden aan de Large Language Modellen om een samenvatting te genereren.
+    
+    Er worden verschillende Python projecten verzameld en geanalyseerd om te kijken hoe de documentatie gegenereerd kan worden.
+    Dan worden er LLMs getraind op basis van deze projecten en wordt er gekeken naar hoe de documentatie gegenereerd kan worden.
+    De gegenereerde documentatie kan dan vergeleken worden met de huidige documentatie van de projecten om dit te evalueren.
+    Ook zal er gevraagd worden aan enkele programmeurs om de documentatie te evalueren.
+    
+    Op basis van deze feedback kan het model gefinetuned worden. Er kan gekeken worden naar de mogelijke verbeteringspunten zodat er uiteindelijk een betere documentatie van het project ontstaat.
+    Het resultaat is dat er een tool is die de documentatie van een Python project kan genereren.
+    Dit resultaat maakt het mogelijk om de gegenereerde samenvatting van een Python project te lezen. 
+    De lezer kan dan stukken gebruiken uit het project of er verder mee aan de slag gaan.
+\end{abstract}
 
 % Verwijzing naar het bestand met de inhoud van het onderzoeksvoorstel
 \input{../voorstel/voorstel-inhoud}
