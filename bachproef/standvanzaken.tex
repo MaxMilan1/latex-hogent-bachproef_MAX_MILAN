@@ -39,6 +39,7 @@ Gebruiksaanwijzingen of handleidingen zijn ook een vorm van externe documentatie
 
 Voor deze bachelorproef wordt er gekeken naar het documenteren van een Python project.
 In de vorm van commentaar in de code en het genereren van een samenvattend document van het gehele project.
+Ook kan er in de code bij functies aan typehinting gedaan worden, dit indiceert wat de datatypes van de input en output van een functie zijn \autocite{Bailey2024}.
 Waaruit de werking van het project duidelijk wordt en de relatie tussen de verschillende bestanden en functies.
 
 \section{Wat zijn Large Language Modellen (LLM)?}
@@ -140,7 +141,6 @@ Uit de data kunnen dan patronen gehaald worden met behulp van Transformers \ref{
 
 De volgende fase is het model te trainen op een dataset met instructies en het antwoord erop, dit is het gesuperviseerde Fine-Tuning van de LLM \autocite{Das2024}. 
 Het model probeert zo de patronen te leren die nodig zijn om vragen te beantwoorden of instructies te volgen.
-Dit doet het door de loss te minimaliseren, dit is een maat voor hoe goed het model presteert.
 Hierdoor leert het model instructies te volgen en vragen te beantwoorden.
 
 Er kan gebruik gemaakt worden om het model specifiek aan de wensen van de mens te laten voldoen. Dit kan door het gebruiken van Reinfocement Learning met menselijke feedback \autocite{LambertEtAL2022}. 
@@ -163,7 +163,7 @@ GPT-4 is een LLM die OpenAI heeft ontwikkeld, het is getraind op een grote hoeve
 Een nadeel is dat GPT-4 een betalende service is \autocite{OpenAI2023}.
 
 Een andere grote speler is Google, Google heeft verschillende LLMs ontwikkeld waaronder BERT van \textcite{DevlinEtAl2019} en Gemini \autocite{Google2024}
-BERT staat voor Bidirectional Encoder Representations from Transformers, een DL model waar elk output element verbonden is met elk input element \autocite{CameronHashemiPour2024}.
+BERT staat voor Bidirectional Encoder Representations from Transformers, een DL model waar elk output element verbonden is met elk input element \autocite{HashemiPour2024}.
 BERT was een eerste stap in de wereld van LLMs voor Google. Sinds kort heeft \textcite{Google2024} een nieuwe LLM ontwikkeld genaamd Gemini.
 Deze LLM is een sterke concurent voor GPT-4 van \textcite{OpenAI2023}. Het bestaat uit verschillende versies: Gemini Pro, Gemini Ultra en Gemini Nano. 
 Elke versie is gemaakt voor een specifiek doeleind, zo is Gemini Nano het meest efficiente model voor mobiele toestellen. Gemini Pro is dan weer het beste model voor het schalen van allerlei taken.
@@ -206,7 +206,7 @@ Deze commentaren worden gebruikt om de werking van een module, functie, klasse o
 Dit kan automatisch gegenereerd worden met tools zoals CodeCat \autocite{CodeCat2024} voor JavaScript of met de tool van \textcite{Trofficus2023} voor Python.
 
 De tool van \textcite{Trofficus2023} maakt gebruik van GPT-4 \autocite{OpenAI2023} om de docstrings te genereren.
-\textcit{Sphinx2023} is een van de meest gebruikte tools voor het genereren van documentatie voor Python projecten.
+\textcite{Sphinx2023} is een van de meest gebruikte tools voor het genereren van documentatie voor Python projecten.
 Het genereert documentatie aan de hand van docstrings en de hierarchie van het project om een duidelijk overzicht te geven.
 Deze tool is vrij flexibel want het kan uitgebreid worden met verschillende extensies, zodat het alle mogelijke wensen kan vervullen.
 
