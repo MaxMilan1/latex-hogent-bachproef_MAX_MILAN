@@ -67,28 +67,31 @@ Deep Learning (DL) is een subveld van ML, waarin complexe algoritmen en deep neu
 Deep Learning is een krachtige tool die gebruikt wordt voor verschillende taken zoals: beeldherkenning, spraakherkenning, ... \autocite{Stoeffelbauer2023}.
 
 Large Language Modellen zijn geavanceerde AI-systemen die dienen om menselijke taal te verstaan, te genereren en te verwerken.
-LLMs worden getraind op een allerlei data zoals artikelen, websites, ... . 
-Complexe algoritmen en deep neural networks zorgen ervoor dat LLM's natuurlijke taal verwerken op een gelijkaardige manier zoals een mens dingen verwerkt \autocite{Beelen2023}.
+LLMs worden getraind op een grote hoeveelheid tekst wat vaak uit allerlei data zoals artikels of websites gehaald wordt. 
+Volgens \textcite{Beelen2023} zorgen deep neural networks ervoor dat LLM's natuurlijke taal verwerken op een gelijkaardige manier die vergelijkbaar is met de menselijke taalvaardigheid.
 Deze hebben een grote vooruitgang gekend in 2017 door de paper van \textcite{VaswaniEtAl2017}. 
 Hieruit kwam een nieuw mechanisme tot stand namelijk transformers wat bestaat uit Attention blokken. 
-Het gebruik van deze mechanismen zorgde ervoor dat de LLMs beter presteerden op verschillende taken zoals: vertalen, samenvatten, vragen beantwoorden en tekst genereren.
+Enkele voordelen die komen kijken bij het gebruiken van transformers zijn: het kan lange sequenties verwerken, het kan parallel verwerken en het kan de relaties tussen de verschillende delen van de sequentie leren.
+Hierdoor hebben transformer modellen een snellere trainings periode dan vorige neurale netwerken \autocite{aiml2023}.
 
 \subsection{Transformers en de architectuur van LLMs}
 \label{sec:architectuur-van-llms}
-Een neuraal netwerk bestaat uit verschillende lagen. Enkele belangrijke lagen die gebruikt worden sinds de opkomst van transformers zijn:
+Een neuraal netwerk bestaat uit verschillende lagen. Enkele belangrijke blokken die gebruikt worden binnen de transformer laag zijn:
 \begin{itemize}
   \item Self-Attention
   \item Cross-Attention
   \item Masked Self-Attention
 \end{itemize}
 
-Deze lagen worden gebruikt in de encoder en decoder van een transformer en stromen voort uit het onderzoek van \textcite{VaswaniEtAl2017}.
+Deze attention blokken worden gebruikt in de encoder en decoder van een transformer en stromen voort uit het onderzoek van \textcite{VaswaniEtAl2017}.
 
 Transformers zijn een speciaal type van neurale netwerken die gebruik maken van verschillende attention blokken.
 Attention is een mechanisme dat gebruikt wordt om de relaties tussen verschillende delen van de invoersequenties te leren.
-Dit mechanisme is geïnspireerd op de werking van het menselijk brein.
-Een transformer bestaat uit een encoder en een decoder. Die elk bestaan uit verschillende attention blokken. 
-Dit kan gezien worden in figuur \ref{fig:transformer-model}. 
+Een transformer bestaat uit een encoder en een decoder. 
+Niet elke transformer bestaat uit beide een encoder en een decoder, sommige bestaan enkel uit een encoder of een decoder \autocite{Hoque2023}.
+De encoder wordt gebruikt om de invoersequenties te verwerken en de decoder wordt gebruikt om de uitvoersequenties te genereren.
+Zo is BERT van \textcite{DevlinEtAl2019} een transformer die enkel een encoder heeft en GPT van \textcite{RandfordEtAL2018} heeft enkel een decoder.
+De transformer architectuur uit de paper van \textcite{VaswaniEtAl2017} kan gezien worden in figuur \ref{fig:transformer-model}. 
 
 Self-Attention duidt dynamisch gewichten toe aan verschillende elementen binnen de meegegeven sequentie, bijvoorbeeld woorden in een zin.
 Dit laat het model toe om zich te concentreren op de meest relevante delen van de invoer, terwijl de invloed van minder cruciale delen wordt verminderd.
@@ -118,12 +121,24 @@ Deze relaties worden dan gebruikt om de uitvoersequenties te genereren.
 \subsection{Trainen van LLMs}
 \label{sec:trainen-van-llms}
 Het trainen van LLMs is een complex proces dat veel tijd en rekenkracht vereist. Dit gebeurt in verschillende stappen.
-Stap 1 begint bij het verzamelen van een grote hoeveelheid data die gebruikt wordt om het model te trainen.
-Deze data kan bestaan uit artikelen, websites, boeken, ... . Zo kan het volgende woord in een sequentie van tekst voorspeld worden.
-Deze data wordt gecleaned en geformatteerd zodat het model er mee kan werken.
+De eerste fase begint bij het verzamelen van een grote hoeveelheid tekst die gebruikt wordt om het model te trainen.
+Deze tekst wordt gehaald uit verschillende artikelen, websites, boeken, ... . Zo kan het volgende woord in een sequentie van tekst voorspeld worden.
+
+Het model krijgt deze grote hoeveelheid tekst in de pre-training fase.
+In deze fase leert de LLM grammatica, semantiek, taal patronen en factuele informatie \autocite{Cacic2023}.
+Voordat de data meegegeven wordt aan het model moet de data gecleaned en geformatteerd worden.
+Dit gebeurt in het tokenization process. Hier wordt de tekst omgezet in tokens die het model kan verwerken.
+Woorden kunnen kleiner gemaakt worden zodat de volledige tekst in het model past, dit moet wanneer het model een beperkte input capaciteit heeft \autocite{ElHousieny2023}.
+Wat dan op zijn beurt omgezet wordt in embeddings. Deze embeddings worden dan meegegeven aan het model om te trainen.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{tokenization.png}
+  \caption{Simplified tokenization van tekst \autocite{TeeTracker2023}}
+  \label{fig:tokenization}
+\end{figure}
 Uit de data kunnen dan patronen gehaald worden met behulp van Transformers \ref{sec:architectuur-van-llms}, maar het is nog niet instaat om vragen of instructies te begrijpen.
 
-De volgende stap is het model te trainen op een dataset met instructies en het antwoord erop, dit is het gesuperviseerde Fine-Tuning van de LLM \autocite{Das2024}. 
+De volgende fase is het model te trainen op een dataset met instructies en het antwoord erop, dit is het gesuperviseerde Fine-Tuning van de LLM \autocite{Das2024}. 
 Het model probeert zo de patronen te leren die nodig zijn om vragen te beantwoorden of instructies te volgen.
 Dit doet het door de loss te minimaliseren, dit is een maat voor hoe goed het model presteert.
 Hierdoor leert het model instructies te volgen en vragen te beantwoorden.
@@ -144,11 +159,11 @@ Het is belangrijk dat er een duidelijk beeld is van de verschillende LLMs en hun
 Zodat er een goede keuze gemaakt kan worden voor het genereren van documentatie.
 
 Eén van de grote spelers in de wereld van LLMs is OpenAI. OpenAI heeft verschillende LLMs ontwikkeld gaande van GPT \autocite{RandfordEtAL2018} tot GPT-4 \autocite{OpenAI2023}.
-GPT-4 is de krachtigste LLM die OpenAI heeft ontwikkeld, het is getraind op een grote hoeveelheid data en heeft een grote capaciteit.
-Een nadeel is dat GPT-4 een betalende service is en niet voor iedereen toegankelijk is \autocite{OpenAI2023}.
+GPT-4 is een LLM die OpenAI heeft ontwikkeld, het is getraind op een grote hoeveelheid data en heeft een grote capaciteit.
+Een nadeel is dat GPT-4 een betalende service is \autocite{OpenAI2023}.
 
 Een andere grote speler is Google, Google heeft verschillende LLMs ontwikkeld waaronder BERT van \textcite{DevlinEtAl2019} en Gemini \autocite{Google2024}
-BERT staat voor Bidirectional Encoder Representations from Transformers, dit wil zeggen dat het model de context van de woorden kan begrijpen.
+BERT staat voor Bidirectional Encoder Representations from Transformers, een DL model waar elk output element verbonden is met elk input element \autocite{CameronHashemiPour2024}.
 BERT was een eerste stap in de wereld van LLMs voor Google. Sinds kort heeft \textcite{Google2024} een nieuwe LLM ontwikkeld genaamd Gemini.
 Deze LLM is een sterke concurent voor GPT-4 van \textcite{OpenAI2023}. Het bestaat uit verschillende versies: Gemini Pro, Gemini Ultra en Gemini Nano. 
 Elke versie is gemaakt voor een specifiek doeleind, zo is Gemini Nano het meest efficiente model voor mobiele toestellen. Gemini Pro is dan weer het beste model voor het schalen van allerlei taken.
@@ -156,12 +171,12 @@ En Gemini Ultra is het meest capabele en grootste model van Google, dit kan gebr
 Een van de voordelen van Gemini is dat er een groot aantal input tokens meegegeven kunnen worden, namelijk 1 miljoen tokens.
 Dit is aanzienlijk meer dan de 128 duizend tokens van GPT-4.
 
-Een derde speler in de wereld van LLMs is Meta, Meta heeft verschillende LLMs ontwikkeld onder de naam LLama 2 \autocite{Meta2024}.
+Een derde speler in de wereld van LLMs is Meta. Meta heeft verschillende LLMs ontwikkeld onder de naam LLama 2 \autocite{Meta2024}.
 De LLama 2 familie bestaat uit verschillende LLMs die getraind zijn op verschillende data. Sommige zijn extra getraind voor specifiekere doeleinden.
 Zo is er bijvoorbeeld een LLM getraind op Python code, genaamd Code LLama 2 van \textcite{Roziere2024}.
 Een voordeel van de LLama 2 familie is dat deze LLMs open source zijn en dus voor iedereen toegankelijk zijn.
 
-Antropic heeft ook een LLM ontwikkeld genaamd Claude \autocite{Antropic2023}. 
+Antropic heeft ook een LLM ontwikkeld genaamd Claude \autocite{Anthropic2023}. 
 Claude's capaciteiten zijn code generatie, het verstaan van meerdere talen, beelden analyseren en kan geavanceerde redeneringen geven.
 Er bestaan 3 versies van Claude: Haiku, Sonnet en Opus.
 Haiku een lichte versie van Claude, Sonnet is de combinatie van performantie en snelheid en Opus is het intelligentste model dat complexe taken kan uitvoeren en begrijpen.
