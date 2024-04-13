@@ -46,9 +46,9 @@ Waaruit de werking van het project duidelijk wordt en de relatie tussen de versc
 \label{sec:wat-zijn-llms}
 
 Omdat er in deze bachelorproef gebruik gemaakt wordt van Large Language Modellen is het belangrijk dat er een duidelijk beeld is van wat deze modellen zijn.
-En wat deze modellen kunnen, wat de mogelijke beperkingen zijn en wat de huidige stand van zaken is. 
-Bestaan er LLMs speciaal getraind op Python code? Kunnen LLMs gebruikt worden om documentatie te genereren? 
-Dit zijn enkele vragen die in dit hoofdstuk beantwoord zullen worden. 
+Wat kunnen deze modellen, wat zijn de mogelijke beperkingen en wat is de huidige stand van zaken. 
+In dit hoofdstuk wordt er een antwoord gegeven op de vragen: Bestaan er LLMs speciaal getraind op Python code? Of kunnen LLMs gebruikt worden om documentatie te genereren?
+Dit zorgt voor een grondige basiskennis van LLMs. 
 
 Het veld waarin AI zich bevindt wordt vaak voorgesteld volgens figuur \ref{fig:LLM-position}, met verschillende lagen \autocite{Stoeffelbauer2023}.
 Deze lagen zijn: Artificiële Intelligentie, Machine Learning, Deep Learning en Large Language Modellen.
@@ -63,7 +63,7 @@ Voor dat er dieper op de LLMs wordt ingegaan is het belangrijk dat er een duidel
 
 AI is een brede term, hiermee wordt vaak verwezen naar slimme machines. 
 Machine Learning (ML) is een subveld van AI, waarin patronen worden herkend tussen een input en een output.
-ML kan gebruikt worden voor verschillende taken zoals: classificatie, regressie, clustering, ... .
+ML kan gebruikt worden voor verschillende taken zoals: classificatie, regressie, clustering ...
 Deep Learning (DL) is een subveld van ML, waarin complexe algoritmen en deep neural networks gebruikt worden om moeilijkere taken uit te voeren.
 Deep Learning is een krachtige tool die gebruikt wordt voor verschillende taken zoals: beeldherkenning, spraakherkenning, ... \autocite{Stoeffelbauer2023}.
 
@@ -198,17 +198,57 @@ In de paper van \textcite{SridharaEtAL2010} werd er een tool ontwikkel die natuu
 Het selecteert eerst de relevante code en genereert dan een samenvatting van de code, volgens enkele programmeurs die de tool getest hebben was de samenvatting correct en volledig.
 
 Doxygen \autocite{Doxygen2023} is een tool die het toelaat om automatisch code documentatie te genereren. Het is een gratis tool die bruikbaar is voor verschillende programmeertalen zoals: C++, C, Python, PHP en Java.
-Het genereert documentatie in de vorm van HTML, LaTeX, RT. Ook is het in staat om een diagram te genereren met de relaties tussen de verschillende delen van de code.
+Het genereert documentatie in de vorm van HTML, LaTeX, RT. Ook is het in staat om een diagram te genereren met de relaties tussen de verschillende delen van de code. 
+Bijvoorbeeld de relaties tussen de verschillende klassen en functies.
+Een voorbeeld van een diagram kan gezien worden in figuur \ref{fig:Doxygen-diagram}.
 Zo wordt er een duidelijk beeld verkregen van de structuur van het project.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{doxygen_diagram.png}
+  \caption{Voorbeeld diagram van Doxygen \autocite{Doxygen2023}}
+  \label{fig:Doxygen-diagram}
+\end{figure}
 
 Docstrings is een vorm van commentaar in de code die gebruikt wordt om de werking van de code uit te leggen.
 Deze commentaren worden gebruikt om de werking van een module, functie, klasse of methode uit te leggen.
-Dit kan automatisch gegenereerd worden met tools zoals CodeCat \autocite{CodeCat2024} voor JavaScript of met de tool van \textcite{Trofficus2023} voor Python.
+Dit kan automatisch gegenereerd worden met tools zoals CodeCat \autocite{CodeCat2024} voor JavaScript.
+\textcite{CodeCat2024} is een online tool die de code analyseert en de docstrings genereert, het is niet open sourced dus er kan niet gekeken worden naar de werking van de tool.
 
-De tool van \textcite{Trofficus2023} maakt gebruik van GPT-4 \autocite{OpenAI2023} om de docstrings te genereren.
+De tool van \textcite{Trofficus2023} doet dit voor Python, het maakt gebruik van GPT-4 \autocite{OpenAI2023} om de docstrings te genereren.
+Deze tool leunt sterk aan bij de doelstelling van deze bachelorproef, namelijk het genereren van documentatie met behulp van LLMs.
+Het nader bekijken van deze tool kan een meerwaarde zijn voor deze bachelorproef.
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{before_troficus.png}
+      \caption{Voorbeeld code zonder docstrings van \textcite{Trofficus2023}}
+      \label{fig:before-Trofficus}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.5\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{after_troficus.png}
+      \caption{Voorbeeld code met docstrings van \textcite{Trofficus2023}}
+      \label{fig:after-Trofficus}
+  \end{subfigure}
+     \caption{Voorbeeld uitkomst van de tool van \textcite{Trofficus2023}}
+     \label{fig:Before-After-Trofficus}
+\end{figure}
+
+Zo gebruikt het de Abstract Syntax Tree (AST) van de code om de structuur van de code te begrijpen en vast te nemen.
+Uit de AST kunnen de juiste stukken code gehaald worden om de docstrings te genereren.
+Dit kan goed van pas komen voor het genereren van documentatie van Python projecten.
+Een voorbeeld van deze tool kan gezien worden in figuur \ref{fig:Before-After-Trofficus}. 
+
 \textcite{Sphinx2023} is een van de meest gebruikte tools voor het genereren van documentatie voor Python projecten.
 Het genereert documentatie aan de hand van docstrings en de hierarchie van het project om een duidelijk overzicht te geven.
 Deze tool is vrij flexibel want het kan uitgebreid worden met verschillende extensies, zodat het alle mogelijke wensen kan vervullen.
+Bijvoorbeeld de extensie autodoc kan semi-automatisch de docstrings van een module extraheren en in de documentatie plaatsen. 
+Handig wanneer de automatische documentatie generatie van een geheel project gewenst is, zo kan het project samen gevat worden aan de hand van de docstrings van de verschillende python files. 
+Eer een Python project gedocumenteerd kan worden met Sphinx dienen alle bestanden aangevuld te worden met docstrings, dit gebeurt echter niet automatisch.
 
 Pdoc \autocite{GallantHils2023} genereert documentatie in de vorm van een website die een API van de documentatie bevat. 
 Hier kan er makkelijk op de website gezocht worden naar een functie of klasse met de bijhorende documentatie.
@@ -229,6 +269,7 @@ Alle functies van het python project kunnen hier makkelijk teruggevonden worden.
 
 Er kan ook gebruik gemaakt worden van de LLM om de docstrings van de verschillende functies en klassen te genereren. 
 Om zo een betere samenvatting te verkrijgen van de werking van de verschillende delen van het project, door de docstrings te combineren met de samenvattingen van de LLM.
+Door telkens de docstrings en de naam van de verschillende functies en klassen mee te geven aan de LLM kan er een betere samenvatting gemaakt worden van het gehele project.
 
 Wanneer dat een huidige LLM niet instaat is om de gewenste documentatie te genereren kan een LLM gefinetuned op specifieke data, Python code en de bijhorende documentatie.
 Hier is er een grote hoeveelheid data van Python projecten met de bijhorende documentatie nodig. Ook is het duur en tijdrovend om een LLM te finetunen.

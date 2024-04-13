@@ -26,5 +26,19 @@
 %% Maak voor elke fase (behalve het literatuuronderzoek) een NIEUW HOOFDSTUK aan
 %% en geef het een gepaste titel.
 
-\lipsum[21-25]
+
+Het onderzoek is in vier fases opgedeeld. De eerste fase omvat de literatuurstudie.
+In deze literatuurstudie wordt er onderzocht wat de huidige stand van zaken is omtent de technologie en mogelijkheden voor de documentatie van Python projecten met behulp van Large Language Modellen.
+Zo wordt er gekeken naar wat LLMs zijn, hoe ze werken en wat bestaande tools zijn voor het genereren van documentatie.
+
+Nadat er een duidelijk beeld gevormd is in de literatuurstudie, kan er begonnen worden aan de tweede fase.
+Hier wordt er een tool ontwikkeld die een Python bestand kan analyseren en op basis daarvan documentatie kan genereren, aan de hand van het toevoegen van docstrings aan de code.
+Dit doet het eerst per functie dan per klasse en uiteindelijk voor het gehele bestand. Dit kan later gebruikt worden om een samenvatting van het project te genereren in de volgende fase.
+De uitkomst van deze fase is een tool die de documentatie van een Python bestand kan genereren. 
+Door aan prompt engineering te doen, met het prompt dat meegegeven wordt aan de LLM, kunnen de bekomen docstrings accurater worden. %% Accuraatheid?? testen??
+
+In de derde fase wordt er gekeken naar hoe de documentatie van Python functies gebruikt kan worden voor het maken van een gehele samenvatting van het project.
+Dit wordt gedaan op basis van huidige methoden om docstrings aan te maken en te gebruiken. Erna kunnen de verschillende docstrings en naam van de functie of klasse gebruikt worden om een samenvatting te genereren.
+Deze informatie kan dan gegeven worden aan de Large Language Modellen om een samenvatting te genereren.
+
 
