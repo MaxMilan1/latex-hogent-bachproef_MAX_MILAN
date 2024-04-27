@@ -18,7 +18,7 @@
 
 %% If you compile with the make_thesis.{bat,sh} script, use the following
 %% import instead:
-%% \usepackage[section,outputdir=../output]{minted}
+\usepackage[section,outputdir=../output]{minted}
 \usemintedstyle{solarized-light}
 \definecolor{bg}{RGB}{253,246,227} %% Set the background color of the codeframe
 
@@ -27,6 +27,26 @@
 
 %% Macro definition to load external java source files with \javacode{filename}:
 \newmintedfile[javacode]{java}{
+    bgcolor=bg,
+    fontfamily=tt,
+    linenos=true,
+    numberblanklines=true,
+    numbersep=5pt,
+    gobble=0,
+    framesep=2mm,
+    funcnamehighlighting=true,
+    tabsize=4,
+    obeytabs=false,
+    breaklines=true,
+    mathescape=false
+    samepage=false,
+    showspaces=false,
+    showtabs =false,
+    texcl=false,
+}
+
+%% Macro definition to load external python source files with \pythoncode{filename}:
+\newmintedfile[pythoncode]{python}{
     bgcolor=bg,
     fontfamily=tt,
     linenos=true,
@@ -113,7 +133,7 @@
 % If you included tables and/or source code listings, uncomment the appropriate
 % lines.
 %\listoftables
-%\listoflistings
+\listoflistings
 
 % Als je een lijst van afkortingen of termen wil toevoegen, dan hoort die
 % hier thuis. Gebruik bijvoorbeeld de ``glossaries'' package.
@@ -137,7 +157,7 @@
 % vormen. De structuur en titels hangen af van je eigen onderzoek. Je kan bv.
 % elke fase in je onderzoek in een apart hoofdstuk bespreken.
 
-%\input{...}
+\input{filedocumentation}
 %\input{...}
 %...
 
