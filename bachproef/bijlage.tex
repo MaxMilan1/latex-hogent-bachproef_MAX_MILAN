@@ -1,0 +1,483 @@
+% ==========================================
+% Bijlage
+% ==========================================
+
+\chapter{Bijlage}
+\label{bijlage}
+
+In deze bijlage worden de volledige code van de applicatie en de gebruikte prompts weergegeven.
+
+\section{Prompts}
+\label{bijlage:prompts}
+
+\subsection{Function Prompt 1}
+\label{bijlage:prompt1}
+Instructies voor het genereren van een docstring voor een functie versie 1.
+\begin{minted}{python}
+    '''For this Python function:
+    ```python	
+    def is_prime(n):
+    if n in [2, 3]:
+        return True
+    if (n == 1) or (n % 2 == 0):
+        return False
+    r = 3
+    while r * r <= n:
+        if n % r == 0:
+            return False
+        r += 2
+    return True
+    ```
+    Leave out any imports, just return the function with the docstring and type hints.
+    The function, with docstring using the google docstring style and with type hints is:
+    ```python	
+    def is_prime(n: int) -> bool:
+    """
+    Check if a number is prime.
+    Args:
+        n (int): The number to check.
+    Returns:
+        bool: True if the number is prime, False otherwise.
+    """
+    if n in [2, 3]:
+        return True
+    if (n == 1) or (n % 2 == 0):
+        return False
+    r = 3
+    while r * r <= n:
+        if n % r == 0:
+            return False
+        r += 2
+    return True
+    ```
+    
+    For this Python function:
+    ```python	
+    {code}
+    '''
+\end{minted}
+
+\subsection{Function Prompt 2}
+\label{bijlage:prompt2}
+Instructies voor het genereren van een docstring voor een functie versie 2.
+\begin{minted}{python}
+'''
+    The following Python function is a code snippit from a Python file. 
+    The following function lacs a docstring and type hints.
+    Your task is to add a docstring and type hints to the function.
+    You can't change the function's code, add any imports, or assume anything about the function's behavior or datatypes that is not clear from the code snippet itself.
+    Below is a function that needs a docstring and type hints:
+    ```python	
+    def is_prime(n):
+    if n in [2, 3]:
+        return True
+    if (n == 1) or (n % 2 == 0):
+        return False
+    r = 3
+    while r * r <= n:
+        if n % r == 0:
+            return False
+        r += 2
+    return True
+    ```
+    The correct outcome should be the following Python code:
+    ```python	
+    def is_prime(n: int) -> bool:
+    """
+    Check if a number is prime.
+    Args:
+        n (int): The number to check.
+    Returns:
+        bool: True if the number is prime, False otherwise.
+    """
+    if n in [2, 3]:
+        return True
+    if (n == 1) or (n % 2 == 0):
+        return False
+    r = 3
+    while r * r <= n:
+        if n % r == 0:
+            return False
+        r += 2
+    return True
+    ```
+    
+    Now it's your turn to add a docstring and type hints to the following function:
+    ```python	
+    {code}
+    ```
+    '''
+\end{minted}
+
+
+\subsection{Function Prompt 3}
+\label{bijlage:prompt3}
+Prompt versie 3 voor het genereren van een docstring voor een functie. 
+\begin{minted}{python}
+    '''You are an AI documentation assistant, and your task is to generate docstrings and typehints based on the given code of a function, the function is a code snippet from a Python file.
+    Do your task with the least amount of assumptions, you can't add any imports, change the code, or assume anything about the function's behavior or datatypes that is not clear from the code snippet itself.
+    The purpose of the documentation is to help developers and beginners understand the function and specific usage of the code.
+
+    An example of your task is as follows:
+    The given code is:
+
+    ```python	
+    def is_prime(n):
+    if n in [2, 3]:
+        return True
+    if (n == 1) or (n % 2 == 0):
+        return False
+    r = 3
+    while r * r <= n:
+        if n % r == 0:
+            return False
+        r += 2
+    return True
+    ```
+
+    The expected output of your task for the given code is:
+
+    ```python	
+    def is_prime(n: int) -> bool:
+    """
+    Check if a number is prime.
+
+    Args:
+        n (int): The number to check.
+
+    Returns:
+        bool: True if the number is prime, False otherwise.
+    """
+
+    if n in [2, 3]:
+        return True
+    if (n == 1) or (n % 2 == 0):
+        return False
+    r = 3
+    while r * r <= n:
+        if n % r == 0:
+            return False
+        r += 2
+    return True
+    ```
+
+    Now it's your turn to generate the docstrings and typehints for the following function of a file with these imports:
+    {imports}
+
+    The content of the code is as follows:
+    {code_content}
+    '''
+\end{minted}
+
+\subsection{Class Prompt 1}
+\label{bijlage:prompt4}
+Prompt voor het genereren van een docstring voor een klasse.
+\begin{minted}{python}
+    '''
+    You are an AI documentation assistant, and your task is to generate docstrings and typehints based on the given code of a class, the class is a code snippet from a Python file.
+    Do your task with the least amount of assumptions, you can't add any imports, change the code, or assume anything about the classes behavior or datatypes that is not clear from the code snippet itself.
+    The purpose of the documentation is to help developers and beginners understand the function and specific usage of the code.
+
+    An example of your task is as follows:
+    The given code is:
+
+    ```python
+    class Circle:
+        def __init__(self, radius: float) -> None:
+            """
+            Initialize the Circle object with a given radius.
+
+            Args:
+                radius (float): The radius of the circle.
+            """
+            self.radius = radius
+
+        def calculate_area(self) -> float:
+            """
+            Calculate the area of the circle.
+
+            Returns:
+                float: The area of the circle.
+            """
+            return round(math.pi * self.radius ** 2, 2)
+
+        def calculate_circumference(self) -> float:
+            """
+            Calculate the circumference of the circle.
+
+            Returns:
+                float: The circumference of the circle.
+            """
+            return round(2 * math.pi * self.radius, 2)
+    ```
+
+    The expected output of your task for the given code is:
+
+    ```python
+    class Circle:
+        """
+        A class representing a circle with methods to calculate its area and circumference.
+
+        Attributes:
+            radius (float): The radius of the circle.
+
+        Methods:
+            __init__: Initialize the Circle object with a given radius.
+            calculate_area: Calculate the area of the circle.
+            calculate_circumference: Calculate the circumference of the circle.
+        """
+    ```
+
+    Now it's your turn to generate the docstrings and typehints for the following class of a file with these imports:
+    {imports}
+
+    The content of the code is as follows:
+    {code_content}
+
+    Only generate the class docstring
+
+    '''
+\end{minted}
+
+\subsection{Samenvatting van een bestand}
+\label{bijlage:bestand-samenvatting}
+Prompt voor het genereren van een samenvatting van een bestand.
+\begin{minted}{python}
+    '''
+    You are an AI documentation assistant, and your task is to generate a summary of the given Python file. 
+    The summary should include the following information:
+    - What the file does.
+    - What classes are defined in the file.
+    - What functions are defined in the file.
+    - And a brief description of each class and function.
+    - Include the file name at the beginning of the summary.
+    
+    You are going to generate the summary based on given function names, class names and their docstrings.
+    
+    Now it's your turn to generate the summary given the following code of the file: {filename}:
+
+    {code_content}
+    '''
+    \end{minted}
+
+\subsection{Bestand zonder functies of klasses}
+\label{bijlage:bestand-zonder-functies}
+Prompt voor het genereren van een samenvatting van een bestand zonder functies of klasses.
+\begin{minted}{python}
+    '''
+    You are an AI documentation assistant, and your task is to generate a summary of the given Python file based on the code content.
+    The summary should include the following information:
+    - What the file does.
+    - What is the purpose of the file.
+    - What is the main functionality of the file.
+    - What the output is
+    - What it does when executed.
+    - Include the file name at the beginning of the summary.
+
+    An example of the output of your task is as follows:
+    Given the following code content:
+
+    ```python
+    from model import get_model
+    from train import train_top_layer, train_all_layers
+    if __name__ == '__main__':
+        model = get_model()
+        train_top_layer(model)
+    ```
+
+    The expected output of your task for the given code is the summary of the file:
+    
+    ```python
+    """
+    Summary of file: main.py
+    
+    This file contains the main functionality for a Python application.
+    It imports the get_model function from the model module and the train_top_layer and train_all_layers functions from the train module.
+    When executed, it gets a model using the get_model function and trains the top layer of the model using the train_top_layer function.
+    """
+    ```
+
+    You are going to generate the summary based on the given code content of the file with filename: {filename}.
+    {code_content}
+    '''
+\end{minted}
+
+\subsection{Project samenvatting}
+\label{bijlage:prompt6}
+Prompt voor het genereren van een samenvatting van een project.
+\begin{minted}{python}
+    '''
+    You are an AI documentation assistant, and your task is to generate a summary of the given Python project.
+    The summary should include the following information:
+    - What the project does.
+    - What files are included in the project. And what each file does. What functions and classes are defined in each file.
+    - A brief description of each class and function.
+    - Include the project name at the beginning of the summary.
+
+    You are going to generate the summary based on summaries of each file in the project.
+    
+    Now it's your turn to generate the summary given the following project structure:
+    {project_name}
+
+    With the following folder structure:
+    {folder_structure}
+
+    And the following summaries of each file:
+    {summaries}
+    '''
+\end{minted}
+
+\subsection{Project samenvatting per file}
+\label{bijlage:prompt7}
+Prompt voor het genereren van een samenvatting van een project per bestand.
+\begin{minted}{python}
+'''
+    You are an AI documentation assistant, and your task is to generate a markdown summary of a file.
+    For the following file summary:
+    """
+    Summary of file: crop_images.py
+
+    This file contains the implementation of functions for cropping and padding images.
+
+    Functions:
+        crop_faces: Crop faces from an image using a specified bounding box.
+        crop_image: Crop a specified region from an image.
+        pad_img_to_fit_bbox: Pad an image to fit a specified bounding box.
+    """
+
+    The output should be:
+    - **crop_images.py**: 
+        - Contains functions for cropping and padding images:
+          - `crop_faces`: Crop faces from an image using the given bounding boxes.
+          - `crop_image`: Crop a specific region from an image based on the provided coordinates.
+          - `pad_img_to_fit_bbox`: Pad an image to fit the specified bounding box.
+
+    You are going to generate the markdown summary for the file: {file} with the following summary:
+    {summary}
+    '''
+\end{minted}
+
+
+\section{Code}
+\label{bijlage:code}
+
+\subsection{Bestand Documentatie}
+\label{bijlage:documentatie-bestand}
+
+\subsubsection{Vervangen van de code van een functie door de gegenereerde docstring. v1}
+\label{bijlage:vervangen-v1}
+\begin{minted}{python}
+def replace_functions(self, functions):
+    tree = self.tree
+    for node in ast.walk(tree):
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and node.name in functions:
+            new_func_def = ast.parse(functions[node.name]).body
+            tree.body.insert(tree.body.index(node), new_func_def)        
+    self.tree = tree
+\end{minted}
+
+\subsubsection{Vervangen van de code van een functie door de gegenereerde docstring. v2}
+\label{bijlage:vervangen-v2}
+Versie 2 van de functie om de code van een functie te vervangen door de gegenereerde docstring.
+\begin{minted}{python}
+def replace_functions(self, functions):
+    tree = self.tree
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ClassDef):
+            for child_node in node.body:
+                if isinstance(child_node, (ast.FunctionDef, ast.AsyncFunctionDef)) and child_node.name in functions:
+                    new_func_def = ast.parse(functions[child_node.name]).body[0]
+                    new_func_def.body.extend(child_node.body)
+                    idx = node.body.index(child_node)
+                    node.body.insert(idx, new_func_def)
+                    node.body.remove(child_node)
+                    functions.pop(child_node.name)
+        elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and node.name in functions:
+            new_func_def = ast.parse(functions[node.name]).body[0]
+            new_func_def.body.extend(node.body)
+            tree.body.insert(tree.body.index(node), new_func_def)
+            tree.body.remove(node)
+            functions.pop(node.name)
+    self.tree = tree
+\end{minted}
+
+\subsubsection{Vervangen van de code van een functie door de gegenereerde docstring. v3}
+\label{bijlage:vervangen-v3}
+\begin{minted}{python}
+def _replace_functions(self, node, functions):
+    if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and node.name in functions:
+        new_func_def = ast.parse(functions[node.name]).body[0]
+        new_func_def.body.extend(node.body)
+        parent_node = self._get_parent_node(node)
+        index = parent_node.body.index(node)
+        parent_node.body.remove(node)
+        parent_node.body.insert(index, new_func_def)
+        functions.pop(node.name)
+    for child_node in ast.iter_child_nodes(node):
+        self._replace_functions(child_node, functions)
+\end{minted}
+
+\subsubsection{Genereren van de relaties tussen de verschillende bestanden}
+\label{bijlage:generate-file-relations}
+
+\begin{minted}{python}
+'''
+    You are an AI documentation assistant, and your task is to generate a csv file containing the relations between the files in a Python project.
+
+    For the given project structure and imports:
+    The imports are as follows:
+    '1_RPS_Game\\CMD_version\\main.py': 'import random', '2_PyPassword_Generator\\CMD_version\\main.py': 'import random', '3_Hangman_Game\\CMD_version\\images.py': '', '3_Hangman_Game\\CMD_version\\main.py': 'import requests\nimport random\nimport os\nfrom images import hangman_logo\nfrom images import stages', '4_Hangman_Game\\CMD_version\\stages.py': '', '4_Hangman_Game\\CMD_version\\images.py': 'import csv\nimport matplotlib', '4_Hangman_Game\\CMD_version\\main.py': 'import random\nimport os\nfrom images import stages\nfrom images import logo'
+
+    The structure of the project is as follows:
+    '.': ['LICENSE', 'README.md'], '1_RPS_Game': [], '1_RPS_Game\\CMD_version': ['1_RPS_Game\\CMD_version\\main.py'], '2_PyPassword_Generator': [], '2_PyPassword_Generator\\CMD_version': ['2_PyPassword_Generator\\CMD_version\\main.py'], '3_Hangman_Game': [], '3_Hangman_Game\\CMD_version': ['3_Hangman_Game\\CMD_version\\images.py', '3_Hangman_Game\\CMD_version\\main.py'], '4_Hangman_Game': [], '4_Hangman_Game\\CMD_version': ['4_Hangman_Game\\CMD_version\\stages.py', '4_Hangman_Game\\CMD_version\\images.py', '4_Hangman_Game\\CMD_version\\main.py']
+
+    The expected output of your task is the following:
+    ```csv
+File_Path,File_Name,Folder_Path,Uses_File
+1_RPS_Game\CMD_version\main.py, main.py,1_RPS_Game\CMD_version,[]
+2_PyPassword_Generator\CMD_version\main.py,main.py, 2_PyPassword_Generator\CMD_version,[]
+3_Hangman_Game\CMD_version\images.py,images.py,3_Hangman_Game\CMD_version,[]
+3_Hangman_Game\CMD_version\main.py, main.py,3_Hangman_Game\CMD_version,['3_Hangman_Game.CMD_version.images']
+4_Hangman_Game\CMD_version\stages.py,stages.py,4_Hangman_Game\CMD_version,[]
+4_Hangman_Game\CMD_version\images.py,images.py,4_Hangman_Game\CMD_version,[]
+4_Hangman_Game\CMD_version\main.py,main.py,4_Hangman_Game\CMD_version,['4_Hangman_Game.CMD_version.images';'4_Hangman_Game.CMD_version.stages']
+    ```
+
+    The Column "Uses File" should only contain the files where the file imports functions from.
+    For example if the imports are:
+    ```python
+    Import csv
+    Import matplotlib
+    from images import open_image
+    from stages import stage1
+    ```
+    The Column "Uses File" should contain the file '4_Hangman_Game\\CMD_version\\images.py' and '4_Hangman_Game\\CMD_version\\stages.py'
+    Do your task given the following imports and structure of the project:
+    
+    The imports are as follows:
+    {imports}
+
+    And the structure of the project is as follows:
+    {structure}
+
+    THE OUTPUT SHOULD BE A SINGLE CSV FILE CONTAINING THE RELATIONS BETWEEN THE FILES IN THE PROJECT.
+    '''
+\end{minted}
+
+\section{Project Documentatie}
+
+\subsection{Functies voor het samenvatting van een bestand}
+\label{bijlage:file-summary-functions}
+\begin{minted}{python}
+    def document_file(self, file_path, outfolder_path):
+        FDG = FileDocumenationGenerator(self.api_key, self.azure_endpoint, file_path, self.folder_path, outfolder_path)
+        FDG.generate_file_documentation()
+        return FDG
+
+    def generate_file_summaries(self, python_files):
+        for file in python_files:
+            print("Documenting file: ", file)
+            FDG = self.document_file(file, outfolder_path=self.outfolder)
+            self.summaries[file] = FDG.get_summary()
+            self.imports[file] = FDG.get_imports()
+\end{minted}
