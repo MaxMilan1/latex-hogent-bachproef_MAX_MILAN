@@ -22,12 +22,11 @@ Deze samenvattingen worden gegenereerd door het aanroepen van de functie \mintin
 Deze functie maakt gebruik van de klasse \mintinline{python3}|FileDocumenationGenerator()| die de samenvattingen van de bestanden genereerd en opslaat in een dictionary.
 De code van deze functie is te vinden in \ref{bijlage:file-summary-functions}.  
 
-Door een duidelijk prompt mee te geven aan het model, kan er specifiek gevraagd worden welke functies en klasses er in het project zitten.
+Door een duidelijk prompt mee te geven aan het model, kan er specifiek gevraagd worden welke functies en klassen er in het project zitten.
 En dat per bestand duidelijk opgelijst. Samen met deze oplijsting wordt er ook een korte samenvatting van het gehele project weer gegeven.
 
 Een voorbeeld van de uitkomst is te zien in \ref{fig:project-summary}.
-Hier is te zien dat er een duidelijk overzicht is van welke functies en klasses er in het project zitten.
-Alsook wat het gehele project inhoudt.
+Hier is te zien dat er een duidelijk overzicht is van welke functies en klassen er in het project zitten, alsook wat het gehele project inhoudt.
 
 \begin{figure}[h]
     \centering
@@ -45,10 +44,10 @@ Er is de keuze gemaakt om het bestand \mintinline{python3}|__init__.py| niet te 
 Dit omdat het bestand vaak leeg is of slechts minimale functionaliteit bevat. 
 Ook bevat het soms enkele configuratie opties die niet relevant zijn voor de documentatie.
 
-\subsection{Documentatie van bestanden zonder functies of klasses}
+\subsection{Documentatie van bestanden zonder functies of klassen}
 \label{subsec:project-documentatie-geen-functies}
 
-Omdat er eerst vanuit gegaan wordt dat elk bestand functies of klasses bevat, is het belangrijk om te kijken naar bestanden die dit niet bevatten.
+Omdat er eerst vanuit gegaan wordt dat elk bestand functies of klassen bevat, is het belangrijk om te kijken naar bestanden die dit niet bevatten.
 Deze bestanden dienen ook gedocumenteerd te worden om een volledig overzicht te krijgen van het project.
 Als er geen apart prompt voorzien wordt dan zal het model hallucineren en een samenvatting verzinnen, dit is niet de bedoeling.
 Er is gebruik gemaakt van een prompt \ref{bijlage:bestand-zonder-functies} die vraagt om de werking van het document uit te leggen en de eventuele imports die het bestand bevat.
@@ -59,7 +58,7 @@ Een voorbeeld van de uitkomst in de project documentatie van een bestand zonder 
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{documentatie_bestand_zonder_functies.png}
-    \caption{Voorbeeld van de documentatie van een bestand zonder functies of klasses}
+    \caption{Voorbeeld van de documentatie van een bestand zonder functies of klassen}
     \label{fig:file-no-functions}
 \end{figure}
 
@@ -69,18 +68,17 @@ Een voorbeeld van de uitkomst in de project documentatie van een bestand zonder 
 Aangezien de documentatie van een project bestaat uit de documentatie van individuele Python bestanden, is het belangrijk dat deze op een correcte manier gedocumenteerd worden.
 Dit wordt gerealiseerd met behulp van een prompt die de samenvatting van een Python bestand op een correcte manier interpreteert en omzet naar de juiste documentatie.
 
-De gehele samenvatting van het project werd gemaakt door de individuele samenvattingen van de bestanden samen te voegen. 
-En dit mee te geven met het prompt \ref{bijlage:prompt6}.
-Dit prompt vraagt om de samenvatting van het project te maken en uit de individuele samenvattingen de functies en klasses op te lijsten.
-Dit prompt werkte goed voor kleine Python projecten, omdat er bij de gekozen LLM een beperkt context window van 16,385 tokens \textcite{OpenAI}.
+De gehele samenvatting van het project werd gemaakt door de individuele samenvattingen van de bestanden samen te voegen en dit mee te geven met het prompt \ref{bijlage:prompt6}.
+Dit prompt vraagt om de samenvatting van het project te maken en uit de individuele samenvattingen de functies en klassen op te lijsten.
+Dit prompt werkte goed voor kleine Python projecten, omdat er bij de gekozen LLM een beperkt context window van 16,385 tokens \autocite{OpenAi2024}.
 
 Hierdoor was het niet mogelijk om de gewenste samenvatting te creeren door alle individuele samenvattingen mee te geven aan het model.
 Een oplossing die gevonden werd is de volgende: er werden verschillende kleinere prompts meegegeven met het model.
-Dit prompt maakt per samenvatting van een Python bestand de documentatie van de verschillende functies en klasses. 
-De functies en klasses worden opgelijst met het juiste formaat en een kleine uitleg.
+Dit prompt maakt per samenvatting van een Python bestand de documentatie van de verschillende functies en klassen. 
+De functies en klassen worden opgelijst met het juiste formaat en een kleine uitleg.
 Deze resultaten van de verschillende kleine prompts werden dan code matig samengevoegd tot een geheel. 
 Het prompt dat gebruikt werd is te zien in \ref{bijlage:prompt7}.
-Dit prompt vraagt om de functies en klasses van een Python bestand op te lijsten en een korte uitleg te geven van wat deze functies en klasses doen.
+Dit prompt vraagt om de functies en klassen van een Python bestand op te lijsten en een korte uitleg te geven van wat deze functies en klassen doen.
 De uitkomst is weergegeven met een duidelijk voorbeeld binnen het prompt en volgens een markdown formaat. 
 De documentatie genereerd door dit prompt is te zien in \ref{fig:project-summary}.
 
@@ -90,7 +88,7 @@ De documentatie genereerd door dit prompt is te zien in \ref{fig:project-summary
 Om een goed overzicht te krijgen van het project is het belangrijk om de relaties tussen de verschillende bestanden te visualiseren.
 Dit kan gedaan worden door gebruik te maken van graven om de relaties tussen de bestanden weer te geven.
 
-Door gebruikt te maken van de tool \textcite{WHIR2018} een soort gelijke tool als degene die gebruikt wordt door \textcite{Doxygen2023}.
+Door gebruikt te maken van de tool Pyvis van \textcite{WHIR2018}, wat een soortgelijke tool als degene die gebruikt wordt door \textcite{Doxygen2023}.
 Met deze tool kunnen er graven gemaakt worden om zo de relaties tussen de verschillende bestanden weer te geven.
 Deze graven kunnen dan gebruikt worden om een duidelijk overzicht te krijgen van het project.
 
@@ -99,13 +97,13 @@ Deze graven kunnen dan gebruikt worden om een duidelijk overzicht te krijgen van
 
 Om de relaties te bekomen tussen alle bestanden en mappen in een project is er een prompt meegegeven aan het Large Language Model.
 In dit prompt worden de imports van alle bestanden opgelijst en wordt er gevraagd om de relaties tussen de bestanden weer te geven.
-Doordat er telkens wanneer een bestand een andere functie of klasse van een ander bestand importeert staat dit in de imports van het bestand.
-Hierdoor kan er gekeken worden naar de imports van de verschillende bestanden en zo de relaties tussen de bestanden visualiseren.
+Omdat een bestand dat een functie uit een ander bestand gebruikt deze functie importeerd, staat deze ook tussen de verschillende imports van het bestand.
+Hierdoor kan er gekeken worden naar de imports van de verschillende bestanden en kunnen zo de relaties tussen de bestanden achterhaald worden.
 
-Het prompt dat gebruikt werd is te zien in \ref{bijlage:generate-file-relations}.
+Het prompt dat gebruikt werd is te zien in bijlage \ref{bijlage:generate-file-relations}.
 Er zijn verschillende iteraties van dit prompt gemaakt om de beste resultaten te bekomen.
 De uitkomst van dit prompt is een CSV bestand met daarin het pad van het bestand, de bestandsnaam, het pad van de folder waarin het bestand zit en een lijst van alle geimporteerde bestanden.
-Doordat GPT3.5 \autocite{OpenAI} een zo goed mogelijk antwoord probeert te geven op de vraag, is het belangrijk om de vraag zo duidelijk mogelijk te stellen.
+Doordat GPT3.5 \autocite{OpenAi2024} een zo goed mogelijk antwoord probeert te geven op de vraag, is het belangrijk om de vraag zo duidelijk mogelijk te stellen.
 Door verschillende voorbeelden mee te geven in het prompt kan het model een beter antwoord geven.
 Omdat het voorbeeld van cruciaal belang is, heeft het enige tijd geduurd om het juiste prompt te vinden en de kinderziektes eruit te halen.
 Zo zijn schrijffouten en onduidelijkheden in het prompt aangepast om een beter resultaat te bekomen.
@@ -114,24 +112,23 @@ Zo zijn schrijffouten en onduidelijkheden in het prompt aangepast om een beter r
 \label{subsec:project-documentatie-relaties-visualisatie}
 
 Eens er een goed CSV bestand is bekomen kunnen de relaties tussen de bestanden gevisualiseerd worden.
-Dit wordt gedaan met behulp van de tool \textcite{WHIR2018}.
+Dit wordt gedaan met behulp van de tool Pyvis \autocite{WHIR2018}.
 Deze tool haalt de relaties uit het CSV bestand en voegt deze toe aan een graaf. 
 Dit door eerst de verschillende nodes toe te voegen en dan de edges tussen de nodes. 
-De code waarop dit gebeurt is te vinden in \ref{bijlage:graph-functions}.
+De code waarop dit gebeurt is te vinden in bijlage \ref{bijlage:generate-file-graph}.
 Als dit voor alle bestanden gedaan is, kan er een duidelijk overzicht bekomen worden van de relaties tussen de bestanden door de graaf te exporteren naar een HTML bestand.
 Dit HTML bestand kan dan geopend worden in een browser om de graaf te bekijken, alsook kunnen de nodes versleept worden om een beter overzicht te bekomen.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\textwidth]{graph.png}
+    \includegraphics[width=0.5\textwidth]{graph.png}
     \caption{Voorbeeld van een graaf van de relaties tussen bestanden}
     \label{fig:graph}
 \end{figure}
 
-Er is een voorbeeld van een graaf te zien in \ref{fig:graph}.
-Ook is er voor een groot project een graaf gemaakt om te kijken of de relaties tussen de bestanden duidelijk weergegeven worden \ref{fig:graph-large}.
+Er is een voorbeeld van een graaf te zien in \ref{fig:graph}, alsook is er een voor een groot project een graaf gemaakt om te kijken of de relaties tussen de bestanden duidelijk weergegeven worden op grote schaal \ref{fig:graph-large}.
 De relaties op deze graaf zijn zichtbaar echter is het niet altijd duidelijk omdat er veel bestanden zijn en er bepaalde bestanden vaak geïmporteerd zijn.
-Dit kan ervoor zorgen dat de graaf onoverzichtelijk wordt.
+Dit kan ervoor zorgen dat de graaf onoverzichtelijk wordt met de mate de grote van het projectOpenAi.
 
 \begin{figure}[h]
     \centering

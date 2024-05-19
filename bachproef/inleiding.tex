@@ -5,25 +5,12 @@
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
 
-De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag 
-de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. 
-Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. 
-Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
-
-\begin{itemize}
-  \item context, achtergrond
-  \item afbakenen van het onderwerp
-  \item verantwoording van het onderwerp, methodologie
-  \item probleemstelling
-  \item onderzoeksdoelstelling
-  \item onderzoeksvraag
-  \item \ldots
-\end{itemize}
+% TODOOOOO
 
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
 
-Projecten worden vaak niet goed gedocumenteerd, dit kan leiden tot problemen in de toekomst. Wanneer een andere persoon de code van een ongedocumenteerd project wilt gebruiken moet de code volledig gelezen worden voordat er begrepen wordt wat de code doet. 
+Projecten worden vaak niet goed gedocumenteerd, wat kan leiden tot problemen in de toekomst. Wanneer een andere persoon de code van een ongedocumenteerd project wil gebruiken moet de code volledig gelezen worden voordat er begrepen wordt wat de code doet. 
 Dit is een tijdrovend proces en kan voorkomen worden door goede documentatie.
 Wanneer de code jaren later aangepast moet worden is het ook handig om goede documentatie te hebben, zodat de persoon weet waar er aanpassingen moeten gebeuren.
 De skills en know-how van een project kunnen verloren gaan wanneer er geen documentatie is.
@@ -35,16 +22,28 @@ Een tool die dit proces kan versnellen / automatiseren zou een grote meerwaarde 
 De tool bestaat uit een geautomatiseerde documentatie LLM die de project code analyseert en samenvat in een document. 
 Dit geeft de lezers de mogelijkheid om zich in te lezen in het project en erna zelf aanpassingen te maken of stukken code te gebruiken voor een ander project.
 
+Python is een populaire programmeertaal die gebruikt wordt in de IT wereld.
+Volgens \textcite{TIOBE2024} een website die zoekpagina's afgaat en de populariteit van programmeertalen op basis van het aantal hits bepaalt, staat Python op de eerste plaats.
+Het is dus interessant om een tool te maken die Pythonprojecten kan documenteren.
+
 \section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
 \label{sec:onderzoeksvraag}
 
-Hoe kan geautomatiseerde documentatiegeneratie met behulp van Large Language Modellen (LLM) effectief worden toegepast om duidelijke en informatieve overzichten te produceren voor Python projecten?
+Hoe kan geautomatiseerde documentatiegeneratie met behulp van Large Language Modellen (LLM) effectief worden toegepast voor Pythonprojecten waar de code niet gedocumenteerd is?
+
+\begin{itemize}
+  \item Wat is documentatie?
+  \item Wat zijn de huidige documentatie tools?
+  \item Wat is er nodig om de code van een project te documenteren?
+  \item Wat is er nodig om de code van een bestand te documenteren?
+  \item Waarom documentatie met behulp van een LLM?
+\end{itemize}
 
 \section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
 \label{sec:onderzoeksdoelstelling}
 
-Het eindresultaat van deze bachelorproef is een Proof of Concept (PoC) van een geautomatiseerde tool die de project code analyseert en er documentatie van genereert.
-De gegenereerde documentatie laat het toe het project te begrijpen zonder er te veel tijd aan te besteden.
+Het eindresultaat van deze bachelorproef is een Proof of Concept (PoC) van een geautomatiseerde tool die de code van een Pythonproject analyseert en er documentatie van genereert.
+De gegenereerde documentatie laat het toe het project te begrijpen.
 
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
@@ -60,5 +59,7 @@ In Hoofdstuk~\ref{ch:stand-van-zaken} wordt een overzicht gegeven van de stand v
 In Hoofdstuk~\ref{ch:methodologie} wordt de methodologie toegelicht en worden de gebruikte onderzoekstechnieken besproken om een antwoord te kunnen formuleren op de onderzoeksvragen.
 
 % TODO: Vul hier aan voor je eigen hoofstukken, één of twee zinnen per hoofdstuk
+
+In Hoofdstuk
 
 In Hoofdstuk~\ref{ch:conclusie}, tenslotte, wordt de conclusie gegeven en een antwoord geformuleerd op de onderzoeksvragen. Daarbij wordt ook een aanzet gegeven voor toekomstig onderzoek binnen dit domein.

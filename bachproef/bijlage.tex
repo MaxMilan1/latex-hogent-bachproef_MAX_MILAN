@@ -361,10 +361,7 @@ Prompt voor het genereren van een samenvatting van een project per bestand.
 \section{Code}
 \label{bijlage:code}
 
-\subsection{Bestand Documentatie}
-\label{bijlage:documentatie-bestand}
-
-\subsubsection{Vervangen van de code van een functie door de gegenereerde docstring. v1}
+\subsection{Vervangen van de code van een functie door de gegenereerde docstring. v1}
 \label{bijlage:vervangen-v1}
 \begin{minted}{python}
 def replace_functions(self, functions):
@@ -376,7 +373,7 @@ def replace_functions(self, functions):
     self.tree = tree
 \end{minted}
 
-\subsubsection{Vervangen van de code van een functie door de gegenereerde docstring. v2}
+\subsection{Vervangen van de code van een functie door de gegenereerde docstring. v2}
 \label{bijlage:vervangen-v2}
 Versie 2 van de functie om de code van een functie te vervangen door de gegenereerde docstring.
 \begin{minted}{python}
@@ -401,7 +398,7 @@ def replace_functions(self, functions):
     self.tree = tree
 \end{minted}
 
-\subsubsection{Vervangen van de code van een functie door de gegenereerde docstring. v3}
+\subsection{Vervangen van de code van een functie door de gegenereerde docstring. v3}
 \label{bijlage:vervangen-v3}
 \begin{minted}{python}
 def _replace_functions(self, node, functions):
@@ -417,7 +414,7 @@ def _replace_functions(self, node, functions):
         self._replace_functions(child_node, functions)
 \end{minted}
 
-\subsubsection{Genereren van de relaties tussen de verschillende bestanden}
+\subsection{Genereren van de relaties tussen de verschillende bestanden}
 \label{bijlage:generate-file-relations}
 
 \begin{minted}{python}
@@ -464,8 +461,6 @@ File_Path,File_Name,Folder_Path,Uses_File
     '''
 \end{minted}
 
-\subsection{Project Documentatie}
-
 \subsection{Functies voor het samenvatting van een bestand}
 \label{bijlage:file-summary-functions}
 \begin{minted}{python}
@@ -482,7 +477,7 @@ File_Path,File_Name,Folder_Path,Uses_File
             self.imports[file] = FDG.get_imports()
 \end{minted}
 
-\subsubsection{Generatie van een graph van de relaties tussen de bestanden}
+\subsection{Generatie van een graph van de relaties tussen de bestanden}
 \label{bijlage:generate-file-graph}
 
 \begin{minted}{python}
