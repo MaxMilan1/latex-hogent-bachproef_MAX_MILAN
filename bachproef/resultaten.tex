@@ -1,0 +1,346 @@
+% ==============================================
+% Resultaten
+% ==============================================
+\chapter{\IfLanguageName{dutch}{Resultaten}{Results}}%
+\label{ch:resultaten}
+
+% =================================================================================================
+% File Documentation
+% =================================================================================================
+\section{Bestand documentatie}
+\label{sec:bestanddocumentatie}
+
+\subsection{Inleiding}
+\label{sec:bestanddocumentatie-inleiding}
+In dit hoofdstuk wordt er gekeken naar de documentatie van een Python bestand.
+Eerst wordt de code van het bestand geanalyseerd en worden de verschillende functies en klassen geïdentificeerd.
+Op basis van deze functies en klassen worden er docstrings gegenereerd, die opnieuw toegevoegd worden aan de code van het bestand.
+Daarna worden de docstrings binnen het bestand gebruikt om een samenvatting van het bestand te genereren.
+
+Deze samenvatting kan dan als basis gebruikt worden voor het genereren van documentatie voor een Python project, wat bestaat uit een gehele samenvatting en de relaties tussen de verschillende bestanden van het project.
+Dit wordt verder onderzocht in het volgende hoofdstuk.
+Voor dit kan gebeuren, moet de bestand documentatie op punt staan en geoptimaliseerd worden.
+
+Omdat dit onderzoek een bepaalde scope heeft, is er gekozen om enkel te kijken naar het documenteren van correcte Python bestanden.
+Dit wil zeggen dat er verwacht wordt dat de code correct is en dat er geen syntax fouten in de code zitten.
+Er wordt niet gekeken naar het documenteren van bestanden met syntax fouten of bestanden die niet correct zijn.
+
+\subsection{Abstract Syntax Tree}
+\label{sec:bestanddocumentatie-ast}
+Voor er docstrings gegenereerd kunnen worden, moet er eerst gekeken worden naar hoe de code van een Python bestand geanalyseerd kan worden.
+Uit de literatuurstudie is gebleken dat de verschillende functies en klassen in een bestand geïdentificeerd en geëxtraheerd kunnen worden aan de hand van een Abstract Syntax Tree (AST).
+Het analyseren van de code van de tool GPT4Docstrings gemaakt door \textcite{Trofficus2023} heeft een beter beeld gegeven van hoe een AST eruit ziet en hoe deze gegenereerd kan worden.
+
+Een AST is een boomstructuur die de syntactische structuur van een programma weergeeft.
+Per knoop in de boom wordt er een deel van de code voorgesteld. 
+Deze knoop kan dan weer kinderen hebben die deel uitmaken van de code.
+Elke knoop in de boom heeft een type en een waarde.
+
+Het inlezen van een Python bestand en deze omzetten naar een AST, maakt het mogelijk om de code van het bestand te manipuleren.
+Zo kunnen de verschillende import statements, functies en klassen geïdentificeerd worden.
+
+\begin{listing}
+    \caption[Ophalen functies uit AST]{Voorbeeld van het ophalen van functies uit een AST.}
+    \label{lst:ast-voorbeeld}
+    \begin{minted}{python}
+        def get_functions(self):
+            functions = {}
+            for node in ast.walk(self.tree):
+                if isinstance(node, ast.FunctionDef) or isinstance(node, ast.AsyncFunctionDef):
+                    function_code = ast.unparse(node)
+                    functions[node.name] = function_code
+            return functions
+    \end{minted}
+\end{listing}
+
+In \ref{lst:ast-voorbeeld} wordt er met behulp van de ast.walk functie door de AST gelopen.
+Elke node in de AST wordt gecontroleerd of het een functie of een asynchrone functie is.
+Als dit het geval is, wordt de code van de functie opgehaald en toegevoegd aan een dictionary.
+
+\subsection{Docstrings}
+\label{sec:bestanddocumentatie-docstrings}
+Binnen deze bachelorproef wordt de docstring stijl van Google gehanteerd \autocite{GPT2024}.
+Deze docstrings bestaan uit een korte beschrijving van de functie of klasse, de argumenten die de functie verwacht en de return waarde van de functie.
+Een voorbeeld van een docstring voor een functie die controleert of een getal een priemgetal is \ref{lst:docstring-voorbeeld}.
+
+\begin{listing}
+    \caption[Docstring van een functie]{Voorbeeld van een docstring voor een functie die controleert of een getal een priemgetal is.}
+    \label{lst:docstring-voorbeeld}
+    \begin{minted}{python}
+    def is_prime(n: int) -> bool:
+        """
+        Check if a number is prime.
+
+        Args:
+            n (int): The number to check.
+
+        Returns:
+            bool: True if the number is prime, False otherwise.
+        """
+    \end{minted}
+\end{listing}
+
+Deze docstrings dienen gegenereerd te worden voor elke functie en klasse in een Python bestand op basis van de huidige code van de functie of klasse.
+
+\subsection{Keuze van model}
+\label{sec:bestanddocumentatie-model}
+
+Uit de literatuurstudie is gebleken dat GPT3.5-Turbo van \textcite{OpenAi2024} het beste model is. 
+Dit model heeft de beste prijs-kwaliteit verhouding volgens de tabellen \ref{table:vgl-llms-eval} en \ref{table:vgl-llms} van de literatuurstudie.
+Dit is een krachtig model dat getraind is op een grote hoeveelheid data en in staat is om natuurlijke taal te genereren.
+Aangezien dit model getraind is op een grote hoeveelheid data is het in staat om met de juiste prompts de gewenste uitkomst te genereren.
+
+\subsection{Prompting}
+\label{sec:bestanddocumentatie-prompting}
+
+Door aan prompt-engineering te doen kan het model beter aangestuurd worden en kan de gewenste uitkomst volgens de requirementsanalyse bekomen worden.
+Er werden verschillende prompts getest om het beste resultaat te bekomen.
+Er zijn prompts gemaakt voor het genereren van docstrings voor functies en klassen. 
+
+\subsubsection{Prompt engineering voor functies}
+
+\begin{listing}
+    \caption{Prompt voor het genereren van een docstring voor een functie v1.}
+    \label{lst:prompt1}
+    \begin{minted}{python}
+        '''For this Python function:
+        ```python	
+        def is_prime(n):
+        if n in [2, 3]:
+            return True
+        if (n == 1) or (n % 2 == 0):
+            return False
+        r = 3
+        while r * r <= n:
+            if n % r == 0:
+                return False
+            r += 2
+        return True
+        ```
+        Leave out any imports, just return the function with the docstring and type hints.
+        The function, with docstring using the google docstring style and with type hints is:
+        ```python	
+        def is_prime(n: int) -> bool:
+        """
+        Check if a number is prime.
+        Args:
+            n (int): The number to check.
+        Returns:
+            bool: True if the number is prime, False otherwise.
+        """
+        if n in [2, 3]:
+            return True
+        if (n == 1) or (n % 2 == 0):
+            return False
+        r = 3
+        while r * r <= n:
+            if n % r == 0:
+                return False
+            r += 2
+        return True
+        ```
+        
+        For this Python function:
+        ```python	
+        {code}
+        '''
+    \end{minted}
+\end{listing}
+
+Het eerste prompt voor het genereren van een docstring voor een functie is te zien in \ref{lst:prompt1}.
+Er wordt gevraagd om een docstring te genereren voor een functie. Dit prompt bevat een voorbeeld van een functie met de verwachte uitkomst. 
+
+De volgende versie van dit prompt bevat duidelijkere instructies \ref{bijlage:prompt2}.
+Het is belangrijk dat de prompt duidelijk is en dat het model weet wat er verwacht wordt. 
+In de instructies staat exact wat er verwacht wordt van het model. Dat de gegenereerde functie een docstring moet bevatten en type hints.
+De code van de functie mocht niet aangepast worden en er mochten geen imports toegevoegd worden.
+Ook mocht het model niets veronderstellen over de functie of de data types die gebruikt worden in de functie.
+
+Door het vergelijken van de uitkomst \ref{lst:uitkomst-prompt2} met een vooropgestelde uitkomst \ref{bijlage:zelfgedocumenteerd-bestand}, een zelfgedocumenteerd bestand, kon er gekeken worden of de gegenereerde docstrings correct waren.
+\begin{listing}
+    \caption{Uitkomst prompt voor het genereren van een docstring voor een functie v2.}
+    \label{lst:uitkomst-prompt2}
+    \begin{minted}{python}
+    def crop_faces(plot_images: bool=False, max_images_to_plot: int=5) -> List[ndarray]:
+    """
+    Crop faces from images and save them in a directory.
+
+    Args:
+        plot_images (bool, optional): Whether to plot the images. Defaults to False.
+        max_images_to_plot (int, optional): Maximum number of images to plot. Defaults to 5.
+
+    Returns:
+        List[ndarray]: List of cropped images.
+    """
+    \end{minted}
+\end{listing}
+Hier is te zien dat de uitkomst van het model correct is buiten dat de type hints niet correct zijn. 
+Dit probleem is opgelost door met de volgende versie \ref{bijlage:prompt3} van de prompt de import statements mee te geven.
+Zo kan het model geen foute veronderstellingen maaken ook al werd er in de instructies duidelijk meegegeven dat dit niet de bedoeling was.
+
+Deze veronderstellingen kwamen er omdat het model de code van de functie sporadisch aanpaste.
+In het aangepaste prompt werd er duidelijk gemaakt dat de uitkomst van de prompt slechts de functienaam met typehint en de docstring moest bevatten.
+De code van de functie moest niet meer in de uitkomst staan.
+
+\subsubsection{Prompt engineering voor klassen}
+de prompt engineering process voor klassen liep gelijkaardig met dat van functies.
+Er werd een prompt gemaakt met duidelijke instructies en een voorbeeld van een klasse met de verwachte uitkomst.
+De instructies waren gelijkaardig aan die van de functies, maar dan voor klassen.
+
+De verschillende prompt versies 1-4 voor klassen zijn identiek aan die van functies, maar dan met de code van een klasse in plaats van een functie.
+Omdat een klasse bestaat uit verschillende functies en attributen is het belangrijk dat de docstrings van de functies en attributen correct gegenereerd worden.
+Deze docstrings worden dan meegegeven in de prompt voor het genereren van de docstring van de klasse.
+Hiervoor is de overige code van de klasse niet nodig, wat dan ook niet meegegeven wordt in de prompt.
+Ook worden opnieuw de verschillende imports meegeven, aangezien deze hallucinaties vermijden zoals gezien in \ref{sec:bestanddocumentatie-prompting}.
+Door de uitkomst \ref{lst:uitkomst-prompt4} van prompt versie 4 \ref{bijlage:prompt4} te vergelijken met een vooropgestelde uitkomst \ref{bijlage:zelfgedocumenteerd-bestand-2} kon er gekeken worden of de gegenereerde docstrings correct waren.
+Hier is te zien dat de uitkomst overeenkomt met de vooropgestelde uitkomst. 
+
+\begin{listing}
+    \caption{Uitkomst prompt voor het genereren van een docstring voor een klasse v4.}
+    \label{lst:uitkomst-prompt4}
+    \begin{minted}{python}
+    class CsvReader:
+    """
+    A class representing a CSV file reader with a method to read the file and return its content as a list of rows.
+
+    Methods:
+        readCsv: Read a CSV file and return its content as a list of rows.
+    """
+    \end{minted}
+\end{listing}
+
+\subsubsection{Prompt engineering voor samenvatting}
+Voor het genereren van een samenvatting van een Python bestand, werd er een prompt gemaakt met de gegenereerde docstrings van de functies en klassen.
+De verschillende docstrings werden meegegeven aan de parameter \mintinline{python3}|code_content| en de naam van het bestand aan de parameter 
+\mintinline{python3}|filename|.
+Het volledige prompt met alle beschrijvingen kan gevonden worden in \ref{bijlage:bestand-samenvatting}.
+Door de gekende technieken van prompt engineering gezien in \ref{sec:prompt-engineering} te grbruiken, kan het model aangestuurd worden.
+Er wordt meegegeven wat er verwacht wordt van het model, wat er in de uitkomst moet staan en op basis van welke data de uitkomst gegenereerd moet worden.
+
+\subsection{Toevoegen van gegenereerde docstrings}
+\label{sec:bestanddocumentatie-vervangen}
+De gegenereerde docstrings worden vervolgens toegevoegd aan de code van de functies en klassen.
+Dit gebeurt door de code van de functie of klasse te vervangen door de gegenereerde docstring.
+Deze kunnen vastgelegd worden in de AST en dan de AST gebruiken als de nieuwe code van het bestand.
+
+Omdat de uitkomst van de prompts altijd in de vorm van een string met een omsloten code blok wordt gegeven, zoals te zien in \ref{bijlage:prompt1}.
+Dient dit weg gehaald te worden voor het toevoegen aan de code van het bestand. 
+Dit wordt gedaan door de uitkomst van het model te parsen en de code blokken te verwijderen, wat behouden moet worden is de gegenereerde docstring samen met de functie of klasse declaratie.
+
+De eerste versie van de code voor het toevoegen van de docstrings aan de code van de functies en klassen is te zien in \ref{lst:vervangen-v1}.
+Door te testen en evalueren met verschillende Python bestanden met moeilijkheidsgraden zoals te zien in \ref{table:bestanden} werd er gekeken of de code correct werkte.
+
+\begin{table}[h!]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Bestand} & \textbf{Graad} & \textbf{Motivatie} \\[0.5ex]
+        \hline
+        Een python functie met één functie: \ref{bijlage:makkelijk} & makkelijk & Eén functie \\
+        \hline
+        Een python bestand met verschillende functies: \ref{bijlage:gemiddeld} & gemiddeld &  Meerdere functies \\
+        \hline
+        Een python bestand met functies en klassen: \ref{bijlage:moeilijk} & moeilijk & Functies en klassen \\
+        \hline
+        Een complex python bestand met verschillende functies en klassen en nested functies: \ref{bijlage:extreem-moeilijk} & Extreem moeilijk & Nested functies en klassen \\
+        \hline
+    \end{tabular}}
+    \caption{Aantal functies en klassen in de verschillende Python bestanden.}
+    \label{table:bestanden}
+\end{table}
+
+In deze versie wordt er door de AST gelopen en wordt er gekeken of de node een functie of klasse is met de juiste naam. 
+Als dit het geval is, wordt de code van de functie of klasse vervangen door de gegenereerde docstring.
+Het toevoegen van de docstring wordt gedaan door de nieuwe code van de functie of klasse in de AST te plaatsen op de plaats van de oude code.
+En dan de nieuwe AST te gebruiken als de nieuwe code van het bestand.
+
+\begin{listing}
+    \caption[Code voor het vervangen van een docstring]{Vervangen van de code van een functie door de gegenereerde docstring. \ref{bijlage:vervangen-v1}}
+    \label{lst:vervangen-v1}
+    \begin{minted}{python}
+    def replace_functions(self, functions):
+        tree = self.tree
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and node.name in functions:
+                new_func_def = ast.parse(functions[node.name]).body
+                tree.body.insert(tree.body.index(node), new_func_def)        
+        self.tree = tree
+
+    \end{minted}
+\end{listing}
+
+Deze code werkte niet volledig zoals verwacht. De oude code werd niet verwijderd uit de AST zoals te zien in \ref{lst:uitkomst-vervangen-dubbel}. Dit zorgde voor dubbele functies en klassen in de AST.
+Waarvan één met docstring en één zonder. Dit werd opgelost door de oude code te verwijderen uit de AST \ref{bijlage:vervangen-v2}.
+Alsook werd de code aangepast zodat functies die binnen in een klasse gedefinieerd zijn ook vervangen kunnen worden.
+Het verwijderen uit de lijst met functies werd ook toegevoegd zodat de functies die al vervangen zijn niet opnieuw vervangen worden.
+
+\begin{listing}
+    \caption{Stuk uit uitkomst van het vervangen van de code van een functie \ref{bijlage:uitkomst-gemiddeld}.}
+    \label{lst:uitkomst-vervangen-dubbel}
+    \begin{minted}{python}
+    def crop_image(img, x1, y1, x2, y2):
+
+        def crop_image(img: ndarray, x1: int, y1: int, x2: int, y2: int) -> ndarray:
+            """
+            Crop the input image to the specified dimensions.
+
+            Args:
+                img (ndarray): The input image.
+                x1 (int): The starting x-coordinate for cropping.
+                y1 (int): The starting y-coordinate for cropping.
+                x2 (int): The ending x-coordinate for cropping.
+                y2 (int): The ending y-coordinate for cropping.
+
+            Returns:
+                ndarray: The cropped image.
+            """
+            if x1 < 0 or y1 < 0 or x2 > img.shape[1] or (y2 > img.shape[0]):
+                img, x1, x2, y1, y2 = pad_img_to_fit_bbox(img, x1, x2, y1, y2)
+            return img[y1:y2, x1:x2, :]
+    \end{minted}
+\end{listing}
+
+Deze versie werkte zoals verwacht voor bestanden met moeilijkheidsgraad makkelijk tot moeilijk, bestanden zonder ingewikkelde structuren zoals nested functies of nested klassen.
+De code liep vast bij bestanden met extreem moeilijke moeilijkheidsgraad.
+Hierdoor moest de code opnieuw aangepast worden omdat de gegenereerde docstrings niet altijd correct toegevoegd werden.
+Een nadeel van het werken met AST is dat de parent node van nested functies niet opgeslagen worden.
+Dit werd opgelost door het vervangen recursief te laten gebeuren, een betere oplossing dan het gebruiken van if else statements \ref{lst:vervangen-v3}.
+
+\begin{listing}
+    \caption[Code voor het vervangen van een docstring v2]{Vervangen van de code van een functie door de gegenereerde docstring. \ref{bijlage:vervangen-v3}}
+    \label{lst:vervangen-v3}
+    \begin{minted}{python}
+    def _replace_functions(self, node, functions):
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and node.name in functions:
+            new_func_def = ast.parse(functions[node.name]).body[0]
+            new_func_def.body.extend(node.body)
+            parent_node = self._get_parent_node(node)
+            index = parent_node.body.index(node)
+            parent_node.body.remove(node)
+            parent_node.body.insert(index, new_func_def)
+            functions.pop(node.name)
+        for child_node in ast.iter_child_nodes(node):
+            self._replace_functions(child_node, functions)
+    \end{minted}
+\end{listing}
+
+Door de code recursief te laten lopen, kan de code van nested functies en klassen ook vervangen worden.
+Door het gebruiken van de parent node van de node die vervangen dient te worden, kan de docstring op de juiste index geplaatst worden.
+De nieuwe node wordt toegevoegd aan de parent node en de oude node wordt verwijderd.
+Zo kunnen grote Python bestanden met complexe structuren ook correct vervangen worden.
+
+\subsection{Bestand samenvatting genereren}
+\label{sec:bestanddocumentatie-samenvatting}
+De laatste stap in het proces van het documenteren van een Python bestand is het genereren van een samenvatting van het bestand.
+Deze samenvatting wordt gemaakt op basis van de reeds gegenereerde docstrings van de verschillende functies en klassen van het bestand.
+Het gebruiken van een prompt waar alle docstrings meegegeven worden kan een correcte samenvatting als eindresultaat bekomen.
+Hierin hoort er een korte beschrijving van het bestand te staan en een lijst van de functies en klassen die in het bestand voorkomen.
+Er komt een beschrijving in de samenvatting van de functies en klassen die in het bestand voorkomen.
+Deze beschrijvingen worden gegenereerd door het model op basis van de gegenereerde docstrings.
+
+Deze samenvatting wordt gegenereerd door het model de gegenereerde docstrings van de functies en klassen mee te geven in een prompt, zoals de prompt \ref{bijlage:bestand-samenvatting}.
+Dit is de laatste stap in het proces van het documenteren van een Python bestand.
+
+Deze samenvatting kan dan gebruikt worden als basis voor het genereren van de verdere documentatie voor een Python project.
+Een samenvatting op project niveau en de relaties tussen de verschillende bestanden van het project.

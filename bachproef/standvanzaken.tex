@@ -56,7 +56,7 @@ Volgens \textcite{GeeksforGeeks2023} zijn docstrings vitaal in het overdragen va
 Deze docstrings kunnen dan gebruikt worden om een samenvatting van het bestand te genereren.
 
 \subsection{Project documentatie}
-\label{sec:project-documentatie}
+\label{sec:project-documentatie-literatuur}
 De documentatie van het project wordt gemaakt door de samenvattingen van de verschillende bestanden te combineren.
 Deze samenvattingen worden gegenereerd op basis van de samenvatting van de bestanden die tot het project behoren.
 In deze samenvatting behoort de werking van het project, de verschillende bestanden met functies en klassen en de relaties tussen deze bestanden.
@@ -130,7 +130,7 @@ Hier kan er makkelijk op de website gezocht worden naar een functie of klasse me
 
 \begin{table}[h!]
 \centering
-\small
+\resizebox{\textwidth}{!}{
 \begin{tabular}{|c|c|c|}
 \hline
 Tool & programmeertaal & type \\ [0.5ex]
@@ -145,7 +145,7 @@ Pdoc & Python & API \\
 \hline
 GPT4Docstrings & Python & docstring \\
 \hline
-\end{tabular}
+\end{tabular}}
 \caption{Vergelijking documentatie tools}
 \label{table:vgl-tools}
 \end{table}
@@ -268,7 +268,20 @@ Dit zorgt ervoor dat het model extra kennis heeft over het gekozen onderwerp.
 
 \subsection{Fine-Tuning van LLM's}
 \label{sec:fine-tuning-van-llms}
-%TODO
+
+Het Fine-Tunen van een LLM is een mogelijkheid om het meer informatie te geven over een specifiek onderwerp.
+Enkele vereisten voor het Fine-Tunen van een LLM zijn, de dataset moet een grote hoeveelheid date hebben, de dataset moet van hoge kwaliteit zijn en de dataset moet representatief zijn voor het onderwerp volgens \textcite{Peckham2024}.
+
+\subsection{Prompt Engineering}
+\label{sec:prompt-engineering}
+
+Prompt Engineering is een techniek die gebruikt wordt om de uitkomst van een LLM te beïnvloeden volgens \textcite{Google2023}.
+Er wordt een prompt gegeven aan het model met duidelijke instructies over wat er verwacht wordt, als deze niet volstaan wordt de prompt bewerkt.
+De nieuwe uitkomst wordt dan geëvalueerd en indien nodig wordt de prompt opnieuw aangepast.
+Dit is het proces van Prompt Engineering.
+
+Door het toevoegen van enkele voorbeelden aan de prompt kan het model beter begrijpen wat er verwacht wordt \autocite{OpenAi2024a}.
+Geef structuur aan de prompt, geef een rol, geef een context en geef een doel. Dit zijn de beste manieren om een prompt te structureren volgens \autocite{Google2023}.
 
 \subsection{Bestaande LLM's}
 \label{sec:bestaande-llms}
@@ -311,7 +324,7 @@ Het is mogelijk dat er meerdere LLM's getest moeten worden om de beste keuze te 
 
 \begin{table}[h!]
 \centering
-\small
+\resizebox{\textwidth}{!}{
 \begin{tabular}{|c|c|c|c|c|} 
   \hline
   Model & Input (1M tokens) & Output (1M tokens) & Context & Snelheid (t/s)\\ [0.5ex] 
@@ -334,7 +347,7 @@ Het is mogelijk dat er meerdere LLM's getest moeten worden om de beste keuze te 
   \hline
   Claude Haiku \autocite{Anthropic2023} & \$0.20  & \$1.20 &  200k & 102\\
   \hline
-\end{tabular}
+\end{tabular}}
 \caption{Vergelijking van verschillende LLM's op basis van prijs (\$), context (aantal tokens) en snelheid (Tokens per seconde) \autocite{ArtificialAnalysis2024}}
 \label{table:vgl-llms}
 \end{table}
@@ -344,7 +357,7 @@ Hierin wordt er gekeken naar de prijs van de input en output tokens, de grootte 
 
 \begin{table}[h!]
 \centering
-\small
+\resizebox{\textwidth}{!}{
 \begin{tabular}{|c|c|c|c|}
 \hline
 Model & Coding & Beredenering en Kennis\\
@@ -367,7 +380,7 @@ Claude Sonnet \autocite{Anthropic2023} & 79\%  & / \\
 \hline
 Claude Haiku \autocite{Anthropic2023} & 75\%  & / \\
 \hline
-\end{tabular}
+\end{tabular}}
 \caption{Vergelijking LLM's op basis van beoordeling van menselijke evaluatie en MMLU \autocite{ArtificialAnalysis2024}}
 \label{table:vgl-llms-eval}
 \end{table}
@@ -396,6 +409,3 @@ Alle functies van het python project kunnen hier makkelijk teruggevonden worden.
 Er kan ook gebruik gemaakt worden van de LLM om de docstrings van de verschillende functies en klassen te genereren. 
 Om zo een betere samenvatting te verkrijgen van de werking van de verschillende delen van het project, door de docstrings te combineren met de samenvattingen van de LLM.
 Door telkens de docstrings en de naam van de verschillende functies en klassen mee te geven aan de LLM kan er een betere samenvatting gemaakt worden van het gehele project.
-
-Wanneer een huidige LLM niet instaat is om de gewenste documentatie te genereren kan een LLM gefinetuned op specifieke data, Python code en de bijhorende documentatie.
-Hier is er een grote hoeveelheid data van Python projecten met de bijhorende documentatie nodig. Ook is het duur en tijdrovend om een LLM te finetunen.

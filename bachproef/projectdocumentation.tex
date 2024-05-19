@@ -2,17 +2,17 @@
 % Project Documentation
 % =========================
 
-\chapter{\IfLanguageName{dutch}{Project documentatie}{Project documentation}}
-\label{ch:project-documentatie}
+\section{Project documentatie}
+\label{sec:project-documentatie}
 
-\section{Inleiding}
+\subsection{Inleiding}
 \label{sec:project-documentatie-inleiding}
 
 In dit hoofdstuk wordt er gekeken naar hoe de individuele samenvattingen van een Python bestand gebruikt kunnen worden om een samenvatting van het gehele project te maken.
 Alsook wordt er verder gekeken naar hoe de relaties tussen de verschillende bestanden gevisualiseerd kunnen worden.
 Dit om een zo goed mogelijk overzicht te krijgen van het project, zonder dat er handmatig documentatie moet worden geschreven.
 
-\section{Project Samenvatting}
+\subsection{Projectsamenvatting}
 \label{sec:project-documentatie-samenvatting}
 
 De samenvatting van een Python project kan gemaakt worden door de individuele samenvattingen van de bestanden samen te voegen.
@@ -22,9 +22,7 @@ Deze samenvattingen worden gegenereerd door het aanroepen van de functie \mintin
 Deze functie maakt gebruik van de klasse \mintinline{python3}|FileDocumenationGenerator()| die de samenvattingen van de bestanden genereerd en opslaat in een dictionary.
 De code van deze functie is te vinden in \ref{bijlage:file-summary-functions}.  
 
-Door een duidelijk prompt mee te geven aan het model, kan er specifiek gevraagd worden welke functies en klassen er in het project zitten.
-En dat per bestand duidelijk opgelijst. Samen met deze oplijsting wordt er ook een korte samenvatting van het gehele project weer gegeven.
-
+Door een duidelijk prompt mee te geven aan het model, kan er specifiek gevraagd worden welke functies en klassen er in het project zitten en dat per bestand duidelijk opgelijst. Samen met deze oplijsting wordt er ook een korte samenvatting van het gehele project weergegeven.
 Een voorbeeld van de uitkomst is te zien in \ref{fig:project-summary}.
 Hier is te zien dat er een duidelijk overzicht is van welke functies en klassen er in het project zitten, alsook wat het gehele project inhoudt.
 
@@ -35,7 +33,7 @@ Hier is te zien dat er een duidelijk overzicht is van welke functies en klassen 
     \label{fig:project-summary}
 \end{figure}    
 
-\subsection{Keuze van welke bestanden te documenteren}
+\subsubsection{Keuze van welke bestanden te documenteren}
 \label{subsec:project-documentatie-keuze-bestanden}
 
 Het is belangrijk om te kijken naar welke bestanden er gedocumenteerd moeten worden.
@@ -44,7 +42,7 @@ Er is de keuze gemaakt om het bestand \mintinline{python3}|__init__.py| niet te 
 Dit omdat het bestand vaak leeg is of slechts minimale functionaliteit bevat. 
 Ook bevat het soms enkele configuratie opties die niet relevant zijn voor de documentatie.
 
-\subsection{Documentatie van bestanden zonder functies of klassen}
+\subsubsection{Documentatie van bestanden zonder functies of klassen}
 \label{subsec:project-documentatie-geen-functies}
 
 Omdat er eerst vanuit gegaan wordt dat elk bestand functies of klassen bevat, is het belangrijk om te kijken naar bestanden die dit niet bevatten.
@@ -62,53 +60,58 @@ Een voorbeeld van de uitkomst in de project documentatie van een bestand zonder 
     \label{fig:file-no-functions}
 \end{figure}
 
-\section{Prompting voor project documentatie}
+\subsubsection{Prompting voor projectsamenvatting}
 \label{sec:project-documentatie-prompting}
 
-Aangezien de documentatie van een project bestaat uit de documentatie van individuele Python bestanden, is het belangrijk dat deze op een correcte manier gedocumenteerd worden.
-Dit wordt gerealiseerd met behulp van een prompt die de samenvatting van een Python bestand op een correcte manier interpreteert en omzet naar de juiste documentatie.
+Aangezien de samenvatting van een project bestaat uit de samenvattingen van individuele Python bestanden, is het belangrijk dat deze op een correcte manier gegenereerd worden.
+Dit wordt gerealiseerd met behulp van een prompt die de samenvatting van een Pythonbestand op een correcte manier interpreteert en omzet naar de juiste documentatie.
 
 De gehele samenvatting van het project werd gemaakt door de individuele samenvattingen van de bestanden samen te voegen en dit mee te geven met het prompt \ref{bijlage:prompt6}.
+De volgorde van de samenvattingen is niet van belang, omdat de relaties tussen de bestanden later nog gevisualiseerd worden en dit op basis van de imports \ref{sec:project-documentatie-relaties}.
 Dit prompt vraagt om de samenvatting van het project te maken en uit de individuele samenvattingen de functies en klassen op te lijsten.
-Dit prompt werkte goed voor kleine Python projecten, omdat er bij de gekozen LLM een beperkt context window van 16,385 tokens \autocite{OpenAi2024}.
 
-Hierdoor was het niet mogelijk om de gewenste samenvatting te creeren door alle individuele samenvattingen mee te geven aan het model.
+Hierdoor was het niet mogelijk om de gewenste samenvatting te creëren door alle individuele samenvattingen mee te geven aan het model.
 Een oplossing die gevonden werd is de volgende: er werden verschillende kleinere prompts meegegeven met het model.
 Dit prompt maakt per samenvatting van een Python bestand de documentatie van de verschillende functies en klassen. 
 De functies en klassen worden opgelijst met het juiste formaat en een kleine uitleg.
 Deze resultaten van de verschillende kleine prompts werden dan code matig samengevoegd tot een geheel. 
+Er gaat niets verloren van de individuele samenvattingen, maar om de samenvattingen per bestand met eenzelfde opmaak te krijgen, is deze oplossing gekozen.
+Een LLM begrijpt beter een kleiner prompt dan een groot prompt, omdat het model dan beter kan focussen op de vraag en een beter antwoord kan geven.
+De uitkomst van de samenvatting van het project is te zien in \ref{fig:project-summary}.
+
 Het prompt dat gebruikt werd is te zien in \ref{bijlage:prompt7}.
 Dit prompt vraagt om de functies en klassen van een Python bestand op te lijsten en een korte uitleg te geven van wat deze functies en klassen doen.
 De uitkomst is weergegeven met een duidelijk voorbeeld binnen het prompt en volgens een markdown formaat. 
 De documentatie genereerd door dit prompt is te zien in \ref{fig:project-summary}.
 
-\section{Visualisatie van relaties tussen bestanden}
+\subsection{Visualisatie van relaties tussen bestanden}
 \label{sec:project-documentatie-relaties}
 
 Om een goed overzicht te krijgen van het project is het belangrijk om de relaties tussen de verschillende bestanden te visualiseren.
 Dit kan gedaan worden door gebruik te maken van graven om de relaties tussen de bestanden weer te geven.
-
-Door gebruikt te maken van de tool Pyvis van \textcite{WHIR2018}, wat een soortgelijke tool als degene die gebruikt wordt door \textcite{Doxygen2023}.
+Deze relaties kunnen getoond worden door gebruik te maken van de tool Pyvis van \textcite{WHIR2018}, wat een soortgelijke tool is als degene die binnen \textcite{Doxygen2023} gebruikt wordt namelijk \textcite{GraphvizAuthors2024}.
+Deze tool is echter een command line interface wat niet eenvoudig te implementeren is in een Python script ten opzichte van de python library Pyvis.
 Met deze tool kunnen er graven gemaakt worden om zo de relaties tussen de verschillende bestanden weer te geven.
 Deze graven kunnen dan gebruikt worden om een duidelijk overzicht te krijgen van het project.
 
-\subsection{Genereren van de relaties tussen bestanden in een project}
+\subsubsection{Genereren van de relaties tussen bestanden in een project}
 \label{subsec:project-documentatie-relaties-genereren}
 
 Om de relaties te bekomen tussen alle bestanden en mappen in een project is er een prompt meegegeven aan het Large Language Model.
 In dit prompt worden de imports van alle bestanden opgelijst en wordt er gevraagd om de relaties tussen de bestanden weer te geven.
 Omdat een bestand dat een functie uit een ander bestand gebruikt deze functie importeerd, staat deze ook tussen de verschillende imports van het bestand.
-Hierdoor kan er gekeken worden naar de imports van de verschillende bestanden en kunnen zo de relaties tussen de bestanden achterhaald worden.
+Hierdoor kan er gekeken worden naar de imports van de verschillende bestanden en zo kunnen de relaties tussen de bestanden worden gevisualiseerd.
 
 Het prompt dat gebruikt werd is te zien in bijlage \ref{bijlage:generate-file-relations}.
 Er zijn verschillende iteraties van dit prompt gemaakt om de beste resultaten te bekomen.
+Deze iteraties en fouten in het prompt hebben enige tijd in beslag genomen om op te lossen, maar uiteindelijk zijn de kinderziektes eruit gehaald.
+Zo is het belangrijk dat er geen spaties in het voorbeeld CSV staan, omdat het model dan niet de het juiste CSV bestand kan genereren.
+Ook is het belangrijk dat de imports van de bestanden correct zijn, omdat het model anders niet de juiste relaties kan genereren. 
 De uitkomst van dit prompt is een CSV bestand met daarin het pad van het bestand, de bestandsnaam, het pad van de folder waarin het bestand zit en een lijst van alle geimporteerde bestanden.
-Doordat GPT3.5 \autocite{OpenAi2024} een zo goed mogelijk antwoord probeert te geven op de vraag, is het belangrijk om de vraag zo duidelijk mogelijk te stellen.
-Door verschillende voorbeelden mee te geven in het prompt kan het model een beter antwoord geven.
-Omdat het voorbeeld van cruciaal belang is, heeft het enige tijd geduurd om het juiste prompt te vinden en de kinderziektes eruit te halen.
-Zo zijn schrijffouten en onduidelijkheden in het prompt aangepast om een beter resultaat te bekomen.
+Omdat dit CSV bestand de basis is voor de graaf die later gemaakt wordt, is het belangrijk dat dit bestand correct is.
+Ook zijn schrijffouten en onduidelijkheden in het prompt aangepast om een beter resultaat te bekomen.
 
-\subsection{Visualisatie van de relaties}
+\subsubsection{Visualisatie van de relaties}
 \label{subsec:project-documentatie-relaties-visualisatie}
 
 Eens er een goed CSV bestand is bekomen kunnen de relaties tussen de bestanden gevisualiseerd worden.

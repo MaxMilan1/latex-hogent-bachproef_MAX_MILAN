@@ -63,50 +63,50 @@ Hier wordt er gekeken naar wat de tool moet kunnen en wat de verwachtingen zijn 
 
 \subsection{Functionele requirements}
 \label{sec:functionele-requirements}
-\textbf{Should Have:}
+\subsubsection{Should Have:}
 \begin{itemize}
-    \item \textbf{De tool moet in staat zijn om docstrings te genereren voor functies en klassen voor een Python bestand.}\\
+    \item De tool moet in staat zijn om docstrings te genereren voor functies en klassen voor een Python bestand.\\
     De tool genereert docstrings voor functies en klassen in een Python bestand. Dit gebeurt door de code te analyseren en op basis daarvan een docstring te genereren.
-    \item \textbf{De tool moet in staat zijn om een samenvatting van een Python bestand te genereren.}\\
+    \item De tool moet in staat zijn om een samenvatting van een Python bestand te genereren.\\
     De tool maakt een samenvatting van een Python bestand. In deze samenvatting zitten de belangrijkste zaken van het bestand.
     Zijnde de functies en klassen die erin voorkomen en wat deze doen, alsook hun eventuele parameters en de uitkomst.
-    \item \textbf{De tool moet in staat zijn om een samenhangende samenvatting van een Python project te genereren.}\\
+    \item De tool moet in staat zijn om een samenhangende samenvatting van een Python project te genereren.\\
     De tool dient een samenvatting te maken van een Python project. Deze samenvatting bestaat uit de individuele samenvattingen van de bestanden en een overkoepelende samenvatting van het project.
     Hierin staan alle functies en klassen die in het project voorkomen en wat deze doen, alsook hun eventuele parameters en de uitkomst.
-    \item \textbf{De tool moet in staat zijn om de relaties tussen de verschillende bestanden van een project te visualiseren.}\\
+    \item De tool moet in staat zijn om de relaties tussen de verschillende bestanden van een project te visualiseren.\\
     De tool visualiseert de relaties tussen de verschillende bestanden van een project. Zo is er geweten waar de bestanden naar verwijzen en van waar ze refereren.
 \end{itemize}
 
-\textbf{Could Have:}
+\subsubsection{Could Have:}
 \begin{itemize}
-    \item \textbf{De tool moet in staat zijn om de documentatie van een Python bestand te genereren in verschillende formaten.}\\
+    \item De tool moet in staat zijn om de documentatie van een Python bestand te genereren in verschillende formaten.\\
     De tool genereert de documentatie van een Python bestand in verschillende formaten. Zo kan de gebruiker kiezen in welk formaat hij de documentatie wil.
-    \item \textbf{De tool moet in staat zijn om de relaties tussen de verschillende functies en klassen van een bestand te visualiseren op project niveau}\\
+    \item De tool moet in staat zijn om de relaties tussen de verschillende functies en klassen van een bestand te visualiseren op project niveau\\
     De tool visualiseert de relaties tussen de verschillende functies en klassen van een bestand op project niveau. Zo is er geweten waar de functies en klassen naar verwijzen en van waar ze refereren.
 \end{itemize}
 
-\textbf{Nice to Have:}
+\subsubsection{Nice to Have:}
 \begin{itemize}
-    \item \textbf{De tool moet in staat zijn om de documentatie van een Python bestand te genereren in verschillende talen.}\\
+    \item De tool moet in staat zijn om de documentatie van een Python bestand te genereren in verschillende talen.\\
     De tool genereert de documentatie van een Python bestand in verschillende talen. Zo kan de gebruiker kiezen in welke taal hij de documentatie wil.
-    \item \textbf{De tool moet in staat zijn om de documentatie van een Python bestand te genereren in verschillende stijlen.}\\
+    \item De tool moet in staat zijn om de documentatie van een Python bestand te genereren in verschillende stijlen.\\
     De tool genereert de documentatie van een Python bestand in verschillende stijlen. Zo kan de gebruiker kiezen in welke stijl hij de documentatie wil.
 \end{itemize}
 
 \subsection{Niet-functionele requirements}
 \label{sec:niet-functionele-requirements}
 \begin{itemize}
-    \item \textbf{De tool moet gebruiksvriendelijk zijn.}\\
+    \item De tool moet gebruiksvriendelijk zijn.\\
     De tool moet eenvoudig te gebruiken zijn. Dit betekent dat de tool intuïtief moet zijn en dat de gebruiker geen moeite moet doen om de tool te gebruiken.
-    \item \textbf{De tool moet betaalbaar zijn.}\\
+    \item De tool moet betaalbaar zijn.\\
     Dit wil zeggen dat de tool geen hoge kosten met zich meebrengt.
-    \item \textbf{De tool moet snel werken.}\\
+    \item De tool moet snel werken.\\
     De tool moet snel werken. Dit betekent dat de tool snel de documentatie moet kunnen genereren. Sneller dan dat een persoon dit zou kunnen.
-    \item \textbf{De tool moet leesbare documentatie genereren.}\\
+    \item De tool moet leesbare documentatie genereren.\\
     De documentatie die de tool genereert moet leesbaar zijn. Dit wil zeggen dat de documentatie duidelijk moet zijn en dat de gebruiker er gemakkelijk informatie uit kan halen.    
 \end{itemize}
 
-\section{Opstellen van een long-list}
+\section{Opstellen van een long-list tools}
 \label{sec:long-list}
 De long-list bestaat uit de verschillende tools die gebruikt kunnen worden voor het genereren van documentatie voor Pythonprojecten.
 Deze tools worden onderzocht en vergeleken om te kijken welke het beste past bij de requirements van de tool.
@@ -133,7 +133,7 @@ Hierbij kan er gekeken worden naar de tools die docstrings genereren, aangezien 
 
 \begin{table}[h!]
 \centering
-\small
+\resizebox{\textwidth}{!}{
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 Tool & docstrings & samenvatting bestand & samenvatting project & visualisatie \\ [0.5ex]
@@ -146,7 +146,7 @@ GPT4Docstrings & ja & nee & nee & nee \\
 \hline
 Pdoc & nee & ja & nee & nee \\
 \hline
-\end{tabular}
+\end{tabular}}
 \caption{Requirementsanalyse van de verschillende tools}
 \label{table:ra-tools}
 \end{table}
