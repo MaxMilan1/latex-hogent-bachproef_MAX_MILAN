@@ -12,9 +12,8 @@ Alsook hoe het toegepast kan worden met behulp van Large Language Modellen. Er
 zal nadruk worden gelegd op bestaande literatuur en onderzoeken die verbonden
 zijn met documentatie van Python-projecten. In dit onderdeel zullen verschillende hoofdstukken worden aangekaart. 
 Als eerste zal er duidelijk gemaakt worden wat er juist verstaan wordt onder documentatie. 
-Dan wordt er gekeken naar wat Large Language Modellen zijn, hoe deze werken en wat enkele bestaande modellen zijn.
 Vervolgens wordt er gekeken naar bestaande documentatie tools.
-Als laatste wordt er gekeken naar hoe Large Language Modellen gebruikt kunnen worden voor het genereren van documentatie.
+In derde deel van deze literatuurstudie wordt er gekeken naar wat Large Language Modellen zijn, hoe deze werken en wat enkele bestaande modellen zijn.
 
 \section{Wat is documentatie?}
 \label{sec:wat-is-documentatie}
@@ -23,15 +22,15 @@ Voor dat er dieper op het onderwerp wordt ingegaan is het belangrijk dat er een 
 Waarom is documentatie belangrijk voor een project en wat wordt er begrepen onder documentatie? 
 
 Documentatie is het proces van het vastleggen van de werking van een project.
-Volgens \textcite{CodeQuality2024} kan op verschillende manieren gebeuren. 
+Volgens \textcite{CodeQuality2024} kan dit op verschillende manieren gebeuren. 
 Er kan gekozen worden om de documentatie te schrijven in de vorm van een commentaar in de code, een docstrings, een API voor klassen of functies of in de vorm van een README.md bestand \autocite{CodeQuality2024}.
 Het doel van documentatie is om de werking van het project te beschrijven zodat andere programmeurs het project kunnen begrijpen en gebruiken.
-Zodat er geen tijd verloren gaat aan het lezen van de code en het begrijpen ervan.
+Zo gaat er geen tijd verloren gaat aan het lezen van de code en het begrijpen ervan.
 
 Documentatie kan gemaakt worden voor verschillende doelgroepen. Het kan voor interne of externe doeleinden zijn.
 Interne documentatie is voor documentatie binnen hetzelfde bedrijf.
 Dit gaat dan om het capteren van de process kennis die vergaard is binnen een project. Dit is informatie zoals een roadmap of product requirements. 
-Deze documentatie gaat over het vastleggen van gedetaileerde uitleg over hoe iets werkt en hoe het onderhouden kan worden \autocite{swimm.io2024}.
+Deze documentatie gaat over het vastleggen van gedetaïleerde uitleg over hoe iets werkt en hoe het onderhouden kan worden \autocite{swimm.io2024}.
 
 Externe documentatie is voor documentatie die gedeeld wordt met andere bedrijven of klanten. 
 Dit gaat dan over de basis werking van de code van een project zodat andere programmeurs het kunnen gebruiken.
@@ -68,6 +67,7 @@ Voor er gekeken wordt naar hoe LLM's mogelijk gebruikt kunnen worden voor het ge
 De documentatie kan in verschillende vormen gegeneerd worden dit kan gaan van een website tot een samenvattend document.
 Ook kunnen er in de code zelf commentaren geplaatst worden die de werking van de code uitleggen.
 Hiervoor bestaan er reeds verschillende tools en dit voor verschillende programmeertalen opgelijst in tabel \ref{table:vgl-tools}.
+In dit onderdeel is er enkel gekeken tools die nog onderhouden worden door de makers. 
 
 \subsection{Doxygen}
 Doxygen \autocite{Doxygen2023} is een tool die het toelaat om automatisch code documentatie te genereren. Het is een gratis tool die bruikbaar is voor verschillende programmeertalen zoals: C++, C, Python, PHP en Java.
@@ -111,18 +111,19 @@ Het nader bekijken van deze tool kan een meerwaarde zijn voor deze bachelorproef
      \label{fig:Before-After-Trofficus}
 \end{figure}
 
-Zo gebruikt GPT4Docstrings van \textcite{Trofficus2023} de Abstract Syntax Tree (AST) van de code om de structuur van de code te begrijpen en vast te nemen.
+Zo gebruikt GPT4Docstrings van \textcite{Trofficus2023} de Abstract Syntax Tree (AST) van de code om de structuur van de code te begrijpen.
 Uit de AST kunnen de juiste stukken code gehaald worden om de docstrings te genereren.
 Dit kan goed van pas komen voor het genereren van documentatie van Python projecten.
 Een voorbeeld van deze tool kan gezien worden in figuur \ref{fig:Before-After-Trofficus}. 
 
 \subsection{Sphinx}
-\textcite{Sphinx2023} is een van de meest gebruikte tools voor het genereren van documentatie voor Python projecten.
+Sphinx van \textcite{Sphinx2023} is een van de meest gebruikte tools voor het genereren van documentatie voor Python projecten.
 Het genereert documentatie aan de hand van docstrings. Het toont de hierarchie van het project om een duidelijk overzicht te geven.
 Deze tool is vrij flexibel want het kan uitgebreid worden met verschillende extensies, zodat het alle mogelijke wensen kan vervullen.
 Bijvoorbeeld de extensie autodoc kan semi-automatisch de docstrings van een module extraheren en in de documentatie plaatsen. 
 Handig wanneer de automatische documentatie generatie van een geheel project gewenst is. Zo kan het project samengevat worden aan de hand van de docstrings van de verschillende python files. 
-Alvorens een Python project gedocumenteerd kan worden met Sphinx dienen alle bestanden aangevuld te worden met docstrings, dit gebeurt echter niet automatisch.
+Alvorens een Python project gedocumenteerd kan worden met Sphinx \autocite{Sphinx2023}, dienen alle bestanden aangevuld te worden met docstrings.
+Dit gebeurt echter niet bij het runnen van het programma.
 
 \subsection{Pdoc}
 Pdoc \autocite{GallantHils2023} genereert documentatie in de vorm van een website die een API van de documentatie bevat. 
@@ -174,7 +175,7 @@ De tool GPT4Docstrings genereert docstrings voor Python code met behulp van een 
   Pdoc & nee & nee & nee & nee \\
   \hline
   \end{tabular}}
-  \caption{Wat kunnen de tools genereren}
+  \caption{Overzicht van wat de tools kunnen genereren}
   \label{table:ra-tools}
   \end{table}
 
@@ -195,7 +196,7 @@ Dit helpt met het verkrijgen van een grondige basiskennis van LLM's.
 Het veld waarin AI zich bevindt wordt vaak voorgesteld volgens figuur \ref{fig:LLM-position}, met verschillende lagen \autocite{Stoeffelbauer2023}.
 Deze lagen zijn: Artificiële Intelligentie, Machine Learning, Deep Learning en Large Language Modellen.
 Omdat LLM's een subveld zijn van Deep Learning is het belangrijk dat er een duidelijk beeld is van wat Deep Learning juist is.
-Uit de figurr \ref{fig:LLM-position} blijkt dat AI verschillende categorieën omvat.
+Uit de figuur \ref{fig:LLM-position} blijkt dat AI verschillende categorieën omvat.
 AI is een brede term, hiermee wordt vaak verwezen naar slimme machines. 
 Machine Learning (ML) is een subveld van AI, waarin patronen worden herkend tussen een input en een output.
 ML kan gebruikt worden voor verschillende taken zoals: classificatie, regressie, clustering ...
@@ -227,10 +228,10 @@ Een neuraal netwerk bestaat uit verschillende lagen. Enkele belangrijke blokken 
   \item Gemaskerde Zelfattentie (Masked Self-Attention)
 \end{itemize}
 
-Deze attention blokken worden gebruikt in de encoder en decoder van een transformer en stromen voort uit het onderzoek van \textcite{VaswaniEtAl2017}.
+Deze Attentie blokken worden gebruikt in de encoder en decoder van een transformer en stromen voort uit het onderzoek van \textcite{VaswaniEtAl2017}.
 
-Transformers zijn een speciaal type van neurale netwerken die gebruik maken van verschillende attention blokken.
-Attention is een mechanisme dat gebruikt wordt om de relaties tussen verschillende delen van de invoersequenties te leren.
+Transformers zijn een speciaal type van neurale netwerken die gebruik maken van verschillende Attentie blokken.
+Attentie is een mechanisme dat gebruikt wordt om de relaties tussen verschillende delen van de invoersequenties te leren.
 Een transformer bestaat uit een encoder en een decoder. 
 Niet elke transformer bestaat uit beide een encoder en een decoder, sommige bestaan enkel uit een encoder of een decoder \autocite{Hoque2023}.
 De encoder wordt gebruikt om de invoersequenties te verwerken en de decoder wordt gebruikt om de uitvoersequenties te genereren.
@@ -250,7 +251,7 @@ Dit vermijdt dat er informatie van de toekomstige tokens gebruikt wordt.
 Zo kan de transformer niet "vals spelen" tijdens het train proces.
 
 Kruis-Attentie is een variant van Zelfattentie die gebruikt wordt in de decoder van een transformer.
-Deze laag gebruikt de informatie van de encoder en de vorige Attention laag van de decoder om de uitvoersequenties te genereren.
+Deze laag gebruikt de informatie van de encoder en de vorige Attentie laag van de decoder om de uitvoersequenties te genereren.
 De Query vector is de uitvoer van de vorige Attentie/Kruis-Attentie laag van de decoder en de Key en Value vector zijn de uitvoer van de encoder \autocite{VaswaniEtAl2017}.
 Doordat de Kruis-Attentie laag informatie van zowel de encoder als decoder krijgt kan het model de relaties tussen de verschillende delen van de invoersequenties leren.
 Deze relaties worden dan gebruikt om de uitvoersequenties te genereren.
@@ -286,33 +287,36 @@ Uit de data kunnen dan patronen gehaald worden met behulp van Transformers \ref{
 \end{figure}
 
 De volgende fase bestaat uit het trainen van het model op een dataset met instructies en het antwoord erop. 
-Dit is het gesuperviseerde Fine-Tuning van de LLM \autocite{Das2024}.
-Het model probeert zo de patronen te leren die nodig zijn om vragen te beantwoorden of instructies te volgen.
-Hierdoor leert het model instructies te volgen en vragen te beantwoorden.
+Volgens \textcite{Das2024} is dit het gesuperviseerde Fine-Tunen van een LLM.
+In deze fase probeert het model de patronen te leren die nodig zijn om vragen te beantwoorden of instructies te volgen.
+Dit zorgt ervoor dat het model instructies kan volgen en vragen leert te beantwoorden.
 
 Er kan gebruik gemaakt worden om het model specifiek aan de wensen van de mens te laten voldoen. Dit kan door het gebruiken van Reinfocement Learning met menselijke feedback \autocite{LambertEtAL2022}. 
 Hierbij geeft de mens feedback aan het model en leert het model bij door deze feedback.
 
-Het model kan achteraf nog extra getraind worden op specifieke data. 
-Volgens \textcite{Peckham2024} gebeurt het Fine-Tunen van een model op een specifieke dataset, zoals Python code of medische data.
-Dit zorgt ervoor dat het model extra kennis heeft over het gekozen onderwerp.
-
 \subsection{Fine-Tuning van LLM's}
 \label{sec:fine-tuning-van-llms}
 
-Het Fine-Tunen van een LLM is een mogelijkheid om het meer informatie te geven over een specifiek onderwerp.
-Enkele vereisten voor het Fine-Tunen van een LLM zijn, de dataset moet een grote hoeveelheid date hebben, de dataset moet van hoge kwaliteit zijn en de dataset moet representatief zijn voor het onderwerp volgens \textcite{Peckham2024}.
+Volgens \textcite{Peckham2024} kan het model achteraf nog extra getraind worden op een specifieke dataset,  zoals Python code of medische data.
+Dit het is proces van het verder Fine-Tunen van een LLM.
+Enkele vereisten voor het Fine-Tunen van een LLM zijn, de dataset moet een grote hoeveelheid date hebben, de dataset moet van hoge kwaliteit zijn en de dataset moet representatief zijn voor het onderwerp \autocite{Peckham2024}.
 
 \subsection{Prompt Engineering}
 \label{sec:prompt-engineering}
 
 Prompt Engineering is een techniek die gebruikt wordt om de uitkomst van een LLM te beïnvloeden volgens \textcite{Google2023}.
-Er wordt een prompt gegeven aan het model met duidelijke instructies over wat er verwacht wordt, als deze niet volstaan wordt de prompt bewerkt.
-De nieuwe uitkomst wordt dan geëvalueerd en indien nodig wordt de prompt opnieuw aangepast.
-Dit is het proces van Prompt Engineering.
+Er wordt een prompt gegeven aan het model met duidelijke instructies over wat er verwacht wordt. 
+Wanneer deze instructies niet voldoen wordt er iteratief de prompt aangepast, de uitkomst wordt geëvalueerd tot de gewenste uitkomst bereikt is. 
+Dit iteratieve proces heet Prompt Engineering \autocite{Trad2024}.
 
 Door het toevoegen van enkele voorbeelden aan de prompt kan het model beter begrijpen wat er verwacht wordt \autocite{OpenAi2024a}.
-Geef structuur aan de prompt, geef een rol, geef een context en geef een doel. Dit zijn de beste manieren om een prompt te structureren volgens \autocite{Google2023}.
+\begin{itemize}
+  \item Geef structuur aan de prompt.
+  \item Geef een rol mee.
+  \item Geef een context.
+  \item Geef een doel.
+\end{itemize} 
+Dit zijn de beste manieren om een prompt te structureren volgens \autocite{Google2023}.
 
 \subsection{Bestaande LLM's}
 \label{sec:bestaande-llms}
@@ -326,12 +330,12 @@ Eén van de grote spelers in de wereld van LLM's is OpenAI. OpenAI heeft verschi
 Het is getraind op een grote hoeveelheid data en heeft een grote capaciteit.
 Een nadeel is dat GPT-4 een betalende service is \autocite{OpenAI2023}.
 
-Een andere grote speler is Google, Google heeft verschillende LLM's ontwikkeld waaronder BERT van \textcite{DevlinEtAl2019} en Gemini \autocite{Google2024}
+Een andere grote speler is Google, Google heeft verschillende LLM's ontwikkeld waaronder BERT van \textcite{DevlinEtAl2019} en Gemini \autocite{Google2024}.
 BERT staat voor Bidirectional Encoder Representations from Transformers, een DL model waar elk output element verbonden is met elk input element \autocite{HashemiPour2024}.
 BERT was een eerste stap in de wereld van LLM's voor Google. Sinds kort heeft \textcite{Google2024} een nieuwe LLM ontwikkeld genaamd Gemini.
-Deze LLM is een sterke concurent voor GPT-4 van \textcite{OpenAI2023}. 
+Deze LLM is een sterke concurrent voor GPT-4 van \textcite{OpenAI2023}. 
 
-De modellen die Google \autocite{Google2024} uitbracht bestaan uit verschillende versies: Gemini Pro, Gemini Ultra en Gemini Nano. 
+Google \autocite{Google2024} bracht een model met verschillende versies uit: Gemini Pro, Gemini Ultra en Gemini Nano. 
 Elke versie is gemaakt voor een specifiek doeleind, zo is Gemini Nano het meest efficiente model voor mobiele toestellen. Gemini Pro is dan weer het beste model voor het schalen van allerlei taken.
 En Gemini Ultra is het meest capabele en grootste model van Google, dit kan gebruikt worden voor complexe taken.
 Een van de voordelen van Gemini is dat er een groot aantal input tokens meegegeven kunnen worden, namelijk 1 miljoen tokens \autocite{Google2024}.
@@ -346,7 +350,7 @@ Antropic heeft ook een LLM ontwikkeld genaamd Claude \autocite{Anthropic2023}.
 Claude's capaciteiten zijn code generatie, het verstaan van meerdere talen, beelden analyseren en kan geavanceerde redeneringen geven.
 Er bestaan 3 versies van Claude: Haiku, Sonnet en Opus.
 Haiku een lichte versie van Claude, Sonnet is de combinatie van performantie en snelheid en Opus is het intelligentste model dat complexe taken kan uitvoeren en begrijpen.
-Claude is een betalende service, de prijzen zijn afhankelijk van de gekozen versie van Claude.
+Claude is een betalende service, de prijzen zijn afhankelijk van de gekozen versie van Claude \autocite{Anthropic2023}.
 
 De verschillen tussen deze LLM's zijn groot, zo is er een verschil in capaciteit, trainingsdata en toegankelijkheid.
 Het is belangrijk dat er een goede keuze gemaakt wordt voor het genereren van documentatie.
@@ -383,7 +387,7 @@ Het is mogelijk dat er meerdere LLM's getest moeten worden om de beste keuze te 
 \label{table:vgl-llms}
 \end{table}
 
-In tabel \ref{table:vgl-llms} wordt een vergelijking gemaakt tussen verschillende LLM's.
+In de tabel \ref{table:vgl-llms} wordt een vergelijking gemaakt tussen verschillende LLM's.
 Hierin wordt er gekeken naar de prijs van de input en output tokens, de grootte van de context en het aantal tokens dat per seconde verwerkt kan worden.
 
 \begin{table}[h!]
@@ -416,7 +420,9 @@ Claude Haiku \autocite{Anthropic2023} & 75\%  & / \\
 \label{table:vgl-llms-eval}
 \end{table}
 
-In tabel \ref{table:vgl-llms-eval} wordt een vergelijking gemaakt tussen verschillende LLM's tussen twee kolommen met in een eerste kolom de beoordeling van de coding mogelijkheden van het model gequoteerd door menselijke evaluatie. 
-In de tweede kolom staat de beredenering en kennis en deze is er gequoteerd op basis van de MMLU een dataset \autocite{Hendrycks2020}.
+In de tabel \ref{table:vgl-llms-eval} wordt een vergelijking gemaakt tussen verschillende LLM's tussen twee kolommen. 
+De eerste kolom bevat de beoordeling van de coding mogelijkheden van het model gequoteerd met menselijke evaluatie. 
+In de tweede kolom staat de quotering op basis van de MMLU een dataset \autocite{Hendrycks2020}.
+Beide kolommen staan uitgedrukt in procenten met 100\% als maximum.
 Hieruit kan geconcludeerd worden dat GPT-4 en GPT-4 Turbo de beste scores behalen op beide vlakken.
-Een conclusie uit beide tabellen is dat GPT-3.5 Turbo de beste prijs/kwaliteit verhouding heeft.
+Maar omdat er in dit onderzoek gezocht wordt naar een goedkope oplossing wordt er geconcludeerd uit beide tabellen dat GPT-3.5 Turbo de beste prijs/kwaliteit verhouding heeft.
