@@ -25,6 +25,36 @@ Omdat dit onderzoek een bepaalde scope heeft, is er gekozen om enkel te kijken n
 Dit wil zeggen dat er verwacht wordt dat de code correct is en dat er geen syntax fouten in de code zitten.
 Er wordt niet gekeken naar het documenteren van bestanden met syntax fouten of bestanden die niet correct zijn.
 
+\subsection{GPT4Docstrings tool}
+\label{sec:bestanddocumentatie-tool}
+Uit de literatuurstudie is gebleken dat de tool GPT4Docstrings van \textcite{Trofficus2023} een tool is die het toelaat om docstrings te genereren voor ongedocumenteerde Python projecten.
+Deze tool maakt gebruik van GPT4 \autocite{OpenAI2023} om de docstrings te genereren.
+De resultaten van deze tool zijn beoordeeld en geëvalueerd volgens de requirementsanalyse, een voorbeeld van deze uitkomst is te zien in \ref{lst:gpt4docstrings-uitkomst}.
+
+\begin{listing}
+    \caption{Voorbeeld uitkomst van GPT4Docstrings. \autocite{Trofficus2023}}
+    \label{lst:gpt4docstrings-uitkomst}
+    \begin{minted}{python}
+import asyncio
+async def async_example():
+    """
+    An asynchronous example function.
+
+    This function asynchronously sleeps for 2 seconds.
+
+    Returns
+    -------
+    None
+        This function does not return any value.
+    """
+    await asyncio.sleep(2)
+    \end{minted}
+\end{listing}
+
+De tool is enkel instaat om docstrings te genereren voor functies en klassen.
+Hierdoor is er gekozen om niet de tool zelf te gebruiken maar om de technieken die te tool gebruikt te implementeren in een eigen tool.
+Dit laat toe om de tool uit te breiden en te verbeteren volgens de requirementsanalyse, ook geeft het meer controle over de gegenereerde docstrings.
+
 \subsection{Abstract Syntax Tree}
 \label{sec:bestanddocumentatie-ast}
 Voor er docstrings gegenereerd kunnen worden, moet er eerst gekeken worden naar hoe de code van een Python bestand geanalyseerd kan worden.
@@ -344,3 +374,23 @@ Dit is de laatste stap in het proces van het documenteren van een Python bestand
 
 Deze samenvatting kan dan gebruikt worden als basis voor het genereren van de verdere documentatie voor een Python project.
 Een samenvatting op project niveau en de relaties tussen de verschillende bestanden van het project.
+
+% \section{LLM voor documentatie}
+% \label{sec:llm-voor-documentatie}
+
+% Nadat de basiskennis over LLM's gelegd is, hoe deze werken en wat ze doen. Wat enkele bekende LLM's zijn en wat hun mogelijkheden zijn. 
+% Ook zijn er bestaande tools besproken die documentatie genereren voor projecten.
+
+% Omdat dit onderzoek gaat over het documenteren van een Python project met behulp van LLM's, moet er gekeken worden naar hoe LLM's gebruikt kunnen worden voor het genereren van documentatie.
+% Een LLM kan gebruikt worden voor de verschillende documentatie stukken, samenvattingen, docstrings, relatie tussen de verschillende delen van het project, \dots
+% Door de verschillende delen van het project meegegeven aan de LLM met een uitgebreid prompt. 
+% Hier kan er telkens aan de Large Language Model gevraagd worden om een samenvatting te maken van wat dit deel van het project doet en wat de uitkomst is.
+% Door dit te herhalen voor alle files van het project kan er één samenvattend document gemaakt worden van het gehele project.
+
+% De LLM kan de relaties tussen de verschillende delen van het project leren en vastnemen.
+% Zo wordt er een duidelijk beeld gevormd van de structuur van het project en wat de samenhang is van de verschillende delen van het project.
+% Alle functies van het python project kunnen hier makkelijk teruggevonden worden.
+
+% Er kan ook gebruik gemaakt worden van de LLM om de docstrings van de verschillende functies en klassen te genereren. 
+% Om zo een betere samenvatting te verkrijgen van de werking van de verschillende delen van het project, door de docstrings te combineren met de samenvattingen van de LLM.
+% Door telkens de docstrings en de naam van de verschillende functies en klassen mee te geven aan de LLM kan er een betere samenvatting gemaakt worden van het gehele project.

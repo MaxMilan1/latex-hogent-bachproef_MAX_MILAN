@@ -74,7 +74,7 @@ Hier wordt er gekeken naar wat de tool moet kunnen en wat de verwachtingen zijn 
     De tool dient een samenvatting te maken van een Python project. Deze samenvatting bestaat uit de individuele samenvattingen van de bestanden en een overkoepelende samenvatting van het project.
     Hierin staan alle functies en klassen die in het project voorkomen en wat deze doen, alsook hun eventuele parameters en de uitkomst.
     \item De tool moet in staat zijn om de relaties tussen de verschillende bestanden van een project te visualiseren.\\
-    De tool visualiseert de relaties tussen de verschillende bestanden van een project. Zo is er geweten waar de bestanden naar verwijzen en van waar ze refereren.
+    De tool visualiseert  de relaties tussen de verschillende bestanden van een project. Zo is er geweten waar de bestanden naar verwijzen en van waar ze refereren.
 \end{itemize}
 
 \subsubsection{Could Have:}
@@ -101,7 +101,7 @@ Hier wordt er gekeken naar wat de tool moet kunnen en wat de verwachtingen zijn 
     \item De tool moet betaalbaar zijn.\\
     Dit wil zeggen dat de tool geen hoge kosten met zich meebrengt.
     \item De tool moet snel werken.\\
-    De tool moet snel werken. Dit betekent dat de tool snel de documentatie moet kunnen genereren. Sneller dan dat een persoon dit zou kunnen.
+    Dit betekent dat de tool snel de documentatie moet kunnen genereren. Sneller dan dat een persoon dit zou kunnen.
     \item De tool moet leesbare documentatie genereren.\\
     De documentatie die de tool genereert moet leesbaar zijn. Dit wil zeggen dat de documentatie duidelijk moet zijn en dat de gebruiker er gemakkelijk informatie uit kan halen.    
 \end{itemize}
@@ -111,47 +111,12 @@ Hier wordt er gekeken naar wat de tool moet kunnen en wat de verwachtingen zijn 
 De long-list bestaat uit de verschillende tools die gebruikt kunnen worden voor het genereren van documentatie voor Pythonprojecten.
 Deze tools worden onderzocht en vergeleken om te kijken welke het beste past bij de requirements van de tool.
 
-De oplijsting van de tools is gebaseerd op de literatuurstudie en bestaat uit de volgende tools:
-\begin{itemize}
-\item Sphinx \autocite{Sphinx2023}\\
-Een tool die gebruikt wordt voor het genereren van documentatie voor projecten met reeds een docstring. 
-\item Doxygen \autocite{Doxygen2023}\\
-Een tool die gebruikt wordt voor het genereren van documentatie voor projecten met reeds een docstring.
-\item Pdoc \autocite{GallantHils2023}\\
-Een tool die een API genereert voor Python projecten met reeds een docstring.
+De oplijsting van de tools is gebaseerd op de literatuurstudie en bestaat uit de twee volgende tools:
+\begin{itemize} 
 \item GPT4Docstrings \autocite{Trofficus2023}\\
 Een tool die docstrings genereert voor Python projecten met behulp van GPT4 \textcite{OpenAI2023}.
+\item Doxygen \autocite{Doxygen2023}\\
+Een tool die gebruikt wordt voor het genereren van documentatie voor projecten met reeds een docstring.
 \end{itemize}
 
-Door de verschillende tools te onderzoeken en te vergelijken aan de hand van de requirementsanalyse kan er een keuze gemaakt worden welke tool het beste past bij de requirements van de tool.
-Als er geen tool is die voldoet aan de requirements, kan er gekeken worden naar het combineren van verschillende tools of gebruiken van delen van verschillende tools om zo een eigen tool te maken.
-
-Door eerst te kijken naar de programmeerttalen waarvoor de tools gebruikt kunnen worden, kan er al een eerste selectie gemaakt worden uit tabel \ref{table:vgl-tools}.
-Zo kan er gekeken worden naar de tools die gebruikt kunnen worden voor Python projecten.
-Vervolgens kan er gekeken worden naar het type documentatie dat de tools genereren.
-Hierbij kan er gekeken worden naar de tools die docstrings genereren, aangezien dit de basis is voor het genereren van de gewenste documentatie.
-
-\begin{table}[h!]
-\centering
-\resizebox{\textwidth}{!}{
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-Tool & docstrings & samenvatting bestand & samenvatting project & visualisatie \\ [0.5ex]
-\hline
-Doxygen & nee & ja & ja & ja \\
-\hline
-Sphinx & nee & ja & ja & nee \\
-\hline
-GPT4Docstrings & ja & nee & nee & nee \\
-\hline
-Pdoc & nee & ja & nee & nee \\
-\hline
-\end{tabular}}
-\caption{Requirementsanalyse van de verschillende tools}
-\label{table:ra-tools}
-\end{table}
-
-Uit deze tabel \ref{table:ra-tools} kan er geconcludeerd worden dat geen enkele tool voldoet aan de volledige requirements van de tool.
-Doordat de Doxygen en Sphinx tools geen docstrings genereren en dit de basis is voor de documentatie, kunnen deze tools niet gebruikt worden.
-Pdoc genereert enkel samenvattingen van een bestand dat reeds aangevuld is met docstrings en kan dus ook niet gebruikt worden.
-Omdat GPT4Docstrings enkel docstrings genereert en geen samenvattingen van bestanden of projecten, kan er gekeken worden hoe deze tool dit doet.
+Deze tools worden verder onderzocht in de volgende hoofdstukken, GPT4Docstrings in het hoofdstuk \ref{sec:bestanddocumentatie-tool} en Doxygen in het hoofdstuk \ref{sec:project-documentatie-relaties}.

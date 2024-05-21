@@ -5,8 +5,6 @@
 \chapter{Bijlage}
 \label{bijlage}
 
-In deze bijlage worden de volledige code van de applicatie en de gebruikte prompts weergegeven.
-
 \section{Prompts}
 \label{bijlage:prompts}
 
@@ -1320,3 +1318,272 @@ def pad_img_to_fit_bbox(img, x1, x2, y1, y2):
 if __name__ == '__main__':
     crop_faces()
 \end{minted}
+
+\section{Evaluatie bestand documentatie}
+\label{bijlage:evaluatie-bestand-documentatie}
+
+\subsection{Uitkomst van bestand documentatie door eigen tool}
+\begin{minted}{python}
+import os
+import cv2
+import dlib
+from matplotlib import pyplot as plt
+import numpy as np
+import config
+detector = dlib.get_frontal_face_detector()
+
+def crop_faces(plot_images: bool=False, max_images_to_plot: int=5) -> List[np.ndarray]:
+    """
+    Crop faces from the original images and save the cropped images.
+
+    Args:
+        plot_images (bool, optional): Whether to plot the images. Defaults to False.
+        max_images_to_plot (int, optional): Maximum number of images to plot. Defaults to 5.
+
+    Returns:
+        List[np.ndarray]: List of good cropped images.
+    """
+    bad_crop_count = 0
+    if not os.path.exists(config.CROPPED_IMGS_DIR):
+        os.makedirs(config.CROPPED_IMGS_DIR)
+    print('Cropping faces and saving to %s' % config.CROPPED_IMGS_DIR)
+    good_cropped_images = []
+    good_cropped_img_file_names = []
+    detected_cropped_images = []
+    original_images_detected = []
+    for file_name in sorted(os.listdir(config.ORIGINAL_IMGS_DIR)):
+        np_img = cv2.imread(os.path.join(config.ORIGINAL_IMGS_DIR, file_name))
+        detected = detector(np_img, 1)
+        img_h, img_w, _ = np.shape(np_img)
+        original_images_detected.append(np_img)
+        if len(detected) != 1:
+            bad_crop_count += 1
+            continue
+        d = detected[0]
+        x1, y1, x2, y2, w, h = (d.left(), d.top(), d.right() + 1, d.bottom() + 1, d.width(), d.height())
+        xw1 = int(x1 - config.MARGIN * w)
+        yw1 = int(y1 - config.MARGIN * h)
+        xw2 = int(x2 + config.MARGIN * w)
+        yw2 = int(y2 + config.MARGIN * h)
+        cropped_img = crop_image(np_img, xw1, yw1, xw2, yw2)
+        norm_file_path = '%s/%s' % (config.CROPPED_IMGS_DIR, file_name)
+        cv2.imwrite(norm_file_path, cropped_img)
+        good_cropped_img_file_names.append(file_name)
+    with open(config.ORIGINAL_IMGS_INFO_FILE, 'r') as f:
+        column_headers = f.read().splitlines()[0]
+        all_imgs_info = f.read().splitlines()[1:]
+    cropped_imgs_info = [l for l in all_imgs_info if l.split(',')[-1] in good_cropped_img_file_names]
+    with open(config.CROPPED_IMGS_INFO_FILE, 'w') as f:
+        f.write('%s\n' % column_headers)
+        for l in cropped_imgs_info:
+            f.write('%s\n' % l)
+    print('Cropped %d images and saved in %s - info in %s' % (len(original_images_detected), config.CROPPED_IMGS_DIR, config.CROPPED_IMGS_INFO_FILE))
+    print('Error detecting face in %d images - info in Data/unnormalized.txt' % bad_crop_count)
+    if plot_images:
+        print('Plotting images...')
+        img_index = 0
+        plot_index = 1
+        plot_n_cols = 3
+        plot_n_rows = len(original_images_detected) if len(original_images_detected) < max_images_to_plot else max_images_to_plot
+        for row in range(plot_n_rows):
+            plt.subplot(plot_n_rows, plot_n_cols, plot_index)
+            plt.imshow(original_images_detected[img_index].astype('uint8'))
+            plot_index += 1
+            plt.subplot(plot_n_rows, plot_n_cols, plot_index)
+            plt.imshow(detected_cropped_images[img_index])
+            plot_index += 1
+            plt.subplot(plot_n_rows, plot_n_cols, plot_index)
+            plt.imshow(good_cropped_images[img_index])
+            plot_index += 1
+            img_index += 1
+    plt.show()
+    return good_cropped_images
+
+def crop_image(img: np.ndarray, x1: int, y1: int, x2: int, y2: int) -> np.ndarray:
+    """
+    Crop a region from the input image based on the specified coordinates.
+
+    Args:
+        img (np.ndarray): The input image.
+        x1 (int): The starting x-coordinate of the region to be cropped.
+        y1 (int): The starting y-coordinate of the region to be cropped.
+        x2 (int): The ending x-coordinate of the region to be cropped.
+        y2 (int): The ending y-coordinate of the region to be cropped.
+
+    Returns:
+        np.ndarray: The cropped region of the image.
+    """
+    if x1 < 0 or y1 < 0 or x2 > img.shape[1] or (y2 > img.shape[0]):
+        img, x1, x2, y1, y2 = pad_img_to_fit_bbox(img, x1, x2, y1, y2)
+    return img[y1:y2, x1:x2, :]
+
+def pad_img_to_fit_bbox(img: np.array, x1: int, x2: int, y1: int, y2: int) -> Tuple[np.array, int, int, int, int]:
+    """
+    Pad the image to fit the specified bounding box coordinates.
+
+    Args:
+        img (np.array): The input image.
+        x1 (int): The x-coordinate of the left side of the bounding box.
+        x2 (int): The x-coordinate of the right side of the bounding box.
+        y1 (int): The y-coordinate of the top side of the bounding box.
+        y2 (int): The y-coordinate of the bottom side of the bounding box.
+
+    Returns:
+        Tuple[np.array, int, int, int, int]: The padded image and updated coordinates of the bounding box.
+    """
+    img = cv2.copyMakeBorder(img, -min(0, y1), max(y2 - img.shape[0], 0), -min(0, x1), max(x2 - img.shape[1], 0), cv2.BORDER_REPLICATE)
+    y2 += -min(0, y1)
+    y1 += -min(0, y1)
+    x2 += -min(0, x1)
+    x1 += -min(0, x1)
+    return (img, x1, x2, y1, y2)
+if __name__ == '__main__':
+    crop_faces()
+
+
+"""
+Summary of file: crop_images.py
+
+This file contains the implementation of functions to crop and pad images.
+
+Functions:
+    crop_faces: Crop faces from an image and return a list of cropped faces.
+    crop_image: Crop a specified region from an image.
+    pad_img_to_fit_bbox: Pad an image to fit a specified bounding box.
+"""
+\end{minted}
+
+\subsection{Zelfgedocumenteerd bestand gemiddeld niveau}
+\label{bijlage:zelfgedocumenteerd-bestand-gemiddeld}
+
+\begin{minted}{python}
+import os
+import cv2
+import dlib
+from matplotlib import pyplot as plt
+import numpy as np
+import config
+detector = dlib.get_frontal_face_detector()
+
+def crop_faces(plot_images: bool=False, max_images_to_plot: int=5):
+    """
+    Crop faces from images in the original images directory and save them in the cropped images directory.
+
+    Args: 
+        plot_images (bool): Whether to plot the cropped images. Defaults to False.
+        max_images_to_plot (int): Maximum number of images to plot. Defaults to 5.
+    
+    Returns:
+        List[np.array]: List of good cropped images.
+    """
+    bad_crop_count = 0
+    if not os.path.exists(config.CROPPED_IMGS_DIR):
+        os.makedirs(config.CROPPED_IMGS_DIR)
+    print('Cropping faces and saving to %s' % config.CROPPED_IMGS_DIR)
+    good_cropped_images = []
+    good_cropped_img_file_names = []
+    detected_cropped_images = []
+    original_images_detected = []
+    for file_name in sorted(os.listdir(config.ORIGINAL_IMGS_DIR)):
+        np_img = cv2.imread(os.path.join(config.ORIGINAL_IMGS_DIR, file_name))
+        detected = detector(np_img, 1)
+        img_h, img_w, _ = np.shape(np_img)
+        original_images_detected.append(np_img)
+        if len(detected) != 1:
+            bad_crop_count += 1
+            continue
+        d = detected[0]
+        x1, y1, x2, y2, w, h = (d.left(), d.top(), d.right() + 1, d.bottom() + 1, d.width(), d.height())
+        xw1 = int(x1 - config.MARGIN * w)
+        yw1 = int(y1 - config.MARGIN * h)
+        xw2 = int(x2 + config.MARGIN * w)
+        yw2 = int(y2 + config.MARGIN * h)
+        cropped_img = crop_image(np_img, xw1, yw1, xw2, yw2)
+        norm_file_path = '%s/%s' % (config.CROPPED_IMGS_DIR, file_name)
+        cv2.imwrite(norm_file_path, cropped_img)
+        good_cropped_img_file_names.append(file_name)
+    with open(config.ORIGINAL_IMGS_INFO_FILE, 'r') as f:
+        column_headers = f.read().splitlines()[0]
+        all_imgs_info = f.read().splitlines()[1:]
+    cropped_imgs_info = [l for l in all_imgs_info if l.split(',')[-1] in good_cropped_img_file_names]
+    with open(config.CROPPED_IMGS_INFO_FILE, 'w') as f:
+        f.write('%s\n' % column_headers)
+        for l in cropped_imgs_info:
+            f.write('%s\n' % l)
+    print('Cropped %d images and saved in %s - info in %s' % (len(original_images_detected), config.CROPPED_IMGS_DIR, config.CROPPED_IMGS_INFO_FILE))
+    print('Error detecting face in %d images - info in Data/unnormalized.txt' % bad_crop_count)
+    if plot_images:
+        print('Plotting images...')
+        img_index = 0
+        plot_index = 1
+        plot_n_cols = 3
+        plot_n_rows = len(original_images_detected) if len(original_images_detected) < max_images_to_plot else max_images_to_plot
+        for row in range(plot_n_rows):
+            plt.subplot(plot_n_rows, plot_n_cols, plot_index)
+            plt.imshow(original_images_detected[img_index].astype('uint8'))
+            plot_index += 1
+            plt.subplot(plot_n_rows, plot_n_cols, plot_index)
+            plt.imshow(detected_cropped_images[img_index])
+            plot_index += 1
+            plt.subplot(plot_n_rows, plot_n_cols, plot_index)
+            plt.imshow(good_cropped_images[img_index])
+            plot_index += 1
+            img_index += 1
+    plt.show()
+    return good_cropped_images
+
+def crop_image(img, x1, y1, x2, y2):
+    """
+    Crop an image to the bounding box defined by the coordinates (x1, y1, x2, y2).
+
+    Args:
+        img (np.ndarray): Input image.
+        x1 (int): x-coordinate of the top-left corner of the bounding box.
+        y1 (int): y-coordinate of the top-left corner of the bounding box.
+        x2 (int): x-coordinate of the bottom-right corner of the bounding box.
+        y2 (int): y-coordinate of the bottom-right corner of the bounding box.
+    
+    Returns:
+        np.ndarray: Cropped image.    
+    """
+    if x1 < 0 or y1 < 0 or x2 > img.shape[1] or (y2 > img.shape[0]):
+        img, x1, x2, y1, y2 = pad_img_to_fit_bbox(img, x1, x2, y1, y2)
+    return img[y1:y2, x1:x2, :]
+
+def pad_img_to_fit_bbox(img, x1, x2, y1, y2):
+    """
+    Pad an image to fit a bounding box.
+
+    Args:
+        img (np.array): Input image.
+        x1 (int): x-coordinate of the top-left corner of the bounding box.
+        x2 (int): x-coordinate of the bottom-right corner of the bounding box.
+        y1 (int): y-coordinate of the top-left corner of the bounding box.
+        y2 (int): y-coordinate of the bottom-right corner of the bounding box.
+    
+    Returns:
+        Tuple[np.array, int, int, int, int]: Padded image and updated coordinates.
+    """
+    img = cv2.copyMakeBorder(img, -min(0, y1), max(y2 - img.shape[0], 0), -min(0, x1), max(x2 - img.shape[1], 0), cv2.BORDER_REPLICATE)
+    y2 += -min(0, y1)
+    y1 += -min(0, y1)
+    x2 += -min(0, x1)
+    x1 += -min(0, x1)
+    return (img, x1, x2, y1, y2)
+
+if __name__ == '__main__':
+    crop_faces()
+
+"""
+Summary of file: crop_images.py
+
+This file contains the implementation of functions to crop and pad images.
+
+Functions:
+    crop_faces: Crop faces from an image based on the given bounding boxes.
+    crop_image: Crop an image to the bounding box defined by the coordinates (x1, y1, x2, y2).
+    pad_img_to_fit_bbox: Pad an image to fit a bounding box.
+"""
+\end{minted}
+
+

@@ -150,10 +150,40 @@ GPT4Docstrings & Python & docstring \\
 \label{table:vgl-tools}
 \end{table}
 
+\subsection{Samenvatting tools}
+\label{sec:samenvatting-tools}
+Door de verschillende tools op te lijsten en te vergelijken met elkaar wordt er een duidelijk beeld gevormd van wat de tools kunnen genereren.
+Zo kan er een keuze gemaakt worden welke tool het beste past bij dit onderzoek.
+In tabel \ref{table:ra-tools} wordt er een overzicht gegeven van wat de tools kunnen genereren.
+De tools Doxygen, Sphinx en Pdoc kunnen enkel een document genereren in de vorm van een website of een bestand op basis van reeds bestaande docstrings en commentaren in de code.
+De tool GPT4Docstrings genereert docstrings voor Python code met behulp van een LLM.
+
+\begin{table}[h!]
+  \centering
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{|c|c|c|c|c|}
+  \hline
+  Tool & docstrings & samenvatting bestand & samenvatting project & visualisatie \\ [0.5ex]
+  \hline
+  GPT4Docstrings & ja & nee & nee & nee \\
+  \hline
+  Doxygen & nee & nee & nee & ja \\
+  \hline
+  Sphinx & nee & nee & nee & nee \\
+  \hline
+  Pdoc & nee & nee & nee & nee \\
+  \hline
+  \end{tabular}}
+  \caption{Wat kunnen de tools genereren}
+  \label{table:ra-tools}
+  \end{table}
+
 \section{Wat zijn Large Language Modellen (LLM)?}
 \label{sec:wat-zijn-llms}
 
-Omdat er in deze bachelorproef gebruik gemaakt wordt van Large Language Modellen is het belangrijk dat er een duidelijk beeld wordt geschetst van wat deze modellen zijn.
+Uit de vorige sectie is gebleken dat er slechts één tool geschikt is voor het genereren van documentatie voor projecten zonder gedocumenteerde code. 
+De tool GPT4Docstrings van \textcite{Trofficus2023} maakt gebruik van een Large Language Model (LLM) om de docstrings te genereren.
+Het is dus belangrijk dat er een duidelijk beeld is van wat LLM's juist zijn en hoe deze werken.
 Wat kunnen deze modellen, wat zijn de mogelijke beperkingen en wat is de huidige stand van zaken. 
 In dit hoofdstuk wordt er een antwoord gegeven op de vragen: 
 \begin{itemize}
@@ -164,7 +194,13 @@ Dit helpt met het verkrijgen van een grondige basiskennis van LLM's.
 
 Het veld waarin AI zich bevindt wordt vaak voorgesteld volgens figuur \ref{fig:LLM-position}, met verschillende lagen \autocite{Stoeffelbauer2023}.
 Deze lagen zijn: Artificiële Intelligentie, Machine Learning, Deep Learning en Large Language Modellen.
-Voor dat er dieper op de LLM's wordt ingegaan is het belangrijk dat er een duidelijk beeld is wat deze lagen juist inhouden.
+Omdat LLM's een subveld zijn van Deep Learning is het belangrijk dat er een duidelijk beeld is van wat Deep Learning juist is.
+Uit de figurr \ref{fig:LLM-position} blijkt dat AI verschillende categorieën omvat.
+AI is een brede term, hiermee wordt vaak verwezen naar slimme machines. 
+Machine Learning (ML) is een subveld van AI, waarin patronen worden herkend tussen een input en een output.
+ML kan gebruikt worden voor verschillende taken zoals: classificatie, regressie, clustering ...
+Deep Learning (DL) is een subveld van ML, waarin complexe algoritmen en Deep Neural Networks gebruikt worden om moeilijkere taken uit te voeren.
+Deep Learning is een krachtige tool die gebruikt wordt voor verschillende taken zoals: beeldherkenning, spraakherkenning, ... \autocite{Stoeffelbauer2023}
 
 \begin{figure}[h]
   \centering
@@ -173,27 +209,22 @@ Voor dat er dieper op de LLM's wordt ingegaan is het belangrijk dat er een duide
   \label{fig:LLM-position}
 \end{figure}
 
-AI is een brede term, hiermee wordt vaak verwezen naar slimme machines. 
-Machine Learning (ML) is een subveld van AI, waarin patronen worden herkend tussen een input en een output.
-ML kan gebruikt worden voor verschillende taken zoals: classificatie, regressie, clustering ...
-Deep Learning (DL) is een subveld van ML, waarin complexe algoritmen en Deep Neural Networks gebruikt worden om moeilijkere taken uit te voeren.
-Deep Learning is een krachtige tool die gebruikt wordt voor verschillende taken zoals: beeldherkenning, spraakherkenning, ... \autocite{Stoeffelbauer2023}
-
 Large Language Modellen zijn geavanceerde AI-systemen die dienen om menselijke taal te verstaan, te genereren en te verwerken.
 LLM's worden getraind op een grote hoeveelheid tekst wat vaak uit allerlei data zoals artikels of websites gehaald wordt. 
 Volgens \textcite{Beelen2023} zorgen Deep Neural Networks ervoor dat LLM's natuurlijke taal verwerken op een gelijkaardige manier die vergelijkbaar is met de menselijke taalvaardigheid.
 Deze hebben een grote vooruitgang gekend in 2017 door de paper van \textcite{VaswaniEtAl2017}. 
-Hieruit kwam een nieuw mechanisme tot stand namelijk transformers wat bestaat uit Attention blokken. 
+Hieruit kwam een nieuw mechanisme tot stand namelijk transformers wat bestaat uit Attentie blokken. 
 Enkele voordelen die komen kijken bij het gebruiken van transformers zijn: het kan lange sequenties verwerken, het kan parallel verwerken en het kan de relaties tussen de verschillende delen van de sequentie leren.
 Hierdoor hebben transformer modellen een snellere trainingsperiode dan vorige neurale netwerken \autocite{aiml2023}.
 
 \subsection{Transformers en de architectuur van LLM's}
 \label{sec:architectuur-van-llms}
+Omdat in dit onderzoek gebruik gemaakt wordt van LLM's is het nodig dat er dieper ingegaan wordt op de architectuur van deze modellen, om een beter inzicht te krijgen in hoe deze werken.
 Een neuraal netwerk bestaat uit verschillende lagen. Enkele belangrijke blokken die gebruikt worden binnen de transformer laag zijn:
 \begin{itemize}
-  \item Self-Attention
-  \item Cross-Attention
-  \item Masked Self-Attention
+  \item Zelfattentie (Self-Attention)
+  \item Kruis-Attentie (Cross-Attention)
+  \item Gemaskerde Zelfattentie (Masked Self-Attention)
 \end{itemize}
 
 Deze attention blokken worden gebruikt in de encoder en decoder van een transformer en stromen voort uit het onderzoek van \textcite{VaswaniEtAl2017}.
@@ -206,22 +237,22 @@ De encoder wordt gebruikt om de invoersequenties te verwerken en de decoder word
 Zo is BERT van \textcite{DevlinEtAl2019} een transformer die enkel een encoder heeft en GPT van \textcite{RandfordEtAL2018} heeft enkel een decoder.
 De transformer architectuur uit de paper van \textcite{VaswaniEtAl2017} kan gezien worden in figuur \ref{fig:transformer-model}. 
 
-Self-Attention duidt dynamische gewichten toe aan verschillende elementen binnen de meegegeven sequentie, bijvoorbeeld woorden in een zin.
+Zelfattentie duidt dynamische gewichten toe aan verschillende elementen binnen de meegegeven sequentie, bijvoorbeeld woorden in een zin.
 Dit laat het model toe om zich te concentreren op de meest relevante delen van de invoer, terwijl de invloed van minder cruciale delen wordt verminderd.
 De invoersequentie wordt eerst in drie verschillende vectoren omgezet: Query, Key en Value.
 De Query vector stelt een specifiek token uit de invoersequentie voor, de Key vector vertegenwoordigt alle tokens en de vector voor Value bevat de feitelijke inhoud die aan elk token is gekoppeld.
 De similariteit tussen de Query en de Key vector wordt berekend aan de hand van het inwendig product van de twee vectoren.
 Deze similariteit wordt gebruikt om de gewichten te berekenen die aan de Value vector worden toegekend \autocite{VaswaniEtAl2017}.
 
-Masked Self-Attention is een variant van Self-Attention die gebruikt wordt in de decoder van een transformer.
+Gemaskerde Zelfattentie is een variant van Zelfattentie die gebruikt wordt in de decoder van een transformer.
 In de decoder wordt er een mask gebruikt om enkel de vorige tokens te zien in de sequentie \autocite{VaswaniEtAl2017}.
 Dit vermijdt dat er informatie van de toekomstige tokens gebruikt wordt. 
 Zo kan de transformer niet "vals spelen" tijdens het train proces.
 
-Cross-Attention is een variant van Self-Attention die gebruikt wordt in de decoder van een transformer.
+Kruis-Attentie is een variant van Zelfattentie die gebruikt wordt in de decoder van een transformer.
 Deze laag gebruikt de informatie van de encoder en de vorige Attention laag van de decoder om de uitvoersequenties te genereren.
-De Query vector is de uitvoer van de vorige Attention/Cross-Attention laag van de decoder en de Key en Value vector zijn de uitvoer van de encoder \autocite{VaswaniEtAl2017}.
-Doordat de Cross-Attention laag informatie van zowel de encoder als decoder krijgt kan het model de relaties tussen de verschillende delen van de invoersequenties leren.
+De Query vector is de uitvoer van de vorige Attentie/Kruis-Attentie laag van de decoder en de Key en Value vector zijn de uitvoer van de encoder \autocite{VaswaniEtAl2017}.
+Doordat de Kruis-Attentie laag informatie van zowel de encoder als decoder krijgt kan het model de relaties tussen de verschillende delen van de invoersequenties leren.
 Deze relaties worden dan gebruikt om de uitvoersequenties te genereren.
 
 \begin{figure}[h]
@@ -389,23 +420,3 @@ In tabel \ref{table:vgl-llms-eval} wordt een vergelijking gemaakt tussen verschi
 In de tweede kolom staat de beredenering en kennis en deze is er gequoteerd op basis van de MMLU een dataset \autocite{Hendrycks2020}.
 Hieruit kan geconcludeerd worden dat GPT-4 en GPT-4 Turbo de beste scores behalen op beide vlakken.
 Een conclusie uit beide tabellen is dat GPT-3.5 Turbo de beste prijs/kwaliteit verhouding heeft.
-
-\section{LLM voor documentatie}
-\label{sec:llm-voor-documentatie}
-
-Nadat de basiskennis over LLM's gelegd is, hoe deze werken en wat ze doen. Wat enkele bekende LLM's zijn en wat hun mogelijkheden zijn. 
-Ook zijn er bestaande tools besproken die documentatie genereren voor projecten.
-
-Omdat dit onderzoek gaat over het documenteren van een Python project met behulp van LLM's, moet er gekeken worden naar hoe LLM's gebruikt kunnen worden voor het genereren van documentatie.
-Een LLM kan gebruikt worden voor de verschillende documentatie stukken, samenvattingen, docstrings, relatie tussen de verschillende delen van het project, \dots
-Door de verschillende delen van het project meegegeven aan de LLM met een uitgebreid prompt. 
-Hier kan er telkens aan de Large Language Model gevraagd worden om een samenvatting te maken van wat dit deel van het project doet en wat de uitkomst is.
-Door dit te herhalen voor alle files van het project kan er één samenvattend document gemaakt worden van het gehele project.
-
-De LLM kan de relaties tussen de verschillende delen van het project leren en vastnemen.
-Zo wordt er een duidelijk beeld gevormd van de structuur van het project en wat de samenhang is van de verschillende delen van het project.
-Alle functies van het python project kunnen hier makkelijk teruggevonden worden.
-
-Er kan ook gebruik gemaakt worden van de LLM om de docstrings van de verschillende functies en klassen te genereren. 
-Om zo een betere samenvatting te verkrijgen van de werking van de verschillende delen van het project, door de docstrings te combineren met de samenvattingen van de LLM.
-Door telkens de docstrings en de naam van de verschillende functies en klassen mee te geven aan de LLM kan er een betere samenvatting gemaakt worden van het gehele project.

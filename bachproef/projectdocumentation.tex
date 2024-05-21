@@ -89,10 +89,15 @@ De documentatie genereerd door dit prompt is te zien in \ref{fig:project-summary
 
 Om een goed overzicht te krijgen van het project is het belangrijk om de relaties tussen de verschillende bestanden te visualiseren.
 Dit kan gedaan worden door gebruik te maken van graven om de relaties tussen de bestanden weer te geven.
-Deze relaties kunnen getoond worden door gebruik te maken van de tool Pyvis van \textcite{WHIR2018}, wat een soortgelijke tool is als degene die binnen \textcite{Doxygen2023} gebruikt wordt namelijk \textcite{GraphvizAuthors2024}.
-Deze tool is echter een command line interface wat niet eenvoudig te implementeren is in een Python script ten opzichte van de python library Pyvis.
-Met deze tool kunnen er graven gemaakt worden om zo de relaties tussen de verschillende bestanden weer te geven.
-Deze graven kunnen dan gebruikt worden om een duidelijk overzicht te krijgen van het project.
+Omdat er uit de longlist is gebleken dat er een bestaande tool is die dit kan, namelijk \textcite{Doxygen2023}, is deze tool grondig bekeken.
+Voordat Doxygen een visualisatie maakt van de relaties tussen de bestanden vergen deze bestanden grondige documentatie, de relaties tussen de bestanden dienen toegevoegd worden.
+Doordat deze tool documentatie vergt, is er gekeken naar hoe deze relaties gegenereerd kunnen worden met behulp van LLM's.
+Ook is er gekeken naar hoe Doxygen deze relaties visualiseert, er wordt binnen \textcite{Doxygen2023} gebruikt gemaakt van \textcite{GraphvizAuthors2024}.
+
+\textcite{GraphvizAuthors2024} kan niet gebruikt worden in een Python omgeving, de taal waarin dit onderzoek geschreven is.
+Daarom is er gekeken naar een alternatief en soortgelijke tool om de relaties te weergeven.
+De tool Pyvis van \textcite{WHIR2018} is een Python library die te gebruiken is om graven te maken en te visualiseren.
+Dit laat het toe om de relaties tussen de verschillende bestanden te visualiseren en een duidelijk overzicht te krijgen van het project.
 
 \subsubsection{Genereren van de relaties tussen bestanden in een project}
 \label{subsec:project-documentatie-relaties-genereren}
@@ -110,6 +115,9 @@ Ook is het belangrijk dat de imports van de bestanden correct zijn, omdat het mo
 De uitkomst van dit prompt is een CSV bestand met daarin het pad van het bestand, de bestandsnaam, het pad van de folder waarin het bestand zit en een lijst van alle geimporteerde bestanden.
 Omdat dit CSV bestand de basis is voor de graaf die later gemaakt wordt, is het belangrijk dat dit bestand correct is.
 Ook zijn schrijffouten en onduidelijkheden in het prompt aangepast om een beter resultaat te bekomen.
+
+Een verdere iteratie van het prompt laat het toe om alle imports in het CSV te laten staan, er wordt achteraf gefilterd op de imports die niet relevant zijn.
+Ook is er duidelijk gemaakt aan het prompt dat het bij meerdere imports deze moet opslaan in een lijst gescheiden met een puntkomma.
 
 \subsubsection{Visualisatie van de relaties}
 \label{subsec:project-documentatie-relaties-visualisatie}
@@ -139,3 +147,74 @@ Dit kan ervoor zorgen dat de graaf onoverzichtelijk wordt met de mate de grote v
     \caption{Voorbeeld van een fragment van een graaf van de relaties tussen bestanden van een groot project}
     \label{fig:graph-large}
 \end{figure}
+
+\section{Evaluatie}
+\label{sec:project-documentatie-evaluatie}
+
+\subsection{Inleiding}
+\label{sec:project-documentatie-evaluatie-inleiding}
+
+In dit hoofdstuk wordt er gekeken naar hoe de documentatie van een project geëvalueerd kan worden.
+Dit wordt gedaan door de documentatie van de tool te vergelijken met de handgeschreven documentatie van een project.
+Dit voor een Python bestand genaamd AutoClicker van \textcite{Waegeneer2022} en een Python project met de naam bmi-project van \textcite{Simmons2019}.
+
+\subsection{Bestanddocumentatie evaulatie}
+\label{sec:project-documentatie-evaluatie-bestand}
+
+Door het testen van de moeilijkheidgraden opgesteld in \ref{table:bestanden} kon de tool geëvalueerd worden.
+De tool werkte zoals verwacht voor bestanden met moeilijkheidsgraad makkelijk tot moeilijk.
+Het vergelijken van de zelfgedocumenteerde bestanden met de automatisch gegenereerde bestanden geeft een goed beeld van de kwaliteit van de gegenereerde docstrings en bestandsamenvattingen.
+Wat te zien is in \ref{fig:evaluatie-bestand-documentatie}.
+Hieruit is te zien dat de functie omschrijvingen in de samenvatting anders verwoord zijn, maar de betekenis is hetzelfde.
+Er is echter één functie die niet gedocumenteerd is manueel, die wel gedocumenteerd is door de tool.
+Dit toont aan dat de tool beter presteert dan de programmeur zelf.
+Dit is een goed resultaat, omdat de gegenereerde docstrings correct zijn en de samenvatting een correct beeld geeft van het bestand.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{zelf_autoclick.png}
+        \caption{Zelfgedocumenteerde bestandsamenvatting. \ref{bijlage:zelfgedocumenteerd-bestand}}
+        \label{fig:zelfgedocumenteerd-bestandsamenvatting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{automatisch_autoclick.png}
+        \caption{Automatisch gegenereerde bestandsamenvatting van eigen tool. \ref{bijlage:evaluatie-bestand-documentatie}}
+        \label{fig:automatisch-bestandsamenvatting}
+    \end{subfigure}
+    \caption{Evaluatie van de automatisch gegenereerde bestandsamenvatting met de zelfgedocumenteerde bestandsamenvatting. Voor het bestand AutoClicker van \textcite{Waegeneer2022}}
+    \label{fig:evaluatie-bestand-documentatie}
+\end{figure}
+
+
+\subsection{projectdocumentatie evaluatie}
+\label{sec:project-documentatie-evaluatie-project}
+
+Er is een Pythonprojecthandmatig gedocumenteerd, aan dit project zijn de docstrings toegevoegd, samenvattingen per bestand en een samenvatting van het gehele project.
+De visualisatie tussen de verschillende bestanden is getekend op papier.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \includegraphics[width=0.5\textwidth]{graaf.png}
+        \caption{Handgetekende graaf van de relaties tussen de bestanden van het project \autocite{Simmons2019}}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{generated_graaf.png}
+        \caption{Gegenereerde graaf van de relaties tussen de bestanden van het project. \autocite{Simmons2019}}
+    \end{subfigure}
+    \caption{Vergelijking van de gegenereerde graaf met de handgetekende graaf.}
+    \label{fig:evaluatie-graaf}
+\end{figure}
+
+De graven te zien in \ref{fig:evaluatie-graaf} tonen de relaties tussen de bestanden van het project. 
+Het is duidelijk dat deze graven gelijkaardig zijn, de gegenereerde graaf is beweegbaar en kan aangepast worden om een beter overzicht te krijgen.
+
+Het vergelijken van de samenvattingen en de docstrings laat blijken dat de gegenereerde documentatie correct is.
+
