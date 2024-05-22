@@ -9,8 +9,7 @@
 \label{sec:project-documentatie-inleiding}
 
 In dit hoofdstuk wordt er gekeken hoe de individuele samenvattingen van een Python bestand gebruikt kunnen worden om een samenvatting van het gehele project te maken.
-Verder wordt er gekeken hoe de relaties tussen de verschillende bestanden gevisualiseerd kunnen worden.
-Met als doel een zo goed mogelijk overzicht te krijgen van het project zonder dat er handmatig documentatie geschreven moet worden.
+Verder wordt onderzocht hoe de relaties tussen de verschillende bestanden gevisualiseerd kunnen worden, met als doel een zo goed mogelijk overzicht van het project te krijgen zonder handmatige documentatie.
 
 \subsection{Projectsamenvatting}
 \label{sec:project-documentatie-samenvatting}
@@ -20,7 +19,6 @@ Deze samenvatting kan bekomen worden door elk python bestand in het project te l
 Daarna kunnen deze samenvattingen samengevoegd worden om dan mee te geven aan een Large Language Model.
 
 Deze samenvattingen worden gegenereerd door het aanroepen van de functie \mintinline{python3}|generate_file_summaries()|. 
-
 Deze functie maakt gebruik van de klasse \mintinline{python3}|FileDocumenationGenerator()| die de samenvattingen van de bestanden genereert en opslaat in een dictionary.
 De code van deze functie is te vinden in \ref{bijlage:file-summary-functions}.  
 
@@ -76,14 +74,14 @@ Doordat het model beter kleine prompts kan verwerken, is er gekozen om de samenv
 Dit prompt maakt per samenvatting van een Python bestand de documentatie van de verschillende functies en klassen. 
 De functies en klassen worden opgelijst met het juiste formaat en een kleine uitleg.
 Deze resultaten van de verschillende kleine prompts werden dan code matig samengevoegd tot een geheel. 
-Door het code matig toevoegn van de individuele samenvattingen gaat er niets verloren. 
-Deze keuze is verkozen omdat de LLM de uitkomst dan correct formateerd in markdown.  
+Door het code matig toevoegen van de individuele samenvattingen gaat er niets verloren. 
+Deze keuze is verkozen omdat de LLM de uitkomst dan correct formateert in markdown.  
 De uitkomst van de samenvatting van het project is te zien in de figuur \ref{fig:project-summary}.
 
 Het prompt dat gebruikt werd is te zien in \ref{bijlage:prompt7}.
 Dit prompt vraagt om de functies en klassen van een Python bestand op te lijsten en een korte uitleg te geven wat deze functies en klassen doen.
 De uitkomst is weergegeven met een duidelijk voorbeeld binnen het prompt en volgens een markdown formaat. 
-De documentatie genereerd door dit prompt is te zien in \ref{fig:project-summary}.
+De documentatie gegenereerd door dit prompt is te zien in \ref{fig:project-summary}.
 
 \subsection{Visualisatie van relaties tussen bestanden}
 \label{sec:project-documentatie-relaties}
@@ -94,9 +92,9 @@ Omdat er uit de shortlist is gebleken dat er een bestaande tool is die dit kan, 
 \textcite{Doxygen2023} kan pas een visualisatie maken van de relaties tussen de bestanden als deze bestanden uitgebreid gedocumenteerd zijn. 
 De relaties tussen de bestanden moeten expliciet in de documentatie vermeld zijn.
 Doordat deze tool documentatie vergt, is er gekeken hoe deze relaties gegenereerd kunnen worden met behulp van LLM's.
-Ook is er gekeken naar hoe Doxygen deze relaties visualiseert, er wordt gebruik gemaakt van Graphviz van \textcite{GraphvizAuthors2024}.
+Ook is er gekeken hoe Doxygen deze relaties visualiseert. Er wordt gebruik gemaakt van Graphviz van \textcite{GraphvizAuthors2024}.
 
-Graphviz \autocite{GraphvizAuthors2024} kan niet gebruikt worden in een Python omgeving, de taal waarin dit onderzoek geschreven is.
+Graphviz \autocite{GraphvizAuthors2024} kan echter niet gebruikt worden in een Python omgeving, de taal waarin dit onderzoek geschreven is.
 Daarom is er gekeken naar een alternatief en soortgelijke tool om de relaties te tonen.
 De tool Pyvis van \textcite{WHIR2018} is een Python library die te gebruiken is om graven te maken en te visualiseren.
 Dit laat het toe om de relaties tussen de verschillende bestanden te visualiseren en een duidelijk overzicht te krijgen van het project.
@@ -110,7 +108,49 @@ Een bestand dat een functie uit een ander bestand gebruikt, importeert deze func
 Daardoor wordt de functie die gebruikt wordt ook opgesomd onder de imports van het bestand.
 Hierdoor kan er gekeken worden naar de imports van de verschillende bestanden en zo kunnen de relaties tussen de bestanden worden gevisualiseerd.
 
-Het prompt dat gebruikt werd is te zien in bijlage \ref{bijlage:generate-file-relations}.
+Het prompt dat gebruikt werd, is te zien in de listing \ref{lst:generate-file-relations}.
+
+\begin{listing}
+    \begin{minted}{python}
+'''
+    You are an AI documentation assistant, and your task is to generate a csv file containing the relations between the files in a Python project.
+
+    For the given project structure and imports:
+    The imports are as follows:
+    ...
+    
+    The structure of the project is as follows:
+    ...
+    
+    The expected output of your task is the following:
+    ```csv
+File_Path,File_Name,Folder_Path,Uses_File
+... 
+```
+
+    The Column "Uses File" should only contain the files where the file imports functions from.
+    For example if the imports are:
+    ```python
+    ...
+    from images import open_image
+    from stages import stage1
+    ```
+    The Column "Uses File" should contain the file '4_Hangman_Game\\CMD_version\\images.py' and '4_Hangman_Game\\CMD_version\\stages.py'
+    Do your task given the following imports and structure of the project:
+    
+    The imports are as follows:
+    {imports}
+
+    And the structure of the project is as follows:
+    {structure}
+
+    THE OUTPUT SHOULD BE A SINGLE CSV FILE CONTAINING THE RELATIONS BETWEEN THE FILES IN THE PROJECT.
+    '''
+\end{minted}
+\caption{Prompt voor het genereren van de relaties tussen de bestanden in een project, vervoledigd in bijlage \ref{bijlage:generate-file-relations}}
+\label{lst:generate-file-relations}
+\end{listing}
+
 Er zijn verschillende iteraties van dit prompt gemaakt om de beste resultaten te bekomen.
 Deze iteraties en fouten in het prompt hebben enige tijd in beslag genomen om op te lossen, maar uiteindelijk zijn de kinderziektes opgelost.
 Zo is het belangrijk dat er geen spaties in het voorbeeld CSV staan.
@@ -120,7 +160,7 @@ Ook zijn schrijffouten en onduidelijkheden in het prompt aangepast om een beter 
 
 Een verdere iteratie van het prompt laat het toe om alle imports in het CSV te laten staan. 
 Er wordt achteraf gefilterd op de imports die niet relevant zijn. 
-Wanneer er meerdere imports zijn wordt er gevraagd aan de prompt om deze op te slaan in een lijst gescheiden door een puntkomma.
+Wanneer er meerdere imports zijn, wordt er gevraagd aan de prompt om deze op te slaan in een lijst gescheiden door een puntkomma.
 
 \subsubsection{Visualisatie van de relaties}
 \label{subsec:project-documentatie-relaties-visualisatie}
@@ -140,9 +180,10 @@ Dit HTML bestand kan dan geopend worden in een browser om de graaf te bekijken, 
     \label{fig:graph}
 \end{figure}
 
-Er is een voorbeeld van een graaf te zien in de figuur \ref{fig:graph}. Voor een groot project is er geprobeerd of de gegenereerde graaf de relaties tussen de bestanden duidelijk kan weergegeven op een grotere schaal, een voorbeeld in figuur \ref{fig:graph-large}.
+Er is een voorbeeld van een graaf te zien in de figuur \ref{fig:graph}. 
+Voor een groot project is er geprobeerd of de gegenereerde graaf de relaties tussen de bestanden duidelijk kan weergegeven op een grotere schaal, een voorbeeld hiervan is te vinden in de figuur \ref{fig:graph-large}.
 De relaties op deze graaf zijn zichtbaar echter is het niet altijd duidelijk omdat er veel bestanden zijn en er bepaalde bestanden vaak geïmporteerd zijn.
-Dit kan ervoor zorgen dat de graaf onoverzichtelijk wordt met de mate de grote van het project.
+Dit kan ervoor zorgen dat de graaf onoverzichtelijk wordt naargelang de grootte van het project.
 
 \begin{figure}[h]
     \centering
@@ -159,15 +200,15 @@ Dit kan ervoor zorgen dat de graaf onoverzichtelijk wordt met de mate de grote v
 
 In dit hoofdstuk wordt er gekeken hoe de documentatie van een project geëvalueerd kan worden.
 Dit wordt gedaan door de documentatie van de tool te vergelijken met de handgeschreven documentatie van een project.
-Dit voor een Python bestand genaamd met de naam AutoClicker van \textcite{Waegeneer2022} en een Python project met de naam bmi-project van \textcite{Simmons2019}.
+Het bestand dat vergeleken wordt, is het Python bestand met de naam AutoClicker van \textcite{Waegeneer2022} en het Python project met de naam bmi-project van \textcite{Simmons2019}.
 
-\subsection{Bestanddocumentatie evaulatie}
+\subsection{Bestanddocumentatie evaluatie}
 \label{sec:project-documentatie-evaluatie-bestand}
 
 Door het testen van de moeilijkheidsgraden opgesteld in de tabel \ref{table:bestanden} kon de tool geëvalueerd worden.
 De tool werkte zoals verwacht voor bestanden met moeilijkheidsgraad makkelijk tot moeilijk.
 Het vergelijken van de zelfgedocumenteerde bestanden met de automatisch gegenereerde bestanden geeft een goed beeld van de kwaliteit van de gegenereerde docstrings en bestandsamenvattingen.
-Wat te zien is in figuur \ref{fig:evaluatie-bestand-documentatie}.
+Wat te zien is in de figuur \ref{fig:evaluatie-bestand-documentatie}.
 Hieruit is te zien dat de functie omschrijvingen in de samenvatting anders verwoord zijn, maar de betekenis is hetzelfde.
 Er is echter één functie vergeten in de manuele bestandsamenvatting, die wel gedocumenteerd is door de tool.
 Dit toont aan dat de tool beter presteert dan de programmeur zelf.
@@ -222,6 +263,7 @@ Het is duidelijk dat deze graven gelijkaardig zijn, de gegenereerde graaf is bew
 \end{figure}
 
 \begin{table}
+    \resizebox{\textwidth}{!}{
     \begin{tabular}{|c|c|c|c|}
     \hline
     Type documentatie & Aantal foute & Aantal exacte overeenkomsten & Aantal gelijkaardige overeenkomsten \\
@@ -232,7 +274,7 @@ Het is duidelijk dat deze graven gelijkaardig zijn, de gegenereerde graaf is bew
     \hline
     Project samenvatting & & & \\
     \hline
-    \end{tabular}
+    \end{tabular}}
     \caption{Evaluatie van de documentatie van het project bmi-project van \textcite{Simmons2019}}
     \label{table:projecten-evaluatie}
 \end{table}

@@ -38,7 +38,7 @@ Aangezien dit model getraind is op een grote hoeveelheid data is het geschikt om
 \label{sec:bestanddocumentatie-tool}
 Uit de short-list met bestaande tools die voldoen aan de requirements is gebleken dat de tool GPT4Docstrings van \textcite{Trofficus2023} een tool is die het toelaat om docstrings te genereren voor ongedocumenteerde Python projecten.
 Deze tool maakt gebruik van GPT4 \autocite{OpenAI2023} om de docstrings te genereren.
-De resultaten van deze tool zijn beoordeeld en geëvalueerd volgens de requirementsanalyse, een voorbeeld van deze uitkomst is te zien in \ref{lst:gpt4docstrings-uitkomst}.
+De resultaten van deze tool zijn beoordeeld en geëvalueerd volgens de requirementsanalyse een voorbeeld van deze uitkomst is te zien in \ref{lst:gpt4docstrings-uitkomst}.
 
 \begin{listing}
     \caption{Voorbeeld uitkomst van GPT4Docstrings. \autocite{Trofficus2023}}
@@ -62,13 +62,13 @@ async def async_example():
 
 De tool is enkel in staat om docstrings te genereren voor functies en klassen.
 In deze bachelorproef wordt GPT3.5-Turbo van \textcite{OpenAi2024} gebruikt via Azure van \textcite{Microsoft2024}.
-Door het gebruiken van Azure kan de eigen uitgewerkte tool niet vergeleken worden met GPT4Docstrings van \textcite{Trofficus2023} omdat deze een API_Key van OpenAi \autocite{OpenAi2024} vereist.
-Hierdoor is er gekozen om de technieken die te tool gebruikt te implementeren in een eigen tool.
+Door het gebruiken van Azure kan de eigen uitgewerkte tool niet vergeleken worden met GPT4Docstrings van \textcite{Trofficus2023} omdat deze een \mintinline{python3}|API_Key| van OpenAi \autocite{OpenAi2024} vereist.
+Hierdoor is er gekozen om de technieken, die GPT4Docstrings gebruikt, te implementeren in een eigen tool.
 Dit laat toe om de tool uit te breiden en te verbeteren volgens de requirementsanalyse, ook geeft het meer controle over de gegenereerde docstrings.
 
 \subsection{Abstract Syntax Tree}
 \label{sec:bestanddocumentatie-ast}
-Voor er docstrings gegenereerd kunnen worden, moet er eerst gekeken worden naar hoe de code van een Python bestand geanalyseerd kan worden.
+Voor er docstrings gegenereerd kunnen worden, moet er eerst nagegaan worden hoe de code van een Python bestand geanalyseerd kan worden.
 Uit de literatuurstudie is gebleken dat de verschillende functies en klassen in een bestand geïdentificeerd en geëxtraheerd kunnen worden aan de hand van een Abstract Syntax Tree (AST).
 Het analyseren van de code van de tool GPT4Docstrings gemaakt door \textcite{Trofficus2023} heeft een beter beeld gegeven van hoe een AST eruitziet en hoe deze gegenereerd kan worden.
 
@@ -77,7 +77,7 @@ Per knoop in de boom wordt er een deel van de code voorgesteld.
 Deze knoop kan dan weer kinderen hebben die deel uitmaken van de code.
 Elke knoop in de boom heeft een type en een waarde.
 
-Het inlezen van een Python bestand en deze omzetten naar een AST, maakt het mogelijk om de code van het bestand te manipuleren.
+Het inlezen van een Python bestand en deze omzetten naar een AST maakt het mogelijk om de code van het bestand te manipuleren.
 Zo kunnen de verschillende import statements, functies en klassen geïdentificeerd worden.
 
 \begin{listing}
@@ -102,7 +102,7 @@ Als dit het geval is, wordt de code van de functie opgehaald en toegevoegd aan e
 \label{sec:bestanddocumentatie-docstrings}
 Binnen deze bachelorproef wordt de docstring stijl van Google gehanteerd \autocite{GPT2024}.
 Deze docstrings bestaan uit een korte beschrijving van de functie of klasse, de argumenten die de functie verwacht en de return waarde van de functie.
-Een voorbeeld van een docstring voor een functie die controleert of een getal een priemgetal is kan gevonden worden in listing \ref{lst:docstring-voorbeeld}.
+Een voorbeeld van een docstring voor een functie die controleert of een getal een priemgetal is, kan gevonden worden in listing \ref{lst:docstring-voorbeeld}.
 
 \begin{listing}
     \caption[Docstring van een functie]{Voorbeeld van een docstring voor een functie die controleert of een getal een priemgetal is.}
@@ -207,16 +207,16 @@ Door het vergelijken van de uitkomst \ref{lst:uitkomst-prompt2} met een vooropge
     """
     \end{minted}
 \end{listing}
-Er wordt geconstateerd dat de uitkomst van het model correct is buiten dat de type hints niet correct zijn. 
+Er wordt geconstateerd dat de uitkomst van het model correct met de uitzondering van de type hints. 
 Dit probleem is opgelost door met de volgende versie \ref{bijlage:prompt3} van de prompt de import statements mee te geven.
 Zo kan het model geen foute veronderstellingen maken, ook al werd er in de instructies duidelijk meegegeven dat dit niet de bedoeling was.
 
 Deze veronderstellingen kwamen er omdat het model de code van de functie sporadisch aanpaste.
-In het aangepaste prompt werd er duidelijk gemaakt dat de uitkomst van de prompt slechts de functienaam met typehint en de docstring moest bevatten.
+In het aangepaste prompt werd er duidelijk gemaakt dat de uitkomst van de prompt slechts de functienaam met type hint en de docstring moest bevatten.
 De code van de functie moest niet meer in de uitkomst staan.
 
 \subsubsection{Prompt engineering voor klassen}
-Het prompt engineering process voor klassen liep gelijkaardig met dat van functies.
+Het prompt engineering proces voor klassen liep gelijkaardig met dat van functies.
 Er werd een prompt gemaakt met duidelijke instructies en een voorbeeld van een klasse met de verwachte uitkomst.
 De instructies waren gelijkaardig aan die van de functies, maar dan voor klassen.
 
@@ -382,7 +382,7 @@ Deze samenvatting kan dan gebruikt worden als basis voor het genereren van de ve
 % Nadat de basiskennis over LLM's gelegd is, hoe deze werken en wat ze doen. Wat enkele bekende LLM's zijn en wat hun mogelijkheden zijn. 
 % Ook zijn er bestaande tools besproken die documentatie genereren voor projecten.
 
-% Omdat dit onderzoek gaat over het documenteren van een Python project met behulp van LLM's, moet er gekeken worden naar hoe LLM's gebruikt kunnen worden voor het genereren van documentatie.
+% Omdat dit onderzoek gaat over het documenteren van een Python project met behulp van LLM's, moet er gekeken worden hoe LLM's gebruikt kunnen worden voor het genereren van documentatie.
 % Een LLM kan gebruikt worden voor de verschillende documentatie stukken, samenvattingen, docstrings, relatie tussen de verschillende delen van het project, \dots
 % Door de verschillende delen van het project meegegeven aan de LLM met een uitgebreid prompt. 
 % Hier kan er telkens aan de Large Language Model gevraagd worden om een samenvatting te maken van wat dit deel van het project doet en wat de uitkomst is.
