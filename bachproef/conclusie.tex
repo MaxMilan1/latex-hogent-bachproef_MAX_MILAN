@@ -14,31 +14,32 @@
 % Heeft het onderzoek geleid tot nieuwe vragen die uitnodigen tot verder 
 %onderzoek?
 
-Het onderzoek had als doel de vraag te beantwoorden: "Hoe kan geautomatiseerde documentatiegeneratie met behulp van een Large Language Modellen (LLM) effectief worden toegepast op ongedocumenteerde Pythonprojecten om er duidelijke en overzichtelijke documentatie van te maken?"
+Het onderzoek had als doel de vraag te beantwoorden: "Hoe kan geautomatiseerde documentatiegeneratie met behulp van Large Language Modellen (LLM) effectief worden toegepast op ongedocumenteerde Python-projecten om er duidelijke en overzichtelijke documentatie van te maken?"
 Hiervoor werd er een tool ontwikkeld die voldeed aan de requirements die werden opgesteld in het onderzoek.
 Enkele van deze requirements zijn dat de tool docstrings kan genereren dat er een bestand- en een projectsamenvatting gegenereerd kan worden en dat de tool zo goedkoop mogelijk moet zijn.
-Voor deze vraag beantwoord kan worden is het belangrijk om te weten wat er juist bedoelt wordt met documentatie.
-Onder documentatie wordt er begrepen dat er per bestand docstrings en een samenvatting van het bestand worden gegenereerd.
+Voor deze vraag beantwoord kan worden, is het belangrijk om te weten wat er juist bedoeld wordt met documentatie.
+Onder documentatie wordt er begrepen dat er per bestand docstrings en een samenvatting van het bestand wordt gegenereerd.
 Voor een project wordt er een samenvatting van het project gegenereerd en een overzicht van alle bestanden in het project in de vorm van een graaf met de relaties.
 
 Ook is het belangrijk om te weten wat enkele bestaande documentatietools zijn.
 Tools zoals Sphinx, Doxygen en Pdoc zijn in staat om een gedocumenteerd project om te zetten in een website of API.
 Deze tools zijn echter niet in staat om ongedocumenteerde projecten te documenteren.
-Vervolgens werd de tool GPT4Docstrings besproken, deze tool is in staat om docstrings te genereren voor Pythonprojecten, de code van GPT4Docstrings werd gebruikt in de ontwikkeling van de tool.
+Vervolgens werd de tool GPT4Docstrings besproken. Deze tool is in staat om docstrings te genereren voor Python-projecten, de code van GPT4Docstrings werd gebruikt in de ontwikkeling van de tool.
 
 Het documenteren van een bestand gebeurt door de code van het bestand in te lezen en per functie of klasse een docstring te genereren.
 Vervolgens worden deze docstrings samengevoegd tot een bestandssamenvatting.
-Voor een project te documenteren worden de verschillende bestanden in het project gedocumenteerd, worden de bestandssamenvatting samengevoegd tot een projectsamenvatting en wordt er een graaf gegenereerd met de relaties tussen de bestanden.
+Om een project te documenteren worden de verschillende bestanden in het project gedocumenteerd en worden de bestandssamenvatting samengevoegd tot één projectsamenvatting.
+Tot slot wordt er een graaf gegenereerd die de relaties tussen de bestanden visualiseert.
 
-Er werd gekozen om een Large Language Model te gebruiken om de documentatie te genereren omdat deze modellen getraind zijn op grote hoeveelheden data en zowel code als natuurlijke taal kunnen begrijpen en genereren.
+Er werd gekozen om een Large Language Model te gebruiken om de documentatie te genereren omdat deze modellen getraind zijn op grote hoeveelheden data om zowel code als natuurlijke taal te kunnen begrijpen en genereren.
 Door het gebruiken van GPT3.5-Turbo werd de tool zo goedkoop mogelijk gehouden.
 
-Door de automatische gegenereerde documentatie van een project te evalueren met een vooropgesteld manueel gedocumenteerd project, werd er gekeken naar de verschillen en overeenkomsten tussen de documentatie van de tool en de handgeschreven documentatie.
+Door de automatische gegenereerde documentatie van een project te evalueren met een vooropgesteld manueel gedocumenteerd project werd er gekeken naar de verschillen en overeenkomsten tussen de documentatie van de tool en de handgeschreven documentatie.
 De resultaten van de evaluatie tonen aan dat de documentatie van de tool en de handgeschreven documentatie gelijkaardig zijn.
 Alhoewel er enkele fouten in de documentatie van de individuele bestanden zitten, blijft de gehele projectdocumentatie overzichtelijk en duidelijk.
 
 Een verdere evaluatie van de tool kan gebeuren door een grote groep programmeurs verschillende projecten handmatig te laten documenteren en dit te chronometreren. 
-Dezelfde projecten kunnen dan ook automatisch gedocumenteerd worden met de tool, de snelheid van de tool kan dan vergeleken worden met de snelheid van de programmeurs.
+Dezelfde projecten kunnen dan ook automatisch gedocumenteerd worden met de tool. De snelheid van de tool kan dan vergeleken worden met de snelheid van de programmeurs.
 Daarna kan er een enquête afgenomen worden waarbij de programmeurs de keuze hebben tussen de handmatig gedocumenteerde projecten en de automatisch gedocumenteerde projecten.
 Deze evaluatie kan dan gebruikt worden om de tool te verbeteren.
 

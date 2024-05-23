@@ -8,21 +8,21 @@
 \subsection{Inleiding}
 \label{sec:project-documentatie-inleiding}
 
-In dit hoofdstuk wordt er gekeken hoe de individuele samenvattingen van een Python bestand gebruikt kunnen worden om een samenvatting van het gehele project te maken.
-Verder wordt onderzocht hoe de relaties tussen de verschillende bestanden gevisualiseerd kunnen worden, met als doel een zo goed mogelijk overzicht van het project te krijgen zonder handmatige documentatie.
+In dit hoofdstuk wordt er gekeken hoe de individuele samenvattingen van een Python-bestand gebruikt kunnen worden om een samenvatting van het gehele project te maken.
+Verder wordt onderzocht hoe de relaties tussen de verschillende bestanden gevisualiseerd kunnen worden met als doel een zo goed mogelijk overzicht van het project te krijgen zonder handmatige documentatie.
 
 \subsection{Projectsamenvatting}
 \label{sec:project-documentatie-samenvatting}
 
-De samenvatting van een Python project kan gemaakt worden door de individuele samenvattingen van de bestanden samen te voegen.
-Deze samenvatting kan bekomen worden door elk python bestand in het project te laten documenteren en de samenvatting ervan op te slaan.
+De samenvatting van een Python-project kan gemaakt worden door de individuele samenvattingen van de bestanden samen te voegen.
+Deze samenvatting kan bekomen worden door elk Python-bestand in het project te laten documenteren en de samenvatting ervan op te slaan.
 Daarna kunnen deze samenvattingen samengevoegd worden om dan mee te geven aan een Large Language Model.
 
 Deze samenvattingen worden gegenereerd door het aanroepen van de functie \mintinline{python3}|generate_file_summaries()|. 
 Deze functie maakt gebruik van de klasse \mintinline{python3}|FileDocumenationGenerator()| die de samenvattingen van de bestanden genereert en opslaat in een dictionary.
 De code van deze functie is te vinden in \ref{bijlage:file-summary-functions}.  
 
-Door een duidelijk prompt mee te geven aan het model, kan er specifiek gevraagd worden welke functies en klassen er in het project zitten en dat duidelijk per bestand opgelijst. 
+Door een duidelijk prompt mee te geven aan het model kan er specifiek gevraagd worden welke functies en klassen er in het project zitten en dat duidelijk per bestand opgelijst. 
 Samen met deze oplijsting wordt er ook een korte samenvatting van het gehele project weergegeven.
 Een voorbeeld van de uitkomst is te zien in \ref{fig:project-summary}.
 Hier is te zien dat er een duidelijk overzicht is van welke functies en klassen er in het project zitten, alsook wat het gehele project inhoudt.
@@ -37,8 +37,8 @@ Hier is te zien dat er een duidelijk overzicht is van welke functies en klassen 
 \subsubsection{Keuze van welke bestanden te documenteren}
 \label{subsec:project-documentatie-keuze-bestanden}
 
-Het is belangrijk om te kijken naar welke bestanden er gedocumenteerd moeten worden.
-Omdat het gaat over een Python project, is het belangrijk dat alle Python bestanden gedocumenteerd worden.
+Het is belangrijk om te kijken welke bestanden er gedocumenteerd moeten worden.
+Omdat het gaat over een Python-project, is het belangrijk dat alle Python-bestanden gedocumenteerd worden.
 Er is de keuze gemaakt om het bestand \mintinline{python3}|__init__.py| niet te documenteren, omdat dit bestand vaak niet relevant is voor de documentatie van het project.
 Het bestand \mintinline{python3}|__init__.py| is vaak leeg of het heeft slechts een minimale functionaliteit. 
 
@@ -63,23 +63,23 @@ Een voorbeeld van de uitkomst in de project documentatie van een bestand zonder 
 \subsubsection{Prompting voor projectsamenvatting}
 \label{sec:project-documentatie-prompting}
 
-Aangezien de samenvatting van een project bestaat uit de samenvattingen van individuele Python bestanden, is het belangrijk dat deze op een correcte manier gegenereerd worden.
-Dit wordt gerealiseerd met behulp van een prompt die de samenvatting van een Pythonbestand op een correcte manier interpreteert en omzet naar de juiste documentatie.
+Aangezien de samenvatting van een project bestaat uit de samenvattingen van individuele Python-bestanden, is het belangrijk dat deze op een correcte manier gegenereerd worden.
+Dit wordt gerealiseerd met behulp van een prompt die de samenvatting van een Python-bestand op een correcte manier interpreteert en omzet naar de juiste documentatie.
 
 De gehele samenvatting van het project werd gemaakt door de individuele samenvattingen van de bestanden samen te voegen en dit mee te geven met het prompt \ref{bijlage:prompt6}.
 De volgorde van de samenvattingen is niet van belang, omdat de relaties tussen de bestanden later nog gevisualiseerd worden in hoofdstuk~\ref{sec:project-documentatie-relaties} en dit op basis van de imports.
 Dit prompt vraagt om de samenvatting van het project te maken en uit de individuele samenvattingen de functies en klassen op te lijsten.
 
 Doordat het model beter kleine prompts kan verwerken, is er gekozen om de samenvattingen van de bestanden in kleinere stukken mee te geven aan het model.
-Dit prompt maakt per samenvatting van een Python bestand de documentatie van de verschillende functies en klassen. 
+Dit prompt maakt per samenvatting van een Python-bestand de documentatie van de verschillende functies en klassen. 
 De functies en klassen worden opgelijst met het juiste formaat en een kleine uitleg.
 Deze resultaten van de verschillende kleine prompts werden dan code matig samengevoegd tot een geheel. 
 Door het code matig toevoegen van de individuele samenvattingen gaat er niets verloren. 
 Deze keuze is verkozen omdat de LLM de uitkomst dan correct formateert in markdown.  
 De uitkomst van de samenvatting van het project is te zien in de figuur \ref{fig:project-summary}.
 
-Het prompt dat gebruikt werd is te zien in \ref{bijlage:prompt7}.
-Dit prompt vraagt om de functies en klassen van een Python bestand op te lijsten en een korte uitleg te geven wat deze functies en klassen doen.
+Het prompt dat gebruikt werd, is te zien in \ref{bijlage:prompt7}.
+Dit prompt vraagt om de functies en klassen van een Python-bestand op te lijsten en een korte uitleg te geven wat deze functies en klassen doen.
 De uitkomst is weergegeven met een duidelijk voorbeeld binnen het prompt en volgens een markdown formaat. 
 De documentatie gegenereerd door dit prompt is te zien in \ref{fig:project-summary}.
 
@@ -182,7 +182,7 @@ Dit HTML bestand kan dan geopend worden in een browser om de graaf te bekijken, 
 
 Er is een voorbeeld van een graaf te zien in de figuur \ref{fig:graph}. 
 Voor een groot project is er geprobeerd of de gegenereerde graaf de relaties tussen de bestanden duidelijk kan weergegeven op een grotere schaal, een voorbeeld hiervan is te vinden in de figuur \ref{fig:graph-large}.
-De relaties op deze graaf zijn zichtbaar echter is het niet altijd duidelijk omdat er veel bestanden zijn en er bepaalde bestanden vaak geïmporteerd zijn.
+De relaties op deze graaf zijn zichtbaar, echter is het niet altijd duidelijk omdat er veel bestanden zijn en er bepaalde bestanden vaak geïmporteerd zijn.
 Dit kan ervoor zorgen dat de graaf onoverzichtelijk wordt naargelang de grootte van het project.
 
 \begin{figure}[h]
@@ -200,19 +200,18 @@ Dit kan ervoor zorgen dat de graaf onoverzichtelijk wordt naargelang de grootte 
 
 In dit hoofdstuk wordt er gekeken hoe de documentatie van een project geëvalueerd kan worden.
 Dit wordt gedaan door de documentatie van de tool te vergelijken met de handgeschreven documentatie van een project.
-Het bestand dat vergeleken wordt, is het Python bestand met de naam AutoClicker van \textcite{Waegeneer2022} en het Python project met de naam bmi-project van \textcite{Simmons2019}.
+Het bestand dat vergeleken wordt, is het Python-bestand met de naam AutoClicker van \textcite{Waegeneer2022} en het Python-project met de naam bmi-project van \textcite{Simmons2019}.
 
 \subsection{Bestanddocumentatie evaluatie}
 \label{sec:project-documentatie-evaluatie-bestand}
 
 Door het testen van de moeilijkheidsgraden opgesteld in de tabel \ref{table:bestanden} kon de tool geëvalueerd worden.
 De tool werkte zoals verwacht voor bestanden met moeilijkheidsgraad makkelijk tot moeilijk.
-Het vergelijken van de zelfgedocumenteerde bestanden met de automatisch gegenereerde bestanden geeft een goed beeld van de kwaliteit van de gegenereerde docstrings en bestandsamenvattingen.
-Wat te zien is in de figuur \ref{fig:evaluatie-bestand-documentatie}.
+Het vergelijken van de zelfgedocumenteerde bestanden met de automatisch gegenereerde bestanden geeft een goed beeld van de kwaliteit van de gegenereerde docstrings en bestandsamenvattingen wat te zien is in de figuur \ref{fig:evaluatie-bestand-documentatie}.
 Hieruit is te zien dat de functie omschrijvingen in de samenvatting anders verwoord zijn, maar de betekenis is hetzelfde.
 Er is echter één functie vergeten in de manuele bestandsamenvatting, die wel gedocumenteerd is door de tool.
 Een tweede fout in de automatisch gegenereerde bestandsamenvatting is dat de klasse \mintinline{python3}|MouseClick| een andere naam heeft gekregen namelijk \mintinline{python3}|AutoClicker| de naam van het bestand.
-Dit is een goed resultaat, omdat de gegenereerde docstrings correct zijn en de geeft echter toch een duidelijk beeld van wat de het bestand inhoudt.
+Dit is een goed resultaat, omdat de gegenereerde docstrings correct zijn en het geeft toch een duidelijk beeld van wat het bestand inhoudt.
 
 \begin{figure}
     \centering
@@ -256,8 +255,8 @@ Dit wordt gedaan voor het project genaamd bmi-project van \textcite{Simmons2019}
 \end{table}
 
 Alle docstrings en bestandsamenvattingen zijn geëvalueerd en de resultaten zijn te zien in de tabel \ref{table:projecten-evaluatie}.
-37.5\% van de automatisch gegenereerde samenvattingen hebben dezelfde betekenis als de handgeschreven samenvattingen 25\% van de samenvattingen zijn exact hetzelfde.
-De bestandsamenvattingen die niet overeenkomen hebben vaak te maken met dat de automatisch gegenereerde samenvatting een klasse of functie extra bevat die niet in het orginele bestand staat.
+37.5\% van de automatisch gegenereerde samenvattingen hebben dezelfde betekenis als de handgeschreven samenvattingen. 25\% van de samenvattingen zijn exact hetzelfde.
+Wanneer de bestandsamenvattingen niet overeenkomen is dit omdat er een klasse of functie extra toegevoegd is in de automatische gegenereerde samenvatting die niet in het orgineel bestand staat.
 Een voorbeeld van deze foutieve bestandsamenvattingen is te zien in de figuur \ref{fig:evaluate-bestand-samenvatting}.
 
 \begin{figure}
@@ -280,7 +279,7 @@ Een voorbeeld van deze foutieve bestandsamenvattingen is te zien in de figuur \r
 \end{figure}
 
 De docstrings komen voor 90\% overeen met de handgeschreven docstrings.
-In de 10\% andere gevallen is er een kleine fout in de docstring of is de docstring niet correct gegenereerd.
+In 10\% van de andere gevallen is er een kleine fout in de docstring of is de docstring niet correct gegenereerd.
 Dit gaat dan over een verkeerde omschrijving van de functie of klasse of een fout in de parameters.
 Zo is er voor de docstring van de klasse \mintinline{python3}|MAECallback(Callback)| een fout in de automatisch gegenereerde docstring.
 Het argument \mintinline{python3}|Callback| is niet meegegeven in de docstring, terwijl dit wel in de handgeschreven docstring staat.
@@ -305,14 +304,14 @@ Deze fout is te vinden in de figuur \ref{fig:evaluate-docstring}.
     \label{fig:evaluate-docstring}
 \end{figure}
 
-De handgeschreven projectsamenvatting heeft dezelfde boodschap als de automatisch gegenereerde samenvatting, het is echter wel geschreven op een andere manier.
+De handgeschreven projectsamenvatting heeft dezelfde boodschap als de automatisch gegenereerde samenvatting. Het is echter wel geschreven op een andere manier.
 Doordat de samenvatting dezelfde boodschap overbrengt, kan er gesproken worden van een duidelijke samenvatting.
 De oplijsting van de verschillende bestanden met elk de gedefinieerde functies en klassen is correct en duidelijk.
 
 De evaluatie van de relaties tussen de verschillende bestanden gebeurt tussen de automatisch gegenereerde graaf en de manueel getekende graaf.
-De graven te zien in \ref{fig:evaluatie-graaf} tonen de relaties tussen de bestanden van het project. 
-Het is duidelijk dat deze graven gelijkaardig zijn, de gegenereerde graaf is beweegbaar en kan aangepast worden om een beter overzicht te krijgen.
-Samen met de oplijsting van de bestanden en de graph met de relaties tussen de bestanden, kan er een duidelijk overzicht bekomen worden van het project.
+De graven, te zien in \ref{fig:evaluatie-graaf}, tonen de relaties tussen de bestanden van het project. 
+Het is duidelijk dat deze graven gelijkaardig zijn. De gegenereerde graaf is beweegbaar en kan aangepast worden om een beter overzicht te krijgen.
+Samen met de oplijsting van de bestanden en de graaf met de relaties tussen de bestanden kan er een duidelijk overzicht bekomen worden van het project.
 
 \begin{figure}
     \centering

@@ -8,17 +8,17 @@
 % Pas na deze inleidende paragraaf komt de eerste sectiehoofding.
 
 In dit hoofdstuk wordt de literatuurstudie besproken. 
-Door deze literatuurstudie is het mogelijk om een beter inzicht te krijgen in de technologie en mogelijkheden voor de documentatie van Pythonprojecten alsook hoe het toegepast kan worden met behulp van Large Language Modellen. 
-Er zal nadruk worden gelegd op bestaande literatuur en onderzoeken die verbonden zijn met documentatie van Pythonprojecten. 
+Door deze literatuurstudie is het mogelijk om een beter inzicht te krijgen in de technologie en mogelijkheden voor de documentatie van Python-projecten alsook hoe het toegepast kan worden met behulp van Large Language Modellen. 
+Er zal nadruk worden gelegd op bestaande literatuur en onderzoeken die verbonden zijn met documentatie van Python-projecten. 
 In dit onderdeel zullen verschillende hoofdstukken worden aangekaart. 
 Als eerste zal er duidelijk gemaakt worden wat er juist verstaan wordt onder documentatie. 
 Vervolgens wordt er gekeken naar bestaande documentatie tools.
-In het derde deel van deze literatuurstudie wordt er gekeken naar wat Large Language Modellen zijn, hoe deze werken en wat enkele bestaande modellen zijn.
+In het derde deel van deze literatuurstudie wordt er gekeken wat Large Language Modellen zijn, hoe deze werken en wat enkele bestaande modellen zijn.
 
 \section{Wat is documentatie?}
 \label{sec:wat-is-documentatie}
 
-Alvorens er dieper op het onderwerp kan worden ingegaan, is het belangrijk dat er een duidelijk beeld gevormd wordt wat documentatie is. 
+Alvorens dieper op het onderwerp in te gaan, is het belangrijk dat er een duidelijk beeld gevormd wordt wat documentatie is. 
 Waarom is documentatie belangrijk voor een project en wat wordt er begrepen onder documentatie? 
 
 Documentatie is het proces van het vastleggen van de werking van een project.
@@ -36,12 +36,12 @@ Externe documentatie is voor documentatie die gedeeld wordt met andere bedrijven
 Dit gaat dan over de basiswerking van de code van een project zodat andere programmeurs het kunnen gebruiken.
 Gebruiksaanwijzingen of handleidingen zijn ook een vorm van externe documentatie \autocite{swimm.io2024}.
 
-Voor deze bachelorproef wordt er gekeken naar het documenteren van een Pythonproject in de vorm van commentaar in de code en het genereren van een samenvattend document van het gehele project.
-Omdat Python een populaire programmeertaal is volgens \textcite{TIOBE2024} en er veel projecten in deze taal geschreven worden is het interessant om te kijken hoe deze projecten gedocumenteerd kunnen worden.
+Voor deze bachelorproef wordt er gekeken naar het documenteren van een Python-project in de vorm van commentaar in de code en het genereren van een samenvattend document van het gehele project.
+Omdat Python een populaire programmeertaal is volgens \textcite{TIOBE2024} en er veel projecten in deze taal geschreven worden, is het interessant om te kijken hoe deze projecten gedocumenteerd kunnen worden.
 Ook kan er in de code bij functies aan type hinting gedaan worden. Dit indiceert wat de datatypes van de input en output van een functie zijn \autocite{Bailey2024}.
 Uit deze documentatie kan de werking van het project duidelijk worden en kunnen de relaties tussen de verschillende bestanden en functies weergegeven worden.
 
-In het verdere verloop van deze bachelorproef wordt er gekeken hoe de documentatie van een Pythonproject gegenereerd kan worden.
+In het verdere verloop van deze bachelorproef wordt er gekeken hoe de documentatie van een Python-project gegenereerd kan worden.
 
 \subsection{Bestand documentatie}
 \label{sec:bestand-documentatie}
@@ -85,7 +85,7 @@ Zo wordt er een duidelijk beeld verkregen van de structuur van het project.
 
 \subsection{CodeCat}
 \textcite{CodeCat2024} is een online tool die de code analyseert en de docstrings genereert. Er kan niet gekeken worden naar de werking van CodeCat aangezien het niet open sourced is.
-Deze tool genereert automtisch de docstrings voor JavaScript code.
+Deze tool genereert automatisch de docstrings voor JavaScript code.
 
 \subsection{GPT4Docstrings}
 De tool van \textcite{Trofficus2023} genereert docstrings voor Python code. Het maakt gebruik van GPT-4 \autocite{OpenAI2023} om de docstrings te genereren.
@@ -113,16 +113,16 @@ Het nader bekijken van deze tool kan een meerwaarde zijn voor deze bachelorproef
 
 Zo gebruikt GPT4Docstrings van \textcite{Trofficus2023} de Abstract Syntax Tree (AST) van de code om de structuur van de code te begrijpen.
 Uit de AST kunnen de juiste stukken code gehaald worden om de docstrings te genereren.
-Dit kan goed van pas komen voor het genereren van documentatie van Pythonprojecten.
+Dit kan goed van pas komen voor het genereren van documentatie van Python-projecten.
 Een voorbeeld van deze tool kan gezien worden in figuur \ref{fig:Before-After-Trofficus}. 
 
 \subsection{Sphinx}
-Sphinx van \textcite{Sphinx2023} is één van de meest gebruikte tools voor het genereren van documentatie voor Pythonprojecten.
+Sphinx van \textcite{Sphinx2023} is één van de meest gebruikte tools voor het genereren van documentatie voor Python-projecten.
 Het genereert documentatie aan de hand van docstrings. Het toont de hiërarchie van het project om een duidelijk overzicht te geven.
 Deze tool is vrij flexibel want het kan uitgebreid worden met verschillende extensies, zodat het alle mogelijke wensen kan vervullen.
 Volgens \textcite{Sphinx2023} kan de extensie autodoc semi-automatisch de docstrings van een module extraheren en in de documentatie plaatsen. 
-Handig wanneer de automatische documentatie generatie van een geheel project gewenst is. Zo kan het project samengevat worden aan de hand van de docstrings van de verschillende python files. 
-Alvorens een Python project gedocumenteerd kan worden met Sphinx \autocite{Sphinx2023}, dienen alle bestanden aangevuld te worden met docstrings.
+Dit is handig wanneer de automatische documentatie generatie van een geheel project gewenst is. Zo kan het project samengevat worden aan de hand van de docstrings van de verschillende python files. 
+Alvorens een Python-project gedocumenteerd kan worden met Sphinx \autocite{Sphinx2023} dienen alle bestanden aangevuld te worden met docstrings.
 Dit gebeurt echter niet bij het runnen van het programma.
 
 \subsection{Pdoc}
@@ -153,7 +153,7 @@ GPT4Docstrings & Python & docstring \\
 
 \subsection{Samenvatting tools}
 \label{sec:samenvatting-tools}
-Door de verschillende tools op te lijsten en te vergelijken met elkaar wordt er een duidelijk beeld gevormd van wat de tools kunnen genereren.
+Door de verschillende tools op te lijsten en te vergelijken met elkaar wordt er een duidelijk beeld gevormd wat de tools kunnen genereren.
 Zo kan er een keuze gemaakt worden welke tool het beste past bij dit onderzoek.
 In tabel \ref{table:ra-tools} wordt er een overzicht gegeven wat de tools kunnen genereren.
 De tools Doxygen, Sphinx en Pdoc kunnen enkel een document genereren in de vorm van een website of een bestand op basis van reeds bestaande docstrings en commentaren in de code.
@@ -193,11 +193,11 @@ In dit hoofdstuk wordt er een antwoord gegeven op de vragen:
 \end{itemize}
 
 Dit draagt bij tot het verkrijgen van een grondige basiskennis van LLM's. 
-Het veld waarin AI zich bevind wordt vaak voorgesteld volgens figuur \ref{fig:LLM-position}, met verschillende lagen \autocite{Stoeffelbauer2023}.
+Het veld waarin AI zich bevindt, wordt vaak voorgesteld volgens figuur \ref{fig:LLM-position}. Het bestaat uit verschillende cirkels met elk een eigen laag volgens \textcite{Stoeffelbauer2023}.
 Deze lagen zijn: Artificiële Intelligentie, Machine Learning, Deep Learning en Large Language Modellen.
 Omdat LLM's een subveld zijn van Deep Learning is het belangrijk dat er een duidelijk beeld is van wat Deep Learning juist is.
 Uit de figuur \ref{fig:LLM-position} blijkt dat AI verschillende categorieën omvat.
-AI is een brede term vermeldt \textcite{Stoeffelbauer2023} hiermee wordt vaak verwezen naar slimme machines. 
+Volgens \textcite{Stoeffelbauer2023} is AI een brede term wat vaak verwijst naar slimme machines. 
 Machine Learning (ML) is een subveld van AI, waarin patronen worden herkend tussen een input en een output.
 ML kan gebruikt worden voor verschillende taken zoals classificatie, regressie, clustering en dergelijke.
 Volgens \textcite{Stoeffelbauer2023} is Deep Learning (DL) een subveld van ML, waarin complexe algoritmen en Deep Neural Networks gebruikt worden om complexere taken uit te voeren.
@@ -243,7 +243,7 @@ De encoder wordt gebruikt om de invoersequenties te verwerken en de decoder word
 Zo is BERT van \textcite{DevlinEtAl2019} een transformer die enkel een encoder heeft en GPT van \textcite{RandfordEtAL2018} heeft enkel een decoder.
 De transformer architectuur uit de paper van \textcite{VaswaniEtAl2017} kan gezien worden in figuur \ref{fig:transformer-model}. 
 
-Self-Attention duidt dynamische gewichten toe aan verschillende elementen binnen de meegegeven sequentie, bijvoorbeeld woorden in een zin.
+Self-Attention duidt dynamische gewichten toe aan verschillende elementen binnen de meegegeven sequentie, bijvoorbeeld bij woorden in een zin.
 Dit laat het model toe om zich te concentreren op de meest relevante delen van de invoer, terwijl de invloed van minder cruciale delen wordt verminderd.
 De invoersequentie wordt eerst in drie verschillende vectoren omgezet: Query, Key en Value.
 De Query vector stelt een specifiek token uit de invoersequentie voor. De Key vector vertegenwoordigt alle tokens en de vector voor Value bevat de feitelijke inhoud die aan elk token is gekoppeld.
@@ -253,12 +253,12 @@ Deze similariteit wordt gebruikt om de gewichten te berekenen die aan de Value v
 Masked Self-Attention is een variant van Self-Attention die gebruikt wordt in de decoder van een transformer.
 In de decoder wordt er een mask gebruikt om enkel de vorige tokens te zien in de sequentie \autocite{VaswaniEtAl2017}.
 Dit vermijdt dat er informatie van de toekomstige tokens gebruikt wordt. 
-Zo kan de transformer niet "vals spelen" tijdens het train proces.
+Zo kan de transformer niet "vals spelen"  tijdens het train proces.
 
 Cross-Attention is een variant van Self-Attention die gebruikt wordt in de decoder van een transformer.
 Deze laag gebruikt de informatie van de encoder en de vorige Attentie laag van de decoder om de uitvoersequenties te genereren.
 De Query vector is de uitvoer van de vorige Attentie/Cross-Attention laag van de decoder en de Key en Value vector zijn de uitvoer van de encoder \autocite{VaswaniEtAl2017}.
-Doordat de Cross-Attentione laag informatie van zowel de encoder als decoder krijgt kan het model de relaties tussen de verschillende delen van de invoersequenties leren.
+Doordat de Cross-Attention laag informatie van zowel de encoder als decoder krijgt, kan het model de relaties tussen de verschillende delen van de invoersequenties leren.
 Deze relaties worden dan gebruikt om de uitvoersequenties te genereren.
 
 \begin{figure}[h]
@@ -306,7 +306,7 @@ Hierbij geeft de mens feedback aan het model en leert het model bij door deze fe
 
 Volgens \textcite{Peckham2024} kan het model achteraf nog extra getraind worden op een specifieke dataset zoals Python code of medische data.
 Dit proces heet het Fine-Tunen van een LLM.
-Enkele vereisten voor het Fine-Tunen van een LLM zijn de dataset moet een grote hoeveelheid data hebben.
+Een vereiste voor het Fine-Tunen van een LLM is dat de dataset een grote hoeveelheid data moet hebben.
 Ook moet de dataset van hoge kwaliteit zijn en moet de dataset het onderwerp representatief voorstellen \autocite{Peckham2024}.
 
 \subsection{Prompt Engineering}
@@ -345,14 +345,14 @@ Deze LLM is een sterke concurrent voor GPT-4 van \textcite{OpenAI2023}.
 
 Google \autocite{Google2024} bracht een model met verschillende versies uit: Gemini Pro, Gemini Ultra en Gemini Nano. 
 Elke versie is gemaakt voor een specifiek doel. Zo is Gemini Nano het meest efficiënte model voor mobiele toestellen, terwijl Gemini Pro het beste model is voor het schalen van allerlei taken.
-En Gemini Ultra is het meest capabele en grootste model van Google, dit kan gebruikt worden voor complexe taken.
+En Gemini Ultra is het meest capabele en grootste model van Google. Dit kan gebruikt worden voor complexe taken.
 Een van de voordelen van Gemini is dat er een groot aantal input tokens meegegeven kunnen worden, namelijk 1 miljoen tokens \autocite{Google2024}.
 Dit is aanzienlijk meer dan de 128 duizend tokens van GPT-4.
 
 Een derde speler in de wereld van LLM's is Meta. Meta heeft verschillende LLM's ontwikkeld onder de naam LLama 2 \autocite{Meta2024}.
 De LLama 2 familie bestaat uit verschillende LLM's die getraind zijn op verschillende data. Sommige zijn extra getraind voor specifiekere doeleinden.
 Zo is er bijvoorbeeld een LLM getraind op Python code, genaamd Code LLama 2 van \textcite{Roziere2024}.
-Een voordeel van de LLama 2 familie is dat deze LLM's open source zijn en dus voor iedereen toegankelijk zijn.
+Een voordeel van de LLama 2 familie is dat deze LLM's open sourced zijn en dus voor iedereen toegankelijk zijn.
 
 Antropic heeft ook een LLM ontwikkeld genaamd Claude \autocite{Anthropic2023}. 
 Claude's capaciteiten zijn code generatie, het verstaan van meerdere talen, beelden analyseren en kan geavanceerde redeneringen geven.
@@ -360,7 +360,7 @@ Er bestaan 3 versies van Claude: Haiku, Sonnet en Opus.
 Haiku is een lichte versie van Claude en Sonnet is de combinatie van performantie en snelheid. Opus is het intelligentste model dat complexe taken kan uitvoeren en begrijpen.
 Claude is een betalende service en de prijzen zijn afhankelijk van de gekozen versie van Claude \autocite{Anthropic2023}.
 
-De verschillen tussen deze LLM's zijn groot, zo is er een verschil in capaciteit, trainingsdata en toegankelijkheid.
+De verschillen tussen deze LLM's zijn groot. Zo is er een verschil in capaciteit, trainingsdata en toegankelijkheid.
 Het is belangrijk dat er een goede keuze gemaakt wordt voor het genereren van documentatie.
 Deze keuze zal afhangen van de mogelijkheden van de LLM's en de doeleinden van de documentatie.
 
@@ -394,7 +394,7 @@ Deze keuze zal afhangen van de mogelijkheden van de LLM's en de doeleinden van d
 \label{table:vgl-llms}
 \end{table}
 
-In de tabel \ref{table:vgl-llms} wordt een vergelijking gemaakt tussen verschillende LLM's.
+In de tabel \ref{table:vgl-llms} wordt er een vergelijking gemaakt tussen verschillende LLM's.
 Hierin wordt er gekeken naar de prijs van de input en output tokens, de grootte van de context en het aantal tokens dat per seconde verwerkt kan worden.
 
 \begin{table}[h!]
@@ -429,7 +429,8 @@ Claude Haiku \autocite{Anthropic2023} & 75\%  & / \\
 
 In de tabel \ref{table:vgl-llms-eval} wordt een vergelijking gemaakt tussen verschillende LLM's tussen twee kolommen. 
 De eerste kolom bevat de beoordeling van de coding mogelijkheden van het model gequoteerd met menselijke evaluatie. 
-In de tweede kolom staat de quotering op basis van de MMLU een dataset \autocite{Hendrycks2020}.
+In de tweede kolom staat de quotering op basis van de MMLU een dataset opgesteld door \textcite{Hendrycks2020}.
+MMLU staat voor het meten van de multitask taalbegrip capaciteiten van een model \autocite{Hendrycks2020}.
 Beide kolommen staan uitgedrukt in procenten met 100\% als maximum.
 Hieruit kan geconcludeerd worden dat GPT-4 en GPT-4 Turbo de beste scores behalen op beide vlakken.
 Maar omdat er in dit onderzoek gezocht wordt naar een goedkope oplossing wordt er geconcludeerd uit beide tabellen dat GPT-3.5 Turbo de beste prijs/kwaliteit verhouding heeft.

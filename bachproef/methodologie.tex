@@ -33,14 +33,14 @@
 \end{figure}
 
 Het onderzoek is in vier fases opgedeeld. De eerste fase omvat de literatuurstudie.
-In deze literatuurstudie wordt er onderzocht wat de huidige stand van zaken is omtrent de technologie en mogelijkheden voor de documentatie van Pythonprojecten met behulp van Large Language Modellen.
+In deze literatuurstudie wordt er onderzocht wat de huidige stand van zaken is omtrent de technologie en mogelijkheden voor de documentatie van Python-projecten met behulp van Large Language Modellen.
 Zo wordt er gekeken wat LLM's zijn, hoe ze werken en wat bestaande tools zijn voor het genereren van documentatie.
 
 Nadat er een duidelijk beeld gevormd is over de stand van zaken, kan er begonnen worden aan de tweede fase.
-Hierin wordt er een tool ontwikkeld die een Python bestand kan analyseren op basis van de ongedocumenteerde code van het bestand.
+Hierin wordt er een tool ontwikkeld die een Python-bestand kan analyseren op basis van de ongedocumenteerde code van het bestand.
 Eerst wordt er per functie en per klasse een docstring gegenereerd. Deze kunnen gebruikt worden voor het genereren van een samenvatting van het bestand. 
 Wat op zijn beurt gebruikt kan worden om een samenvatting van het project te genereren in de volgende fase.
-De uitkomst van deze fase is een tool die de documentatie van een Python bestand kan genereren. 
+De uitkomst van deze fase is een tool die de documentatie van een Python-bestand kan genereren. 
 Door aan prompt engineering te doen, met het prompt dat meegegeven wordt aan de LLM, kunnen de bekomen docstrings accurater worden.
 Verder wordt er gekeken hoe de documentatie van Python functies gebruikt kan worden voor het maken van een gehele samenvatting van het project.
 Dit wordt gedaan op basis van huidige methoden om docstrings aan te maken en te gebruiken. 
@@ -66,12 +66,12 @@ Hier wordt er gekeken wat de tool moet kunnen en wat de verwachtingen zijn van d
 \label{sec:functionele-requirements}
 \subsubsection{Should Have:}
 \begin{itemize}
-    \item De tool moet in staat zijn om docstrings te genereren voor functies en klassen voor een Python bestand.\\
-    De tool genereert docstrings voor functies en klassen in een Python bestand. Dit gebeurt door de code te analyseren en op basis daarvan een docstring te genereren.
-    \item De tool moet in staat zijn om een samenvatting van een Python bestand te genereren.\\
-    De tool maakt een samenvatting van een Python bestand. In deze samenvatting zitten de belangrijkste zaken van het bestand zijnde de functies en klassen die erin voorkomen en wat deze doen, alsook hun eventuele parameters en de uitkomst.
-    \item De tool moet in staat zijn om een samenhangende samenvatting van een Pythonproject te genereren.\\
-    De tool dient een samenvatting te maken van een Pythonproject. Deze samenvatting bestaat uit de individuele samenvattingen van de bestanden en een overkoepelende samenvatting van het project.
+    \item De tool moet in staat zijn om docstrings te genereren voor functies en klassen voor een Python-bestand.\\
+    De tool genereert docstrings voor functies en klassen in een Python-bestand. Dit gebeurt door de code te analyseren en op basis daarvan een docstring te genereren.
+    \item De tool moet in staat zijn om een samenvatting van een Python-bestand te genereren.\\
+    De tool maakt een samenvatting van een Python-bestand. In deze samenvatting zitten de belangrijkste zaken van het bestand zijnde de functies en klassen die erin voorkomen en wat deze doen, alsook hun eventuele parameters en de uitkomst.
+    \item De tool moet in staat zijn om een samenhangende samenvatting van een Python-project te genereren.\\
+    De tool dient een samenvatting te maken van een Python-project. Deze samenvatting bestaat uit de individuele samenvattingen van de bestanden en een overkoepelende samenvatting van het project.
     Hierin staan alle functies en klassen die in het project voorkomen en wat deze doen, alsook hun eventuele parameters en de uitkomst.
     \item De tool moet in staat zijn om de relaties tussen de verschillende bestanden van een project te visualiseren.\\
     De tool visualiseert de relaties tussen de verschillende bestanden van een project. Deze relaties helpen met het begrijpen van de structuur van het project.
@@ -79,15 +79,15 @@ Hier wordt er gekeken wat de tool moet kunnen en wat de verwachtingen zijn van d
 
 \subsubsection{Could Have:}
 \begin{itemize}
-    \item De tool moet in staat zijn om de documentatie van een Python bestand te genereren in verschillende formaten.\\
-    De tool genereert de documentatie van een Python bestand in verschillende formaten. Zo kan de gebruiker kiezen in welk formaat de documentatie gegenereerd moet worden.
+    \item De tool moet in staat zijn om de documentatie van een Python-bestand te genereren in verschillende formaten.\\
+    De tool genereert de documentatie van een Python-bestand in verschillende formaten. Zo kan de gebruiker kiezen in welk formaat de documentatie gegenereerd moet worden.
     \item De tool moet in staat zijn om de relaties tussen de verschillende functies en klassen van een bestand te visualiseren op project niveau.\\
     De tool visualiseert de relaties tussen de verschillende functies en klassen van een bestand op project niveau. Zo is er geweten welke functies en klassen gebruikt worden door de bestanden.
 \end{itemize}
 
 \subsubsection{Nice to Have:}
 \begin{itemize}
-    \item De tool moet in staat zijn om de documentatie van een Python bestand te genereren in verschillende talen.\\
+    \item De tool moet in staat zijn om de documentatie van een Python-bestand te genereren in verschillende talen.\\
     Zo kan de gebruiker kiezen in welke taal het bestand wordt gedocumenteerd.
 \end{itemize}
 
@@ -116,8 +116,8 @@ Hier wordt er gekeken wat de tool moet kunnen en wat de verwachtingen zijn van d
     Requirement & Should have & Could have & Nice to have & Functioneel & Niet Functioneel \\
     \hline
     Docstrings genereren voor functies en klassen & X & & & X & \\
-    Samenvatting van een Python bestand genereren & X & & & X & \\
-    Samenvatting van een Pythonproject genereren & X & & & X & \\
+    Samenvatting van een Python-bestand genereren & X & & & X & \\
+    Samenvatting van een Python-project genereren & X & & & X & \\
     Relaties tussen verschillende bestanden visualiseren & X & & & X & \\
     Documentatie genereren in verschillende formaten & & X & & X & \\
     Relaties tussen verschillende functies en klassen visualiseren op project niveau & & X & & X & \\
@@ -131,15 +131,15 @@ Hier wordt er gekeken wat de tool moet kunnen en wat de verwachtingen zijn van d
     \caption{Requirementsanalyse}
 \end{table}
 
-\section{Opstellen van een short-list tools}
+\section{Opstellen van een short-list van bestaande tools}
 \label{sec:long-list}
-De short-list bestaat uit de verschillende tools die gebruikt kunnen worden voor het genereren van documentatie voor Pythonprojecten.
+De short-list bestaat uit verschillende tools die gebruikt kunnen worden voor het genereren van documentatie voor Python-projecten.
 Deze tools worden onderzocht om te kijken welke het beste past bij de requirements van de tool die ontwikkeld wordt in dit onderzoek.
 
 De oplijsting van de tools is gebaseerd op de literatuurstudie en bestaat uit de twee volgende tools:
 \begin{itemize} 
 \item GPT4Docstrings \autocite{Trofficus2023}\\
-Een tool die docstrings genereert voor Pythonprojecten met behulp van GPT4 \textcite{OpenAI2023}.
+Een tool die docstrings genereert voor Python-projecten met behulp van GPT4 \textcite{OpenAI2023}.
 \item Doxygen \autocite{Doxygen2023}\\
 Een tool die gebruikt wordt voor het genereren van documentatie voor projecten met reeds een docstring.
 \end{itemize}
