@@ -14,33 +14,59 @@
 % Heeft het onderzoek geleid tot nieuwe vragen die uitnodigen tot verder 
 %onderzoek?
 
+Het onderzoek had als doel de vraag te beantwoorden: "Hoe kan geautomatiseerde documentatiegeneratie met behulp van een Large Language Modellen (LLM) effectief worden toegepast op ongedocumenteerde Pythonprojecten om er duidelijke en overzichtelijke documentatie van te maken?"
+Hiervoor werd er een tool ontwikkeld die voldeed aan de requirements die werden opgesteld in het onderzoek.
+Enkele van deze requirements zijn dat de tool docstrings kan genereren dat er een bestand- en een projectsamenvatting gegenereerd kan worden en dat de tool zo goedkoop mogelijk moet zijn.
+Voor deze vraag beantwoord kan worden is het belangrijk om te weten wat er juist bedoelt wordt met documentatie.
+Onder documentatie wordt er begrepen dat er per bestand docstrings en een samenvatting van het bestand worden gegenereerd.
+Voor een project wordt er een samenvatting van het project gegenereerd en een overzicht van alle bestanden in het project in de vorm van een graaf met de relaties.
+
+Ook is het belangrijk om te weten wat enkele bestaande documentatietools zijn.
+Tools zoals Sphinx, Doxygen en Pdoc zijn in staat om een gedocumenteerd project om te zetten in een website of API.
+Deze tools zijn echter niet in staat om ongedocumenteerde projecten te documenteren.
+Vervolgens werd de tool GPT4Docstrings besproken, deze tool is in staat om docstrings te genereren voor Pythonprojecten, de code van GPT4Docstrings werd gebruikt in de ontwikkeling van de tool.
+
+Het documenteren van een bestand gebeurt door de code van het bestand in te lezen en per functie of klasse een docstring te genereren.
+Vervolgens worden deze docstrings samengevoegd tot een bestandssamenvatting.
+Voor een project te documenteren worden de verschillende bestanden in het project gedocumenteerd, worden de bestandssamenvatting samengevoegd tot een projectsamenvatting en wordt er een graaf gegenereerd met de relaties tussen de bestanden.
+
+Er werd gekozen om een Large Language Model te gebruiken om de documentatie te genereren omdat deze modellen getraind zijn op grote hoeveelheden data en zowel code als natuurlijke taal kunnen begrijpen en genereren.
+Door het gebruiken van GPT3.5-Turbo werd de tool zo goedkoop mogelijk gehouden.
+
+Door de automatische gegenereerde documentatie van een project te evalueren met een vooropgesteld manueel gedocumenteerd project, werd er gekeken naar de verschillen en overeenkomsten tussen de documentatie van de tool en de handgeschreven documentatie.
+De resultaten van de evaluatie tonen aan dat de documentatie van de tool en de handgeschreven documentatie gelijkaardig zijn.
+Alhoewel er enkele fouten in de documentatie van de individuele bestanden zitten, blijft de gehele projectdocumentatie overzichtelijk en duidelijk.
+
+Een verdere evaluatie van de tool kan gebeuren door een grote groep programmeurs verschillende projecten handmatig te laten documenteren en dit te chronometreren. 
+Dezelfde projecten kunnen dan ook automatisch gedocumenteerd worden met de tool, de snelheid van de tool kan dan vergeleken worden met de snelheid van de programmeurs.
+Daarna kan er een enquête afgenomen worden waarbij de programmeurs de keuze hebben tussen de handmatig gedocumenteerde projecten en de automatisch gedocumenteerde projecten.
+Deze evaluatie kan dan gebruikt worden om de tool te verbeteren.
 
 
 
+% % =============================
 
-% =============================
+% Aangezien dit onderzoek een beperkte scope heeft, zijn er enkele uitbreidingen die kunnen worden toegevoegd om het onderzoek te verbeteren.
+% Deze uitbreidingen kunnen helpen om de resultaten van het onderzoek te verbeteren en om de tool verder te ontwikkelen.
 
-Aangezien dit onderzoek een beperkte scope heeft, zijn er enkele uitbreidingen die kunnen worden toegevoegd om het onderzoek te verbeteren.
-Deze uitbreidingen kunnen helpen om de resultaten van het onderzoek te verbeteren en om de tool verder te ontwikkelen.
+% Zo kan er gekeken worden naar het genereren van documentatie voor andere programmeertalen.
+% Deze bachelorproef focust zich op Python, maar het is mogelijk om de tool uit te breiden naar andere programmeertalen.
+% Aangezien een Large Language Model zoals GPT \autocite{OpenAi2024} ook getraind zijn op andere programmeertalen.
 
-Zo kan er gekeken worden naar het genereren van documentatie voor andere programmeertalen.
-Deze bachelorproef focust zich op Python, maar het is mogelijk om de tool uit te breiden naar andere programmeertalen.
-Aangezien een Large Language Model zoals GPT \autocite{OpenAi2024} ook getraind zijn op andere programmeertalen.
+% Ook kan er gekeken worden naar hoe projecten met syntax fouten of andere problemen gedocumenteerd kunnen worden.
+% Dit is belangrijk omdat de tool nu enkel werkt op projecten die correcte syntax hebben.
+% Deze fouten kunnen eruit gehaald worden door de code eerst door een linter te halen en dan pas de documentatie te genereren.
+% De bekomen syntax fouten kunnen dan meegegeven worden aan een model om zo een bestand te genereren zonder syntax fouten.
 
-Ook kan er gekeken worden naar hoe projecten met syntax fouten of andere problemen gedocumenteerd kunnen worden.
-Dit is belangrijk omdat de tool nu enkel werkt op projecten die correcte syntax hebben.
-Deze fouten kunnen eruit gehaald worden door de code eerst door een linter te halen en dan pas de documentatie te genereren.
-De bekomen syntax fouten kunnen dan meegegeven worden aan een model om zo een bestand te genereren zonder syntax fouten.
+% Een andere uitbreiding is kijken naar hoe de documentatie geëvalueerd kan worden.
+% Omdat dit nu slechts manueel gebeurt, op basis van gezond verstand. 
+% Er kan gekozen worden om enquêtes af te nemen bij programmeurs om zo de documentatie te evalueren.
+% De evaluatie van de respondenten gaat echter slechts relatief zijn, omdat de respondenten beoordelen op basis van kennis van de programmeertaal. 
+% Of er kan gekeken worden naar hoe de documentatie van de tool vergeleken kan worden met de documentatie van de programmeur zelf.
+% Hier is het belangrijk om te kijken naar de verschillen en overeenkomsten tussen de documentatie van de tool en de documentatie van de programmeur.
 
-Een andere uitbreiding is kijken naar hoe de documentatie geëvalueerd kan worden.
-Omdat dit nu slechts manueel gebeurt, op basis van gezond verstand. 
-Er kan gekozen worden om enquêtes af te nemen bij programmeurs om zo de documentatie te evalueren.
-De evaluatie van de respondenten gaat echter slechts relatief zijn, omdat de respondenten beoordelen op basis van kennis van de programmeertaal. 
-Of er kan gekeken worden naar hoe de documentatie van de tool vergeleken kan worden met de documentatie van de programmeur zelf.
-Hier is het belangrijk om te kijken naar de verschillen en overeenkomsten tussen de documentatie van de tool en de documentatie van de programmeur.
+% Een laatste voorbeeld van een uitbreiding is om te kijken naar hoe verschillende Large Language Models presteren op het genereren van documentatie.
+% Zo kan er gekozen worden tussen modellen zoals GPT-4 \autocite{OpenAI2023}, LLama 2 \autocite{Meta2024}, Gemini \autocite{Google2024}, \dots
 
-Een laatste voorbeeld van een uitbreiding is om te kijken naar hoe verschillende Large Language Models presteren op het genereren van documentatie.
-Zo kan er gekozen worden tussen modellen zoals GPT-4 \autocite{OpenAI2023}, LLama 2 \autocite{Meta2024}, Gemini \autocite{Google2024}, \dots
-
-Sommige modellen hebben een groter context window dan andere modellen, zo zou er meer informatie meegegeven kunnen worden aan het model.
-En het zou mogelijk een beter resultaat kunnen geven.
+% Sommige modellen hebben een groter context window dan andere modellen, zo zou er meer informatie meegegeven kunnen worden aan het model.
+% En het zou mogelijk een beter resultaat kunnen geven.

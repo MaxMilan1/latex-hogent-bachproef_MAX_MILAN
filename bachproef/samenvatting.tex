@@ -25,24 +25,24 @@
 %
 % LET OP! Een samenvatting is GEEN voorwoord!
 
-%%---------- Nederlandse samenvatting -----------------------------------------
-%
-% TODO: Als je je bachelorproef in het Engels schrijft, moet je eerst een
-% Nederlandse samenvatting invoegen. Haal daarvoor onderstaande code uit
-% commentaar.
-% Wie zijn bachelorproef in het Nederlands schrijft, kan dit negeren, de inhoud
-% wordt niet in het document ingevoegd.
-
-% \IfLanguageName{english}{%
-% \selectlanguage{dutch}
-% \chapter*{Samenvatting}
-% \lipsum[1-4]
-% \selectlanguage{english}
-% }{}
-
 %%---------- Samenvatting -----------------------------------------------------
 % De samenvatting in de hoofdtaal van het document
 
 \chapter*{\IfLanguageName{dutch}{Samenvatting}{Abstract}}
 
-\lipsum[1-4]
+Deze bachelorproef richt zich op het documenteren van ongedocumenteerde Pythonprojecten met behulp van een Large Language Model (LLM).
+Het genereren van duidelijk en overzichtelijke documentatie van een project helpt bij het begrijpen van de code en is de eerste stap in het delen van kennis.
+Bestaande tool hebben echter gedocumenteerde code nodig om documentatie te genereren. 
+Het automatiseren van het documentatieproces zorgt ervoor dat dit geen manuele taak meer is.  
+
+De centrale onderzoeksvraag is: "Hoe kan geautomatiseerde documentatiegeneratie met behulp van een Large Language Modellen (LLM) effectief worden toegepast op ongedocumenteerde Pythonprojecten om er duidelijke en overzichtelijke documentatie van te maken?" 
+Deze vraag is verder opgesplitst in enkele deelvragen, wat is documentatie en Wat is er nodig om een bestand en een project te documenteren?
+Met als doel een Proof of Concept (PoC) van een geautomatiseerde tool die de code van een Pythonproject analyseert en er documentatie van genereert.
+
+Het onderzoek omvat enkele fases. Eerst wordt er gekeken hoe een enkel bestand gedocumenteerd kan worden en vervolgens hoe verschillende bestanden in een project samen gedocumenteerd kunnen worden om zo een overzicht van het project te geven.
+De laatste fase beslaagt het evalueren van de tool door de documentatie van de tool te vergelijken met de handgeschreven documentatie van een project.
+
+De resultaten van de evaluatie tonen aan dat de documentatie van de tool en de handgeschreven documentatie gelijkaardig zijn en door de visuele weergave van de relaties tussen de bestanden is de documentatie overzichtelijk en duidelijk.
+Er kunnen echter wel enkele fouten in de documentatie sluipen.
+
+Deze studie biedt een oplossing voor het documenteren van ongedocumenteerde Pythonprojecten en kan gebruikt worden om de kennis van een project te delen met anderen.
