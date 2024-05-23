@@ -67,7 +67,7 @@ Aangezien de samenvatting van een project bestaat uit de samenvattingen van indi
 Dit wordt gerealiseerd met behulp van een prompt die de samenvatting van een Pythonbestand op een correcte manier interpreteert en omzet naar de juiste documentatie.
 
 De gehele samenvatting van het project werd gemaakt door de individuele samenvattingen van de bestanden samen te voegen en dit mee te geven met het prompt \ref{bijlage:prompt6}.
-De volgorde van de samenvattingen is niet van belang, omdat de relaties tussen de bestanden later nog gevisualiseerd worden en dit op basis van de imports \ref{sec:project-documentatie-relaties}.
+De volgorde van de samenvattingen is niet van belang, omdat de relaties tussen de bestanden later nog gevisualiseerd worden in hoofdstuk~\ref{sec:project-documentatie-relaties} en dit op basis van de imports.
 Dit prompt vraagt om de samenvatting van het project te maken en uit de individuele samenvattingen de functies en klassen op te lijsten.
 
 Doordat het model beter kleine prompts kan verwerken, is er gekozen om de samenvattingen van de bestanden in kleinere stukken mee te geven aan het model.
@@ -108,7 +108,7 @@ Een bestand dat een functie uit een ander bestand gebruikt, importeert deze func
 Daardoor wordt de functie die gebruikt wordt ook opgesomd onder de imports van het bestand.
 Hierdoor kan er gekeken worden naar de imports van de verschillende bestanden en zo kunnen de relaties tussen de bestanden worden gevisualiseerd.
 
-Het prompt dat gebruikt werd, is te zien in de listing \ref{lst:generate-file-relations}.
+Het prompt dat gebruikt werd, is te zien in het codefragment~\ref{lst:generate-file-relations}.
 
 \begin{listing}
     \begin{minted}{python}
@@ -211,8 +211,8 @@ Het vergelijken van de zelfgedocumenteerde bestanden met de automatisch gegenere
 Wat te zien is in de figuur \ref{fig:evaluatie-bestand-documentatie}.
 Hieruit is te zien dat de functie omschrijvingen in de samenvatting anders verwoord zijn, maar de betekenis is hetzelfde.
 Er is echter één functie vergeten in de manuele bestandsamenvatting, die wel gedocumenteerd is door de tool.
-Dit toont aan dat de tool beter presteert dan de programmeur zelf.
-Dit is een goed resultaat, omdat de gegenereerde docstrings correct zijn en de samenvatting een correct beeld geeft van het bestand.
+Een tweede fout in de automatisch gegenereerde bestandsamenvatting is dat de klasse \mintinline{python3}|MouseClick| een andere naam heeft gekregen namelijk \mintinline{python3}|AutoClicker| de naam van het bestand.
+Dit is een goed resultaat, omdat de gegenereerde docstrings correct zijn en de geeft echter toch een duidelijk beeld van wat de het bestand inhoudt.
 
 \begin{figure}
     \centering
@@ -238,12 +238,80 @@ Dit is een goed resultaat, omdat de gegenereerde docstrings correct zijn en de s
 \label{sec:project-documentatie-evaluatie-project}
 
 De projectdocumentatie evaluatie bestaat uit het evalueren van de documentatie van een project gegenereerd door de tool en de handgeschreven documentatie van het project.
-Dit wordt gedaan voor een klein project genaamd bmi-project van \textcite{Simmons2019}.
-De resultaten worden opgelijst in de tabel \ref{table:projecten-evaluatie}.
+Dit wordt gedaan voor het project genaamd bmi-project van \textcite{Simmons2019}.
+
+\begin{table}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    Type documentatie & Aantal die niet overeenkomen & Aantal exacte overeenkomsten & Aantal gelijkaardige overeenkomsten & Totale aantal \\
+    \hline
+    Docstring & 2 & 5 & 13 & 20 \\
+    \hline
+    Bestandsamenvatting & 3 & 2 & 3 & 8\\
+    \hline
+    \end{tabular}}
+    \caption{Evaluatie van de documentatie van het project bmi-project van \textcite{Simmons2019}}
+    \label{table:projecten-evaluatie}
+\end{table}
+
+Alle docstrings en bestandsamenvattingen zijn geëvalueerd en de resultaten zijn te zien in de tabel \ref{table:projecten-evaluatie}.
+De bestandsamenvattingen die niet overeenkomen hebben vaak te maken met dat de automatisch gegenereerde samenvatting een klasse of functie extra bevat die niet in het orginele bestand staat.
+Een voorbeeld van deze foutieve bestandsamenvattingen is te zien in de figuur \ref{fig:evaluate-bestand-samenvatting}.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{hand_bestanddocu.png}
+        \caption{Zelfgedocumenteerde bestandsamenvatting.}
+        \label{fig:zelfgedocumenteerd-bestandsamenvatting}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{auto_bestanddocu.png}
+        \caption{Automatisch gegenereerde bestandsamenvatting van eigen tool.}
+        \label{fig:automatisch-bestandsamenvatting}
+    \end{subfigure}
+    \caption{Vergelijking van de automatisch gegenereerde bestandsamenvatting met de zelfgedocumenteerde bestandsamenvatting.}
+    \label{fig:evaluate-bestand-samenvatting}
+\end{figure}
+
+De docstrings komen voor 90\% overeen met de handgeschreven docstrings.
+In de 10\% andere gevallen is er een kleine fout in de docstring of is de docstring niet correct gegenereerd.
+Dit gaat dan over een verkeerde omschrijving van de functie of klasse of een fout in de parameters.
+Zo is er voor de docstring van de klasse \mintinline{python3}|MAECallback(Callback)| een fout in de automatisch gegenereerde docstring.
+Het argument \mintinline{python3}|Callback| is niet meegegeven in de docstring, terwijl dit wel in de handgeschreven docstring staat.
+Deze fout is te vinden in de figuur \ref{fig:evaluate-docstring}.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{hand_docstring.png}
+        \caption{Zelfgedocumenteerde docstring.}
+        \label{fig:zelfgedocumenteerd-docstring}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.5\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{auto_docstring.png}
+        \caption{Automatisch gegenereerde docstring van eigen tool.}
+        \label{fig:automatisch-docstring}
+    \end{subfigure}
+    \caption{Vergelijking van de automatisch gegenereerde docstring met de zelfgedocumenteerde docstring.}
+    \label{fig:evaluate-docstring}
+\end{figure}
+
+De handgeschreven projectsamenvatting heeft dezelfde boodschap als de automatisch gegenereerde samenvatting, het is echter wel geschreven op een andere manier.
+Doordat het dezelfde boodschap overbrengt, kan er gesproken worden van een duidelijke samenvatting.
+De oplijsting van de verschillende bestanden met elk de gedefinieerde functies en klassen is correct en duidelijk.
 
 De evaluatie van de relaties tussen de verschillende bestanden gebeurt tussen de automatisch gegenereerde graaf en de manueel getekende graaf.
 De graven te zien in \ref{fig:evaluatie-graaf} tonen de relaties tussen de bestanden van het project. 
 Het is duidelijk dat deze graven gelijkaardig zijn, de gegenereerde graaf is beweegbaar en kan aangepast worden om een beter overzicht te krijgen.
+Samen met de oplijsting van de bestanden en de graph met de relaties tussen de bestanden, kan er een duidelijk overzicht bekomen worden van het project.
 
 \begin{figure}
     \centering
@@ -261,20 +329,3 @@ Het is duidelijk dat deze graven gelijkaardig zijn, de gegenereerde graaf is bew
     \caption{Vergelijking van de gegenereerde graaf met de handgetekende graaf.}
     \label{fig:evaluatie-graaf}
 \end{figure}
-
-\begin{table}
-    \resizebox{\textwidth}{!}{
-    \begin{tabular}{|c|c|c|c|}
-    \hline
-    Type documentatie & Aantal foute & Aantal exacte overeenkomsten & Aantal gelijkaardige overeenkomsten \\
-    \hline
-    Docstring & & & \\
-    \hline
-    Bestandsamenvatting & & & \\
-    \hline
-    Project samenvatting & & & \\
-    \hline
-    \end{tabular}}
-    \caption{Evaluatie van de documentatie van het project bmi-project van \textcite{Simmons2019}}
-    \label{table:projecten-evaluatie}
-\end{table}
