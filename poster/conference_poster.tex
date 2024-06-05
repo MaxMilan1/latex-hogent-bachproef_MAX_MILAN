@@ -9,78 +9,82 @@
 % Info over de opleiding
 \course{Bachelorproef}
 \studyprogramme{toegepaste informatica}
-\academicyear{2022-2023}
+\academicyear{2023-2024}
 \institution{Hogeschool Gent, Valentin Vaerwyckweg 1, 9000 Gent}
 
 % Info over de bachelorproef
-\title{Titel van uw bachelorproef}
-\subtitle{Ondertitel (eventueel)}
-\author{Voornaam Naam}
-\email{voornaam.familienaam@student.hogent.be}
-\supervisor{Voornaam Naam}
-\cosupervisor{Voornaam Naam (Bedrijf)}
+\title{Automatische documentatie generatie met behulp van LLM's voor ongedocumenteerde Python-projecten.}
+% \subtitle{Ondertitel (eventueel)}
+\author{Max Milan}
+\email{Max.Milan@student.hogent.be}
+\supervisor{Gertjan Bosteels}
+\cosupervisor{Arne Pannemans (ML6)}
 
 % Indien ingevuld, wordt deze informatie toegevoegd aan het einde van de
 % abstract. Zet in commentaar als je dit niet wilt.
-\specialisation{Systeem- en Netwerkbeheer}
-\keywords{Lambda-calculus, Scheme}
-\projectrepo{https://github.com/user/repo}
+\specialisation{Ai \& Data Engineering}
+\keywords{Large Language Model, Python, Documentatie}
+% \projectrepo{https://github.com/user/repo}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-It's only a model.
-You don't vote for kings. Who's that then? We found them. Ni! Ni! Ni! Ni!
-The nose? On second thoughts, let's not go there. It is a silly place. Bloody Peasant! And the hat. She's a witch! Where'd you get the coconuts?
+Deze bachelorproef richt zich op het documenteren van ongedocumenteerde Python-projecten met behulp van Large Language Models (LLM's) om zo duidelijke en overzichtelijke documentatie te genereren.
+De gegenereerde documentatie van een bestand, de docstrings en de bestandsamenvattingen worden als basis gebruikt voor de projectdocumentatie.
+Deze projectdocumentatie bevat een samenvatting van alle bestanden en de relaties tussen deze bestanden.
+De evaluatie van de automatisch gegenereerde documentatie toont aan dat de documentatie van de tool en de handgeschreven documentatie gelijkaardig zijn.
 \end{abstract}
 
 \begin{multicols}{2} % This is how many columns your poster will be broken into, a portrait poster is generally split into 2 columns
 
 \section{Introductie}
+Deze bachelorproef onderzoekt het documenteren van ongedocumenteerde Python-projecten met behulp van LLM's. 
+De doelstelling is om een proof-of-concept te ontwikkelen dat de documentatie van een Pythonproject kan genereren op basis van de code.
+Zodat de kennis makkelijk gedeeld kan worden en dat iedereen die met het project in aanraking komt, snel de nodige informatie kan vinden.
 
-Be quiet! Found them? In Mercia?! The coconut's tropical! But you are dressed as one… Well, what do you want? Knights of Ni, we are but simple travelers who seek the enchanter who lives beyond these woods.
+\section{Methodologie}
+Het onderzoek bestaat uit 4 fases. Een literatuurstudie naar wat documentatie juist is en wat enkele bestaande tools zijn.
+De volgende stap is het documenteren van bestanden met behulp van LLM's. Hierna volgt het genereren van Projectdocumentatie, een samenvatting van alle bestanden en relaties ertussen.
+Als laatste wordt er een evaluatie gedaan van de automatische gegenereerde documentatie.
 
-Well, what do you want? It's only a model. Camelot! We found them. We shall say `Ni' again to you, if you do not appease us.
-
-The nose? Shut up! Burn her! I am your king. You don't vote for kings.
-
-You can't expect to wield supreme power just `cause some watery tart threw a sword at you! Well, we did do the nose. I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!
-
-Why do you think that she is a witch? We want a shrubbery!! I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave before I am forced to taunt you a second time!
-
-\section{Experimenten}
-
-A newt? Camelot! Why? No, no, no! Yes, yes. A bit. But she's got a wart.
-
-Shut up! I dunno. Must be a king. Who's that then? Look, my liege! On second thoughts, let's not go there. It is a silly place.
-
-Shut up! Will you shut up?! No, no, no! Yes, yes. A bit. But she's got a wart. He hasn't got shit all over him. It's only a model. It's only a model.
-
-Bring her forward! I don't want to talk to you no more, you empty-headed animal food trough water! I fart in your general direction! Your mother was a hamster and your father smelt of elderberries! Now leave 
-
-\section{Sectie met figuur}
-
-De {\LaTeX} figure-omgeving bepaalt zelf waar een afbeelding komt en dat is meestal niet op de plek in de tekst waar de figure-omgeving gedefinieerd wordt. Als je wilt forceren dat afbeeldingen toch in de flow van de tekst blijven, dan kan je dat zoals hieronder:
+\section{Resultaten}
+Het documenteren van een bestand gebeurt door uit de code functies en klassen te halen en mee te geven aan een prompt.
+Op basis van de gegenereerde docstrings wordt er een samenvatting van het bestand gemaakt een voorbeeld hiervan is te zien in de figuur \ref{fig:bestanddocu}.
 
 \begin{center}
   \captionsetup{type=figure}
-  \includegraphics[width=1.0\linewidth]{grail}
-  \captionof{figure}{He hasn't got shit all over him. The nose? Where'd you get the coconuts? What do you mean? We shall say `Ni' again to you, if you do not appease us}
+  \includegraphics[width=1.0\linewidth]{auto_bestanddocu}
+  \captionof{figure}{Automatisch gegenereerde documentatie van een bestand.}
+  \label{fig:bestanddocu}
 \end{center}
 
-Let er wel op dat dit tot problemen met bladschikking kan leiden.
+De documentatie van een project is een samenvatting van alle bestanden en de relaties tussen deze bestanden.
+Alle bestanden worden gedocumenteerd en de bestandsamenvattingen worden omgezet tot één projectsamenvatting.
+De relaties tussen de bestanden worden gevisualiseerd met behulp van een graaf en dit op basis van de imports in de bestanden en de bestandsnamen.
+Een voorbeeld van een graaf met de relaties tussen de bestanden is te zien in figuur \ref{fig:graaf}.
+
+\begin{center}
+  \captionsetup{type=figure}
+  \includegraphics[width=0.8\linewidth]{graph}
+  \captionof{figure}{Graaf met de relaties tussen de bestanden.}
+  \label{fig:graaf}
+\end{center}
+
+\section{Evaluatie}
+
+De evaluatie van de gegenereerde documentatie met manueel geschreven documentatie toont aan dat de automatisch gegenereerde documentatie een goede basis is.
+De docstrings komen voor 90\% overeen met de manueel geschreven documentatie en de bestandsamenvattingen komen voor 62.5\% overeen met de manueel geschreven documentatie.
 
 \section{Conclusies}
-
-Don't underestimate the Force. Oh God, my uncle. How am I ever gonna explain this? I suggest you try it again, Luke. This time, let go your conscious self and act on instinct. Don't be too proud of this technological terror you've constructed. The ability to destroy a planet is insignificant next to the power of the Force.
+De evaluatie toont aan dat de documentatie van de tool en de handgeschreven documentatie gelijkaardig zijn. 
+Alhoewel er enkele fouten in de documentatie van de individuele bestanden zitten, blijft
+de gehele projectdocumentatie overzichtelijk en duidelijk.
 
 \section{Toekomstig onderzoek}
-
-I care. So, what do you think of her, Han? No! Alderaan is peaceful. We have no weapons. You can't possibly… I have traced the Rebel spies to her. Now she is my only link to finding their secret base.
-
-Kid, I've flown from one side of this galaxy to the other. I've seen a lot of strange stuff, but I've never seen anything to make me believe there's one all-powerful Force controlling everything. There's no mystical energy field that controls my destiny. It's all a lot of simple tricks and nonsense. You are a part of the Rebel Alliance and a traitor! Take her away! 
+Er kan gekeken worden naar een uitgebreidere evaluatie van de documentatie. 
+Met een grote enquête en programmeurs manueel laten documenteren en deze te vergelijken met de automatisch gegenereerde documentatie.
 
 \end{multicols}
 \end{document}
